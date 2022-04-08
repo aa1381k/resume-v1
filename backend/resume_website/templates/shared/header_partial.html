@@ -3,7 +3,7 @@
     <div class="container mt-2 headder-container">
 
         <div class="header-btns">
-            <a href="login&register.html" class="btn btn-outline-primary register pt-2">ثبت نام / ورود</a>
+            <a href="{% url 'register-page' %}" class="btn btn-outline-primary register pt-2">ثبت نام / ورود</a>
 
             <a class="menu-btn" data-bs-toggle="offcanvas" data-bs-target="#demo">
                 <i class="fa fa-bars bg-white border-0"></i>
@@ -15,7 +15,7 @@
             <ul class="nav nav-tab">
 
                 <li class="nav-item">
-                    <a href="about-us.html" class="nav-link">درباره ما</a>
+                    <a href="{% url 'about-page' %}" class="nav-link">درباره ما</a>
                 </li>
 
                 <li class="nav-item">
@@ -34,13 +34,13 @@
 
             <div class="offcanvas offcanvas-end w-75" id="demo">
                 <div class="offcanvas-header">
-                    <img class="offcanvas-title w-25 m-auto" src="../images/BMW_logo_(gray).jpg" alt="">
+                    <img class="offcanvas-title w-25 m-auto" src="/static/images/BMW_logo_(gray).jpg" alt="">
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
                 </div>
                 <div class="offcanvas-body">
                     <ul class="">
                         <li class="nav-item">
-                            <a href="" class="nav-link active">درباره ما</a>
+                            <a href="{% url 'about-page' %}" class="nav-link active">درباره ما</a>
                         </li>
 
                         <li class="nav-item">
@@ -56,13 +56,13 @@
                         </li>
 
                     </ul>
-                    <a href="" class="btn btn-primary pt-2">ثبت نام / ورود</a>
+                    <a href="{% url 'register-page' %}" class="btn btn-primary pt-2">ثبت نام / ورود</a>
                 </div>
             </div>
 
             <div class="logo">
-                <a href="index.html">
-                    <img src="../images/BMW_logo_(gray).jpg" alt="">
+                <a href="{% url 'home-page' %}">
+                    <img src="/static/images/BMW_logo_(gray).jpg" alt="">
                 </a>
             </div>
 

@@ -1,1 +1,297 @@
 {% extends 'shared/base.html' %}
+
+{% block title %}
+home page
+{% endblock %}
+
+
+{% block content %}
+<main class="home-page">
+
+<div class="container">
+
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1290 320">
+        <path fill="#0099ff" fill-opacity=".6"
+            d="M0,32L80,37.3C160,43,320,53,480,101.3C640,149,800,235,960,277.3C1120,320,1280,320,1360,320L1440,320L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z">
+        </path>
+    </svg> -->
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-200 -10 1440 320">
+        <path fill="#0099ff" fill-opacity=".7"
+            d="M0,288L48,256C96,224,192,160,288,133.3C384,107,480,117,576,149.3C672,181,768,235,864,224C960,213,1056,139,1152,106.7C1248,75,1344,85,1392,90.7L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
+        </path>
+    </svg>
+
+    <div class="row">
+        <div class="intro">
+
+            <div class="intro-content">
+                <div class="title">
+                    رزومه ساز علی
+                </div>
+
+                <div class="desc mt-3">
+                    با رزومه ساز علی در کمتر از 10 دقیقه رزومه خود را بسازید
+                </div>
+
+
+                <a href="" class="btn btn-primary mt-5 p-2 w-75">ساخت رزومه</a>
+            </div>
+
+            <div class="intro-image ">
+                <img src="/static/images/Online resume-pana.png" alt="">
+            </div>
+
+
+        </div>
+
+        <div class="status">
+            <p>1000 تعداد رزومه های ساخته شده امروز <i class="spinner-grow spinner-grow-sm text-primary"></i>
+            </p>
+        </div>
+
+        <div class="scroll-down">
+            <a href="#resume-sec"><img src="/static/images/scroll-down-1-2.gif" alt=""></a>
+        </div>
+    </div>
+
+    <div class="row resume-row row-title" id="resume-sec">
+
+        <h2>قالب های رزومه</h2>
+
+        <div class="slider">
+
+            <ul id="autoplay" class="cs-hidden">
+
+                <li class="item-a">
+                    <div class="resume-item border rounded">
+                        <a href="#">
+                            <div class="slide-image">
+                                <img src="/static/images/resume.png" alt="">
+                                <div class="overlay">
+                                    <div class="box-3">
+                                        <div class="btn-resume btn-three">
+                                            <span>ساخت رزومه</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="item-a">
+                    <div class="resume-item border rounded">
+                        <a href="#">
+                            <div class="slide-image">
+                                <img src="/static/images/resume.png" alt="">
+                                <div class="overlay">
+                                    <div class="box-3">
+                                        <div class="btn-resume btn-three">
+                                            <span>ساخت رزومه</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="item-a">
+                    <div class="resume-item border rounded">
+                        <a href="#">
+                            <div class="slide-image">
+                                <img src="/static/images/resume1.png" alt="">
+                                <div class="overlay">
+                                    <div class="box-3">
+                                        <div class="btn-resume btn-three">
+                                            <span>ساخت رزومه</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="item-a">
+                    <div class="resume-item border rounded">
+                        <a href="#">
+                            <div class="slide-image">
+                                <img src="/static/images/resume2.png" alt="">
+                                <div class="overlay">
+                                    <div class="box-3">
+                                        <div class="btn-resume btn-three">
+                                            <span>ساخت رزومه</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="item-a">
+                    <div class="resume-item border rounded">
+                        <a href="#">
+                            <div class="slide-image">
+                                <img src="/static/images/resume3.jpg" alt="">
+                                <div class="overlay">
+                                    <div class="box-3">
+                                        <div class="btn-resume btn-three">
+                                            <span>ساخت رزومه</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="item-a">
+                    <div class="resume-item border rounded">
+                        <a href="#">
+                            <div class="slide-image">
+                                <img src="/static/images/resume4.jpg" alt="">
+                                <div class="overlay">
+                                    <div class="box-3">
+                                        <div class="btn-resume btn-three">
+                                            <span>ساخت رزومه</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="item-a">
+                    <div class="resume-item border rounded">
+                        <a href="#">
+                            <div class="slide-image">
+                                <img src="/static/images/resume5.jpg" alt="">
+                                <div class="overlay">
+                                    <div class="box-3">
+                                        <div class="btn-resume btn-three">
+                                            <span>ساخت رزومه</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="more-resume-btn">
+            <a href="" class="btn btn-outline-primary col-md-3">نمایش همه رزومه ها</a>
+        </div>
+
+    </div>
+
+    <div class="row mb-5">
+        <p class="row-title">چرا باید از رزومه ساز علی استفاده کنم؟</p>
+        <div class="cards">
+
+            <div class="card-item border">
+                <div class="card-item-icon">
+                    <i class="fa fa-qrcode" aria-hidden="true"></i>
+                </div>
+                <h5>QR تعریف</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, in!</p>
+            </div>
+
+            <div class="card-item border">
+                <div class="card-item-icon">
+                    <i class="fa-solid fa-language"></i>
+                </div>
+                <h5>قابلیت چند زبانه</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, in!</p>
+            </div>
+
+            <div class="card-item border">
+                <div class="card-item-icon">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </div>
+                <h5>اشتراک گذاری آنلاین</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, in!</p>
+            </div>
+
+            <div class="card-item border">
+                <div class="card-item-icon">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <h5>اشتراک گذاری نمونه کار</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, in!</p>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="row create-resume">
+        <p>!همین الان قالب دلخواهتو انتخاب کن و تو کمتر از 10 دقیقه رزومتو بساز</p>
+        <a href="" class="btn btn-primary">ساخت رزومه</a>
+    </div>
+
+    <div class="row blog-row row-title">
+        <h2>بلاگ ها</h2>
+        <div class="blogs-list">
+
+            <a href="" class="blog-item border border-1 shadow">
+
+                <div class="blog-image">
+                    <img src="/static/images/blog1.jpeg" alt="">
+                </div>
+
+                <div class="blog-body">
+                    <h5>لورم ایپسوم متن</h5>
+                </div>
+
+            </a>
+            <a href="" class="blog-item border border-1 shadow">
+
+                <div class="blog-image">
+                    <img src="/static/images/blog2.jpeg" alt="">
+                </div>
+
+                <div class="blog-body">
+                    <h5>لورم ایپسوم متن</h5>
+                </div>
+
+            </a>
+
+            <a href="" class="blog-item border border-1 shadow">
+
+                <div class="blog-image">
+                    <img src="/static/images/blog1.jpeg" alt="">
+                </div>
+
+                <div class="blog-body">
+                    <h5>لورم ایپسوم متن</h5>
+                </div>
+
+            </a>
+            <a href="" class="blog-item border border-1 shadow">
+
+                <div class="blog-image">
+                    <img src="/static/images/blog2.jpeg" alt="">
+                </div>
+
+                <div class="blog-body">
+                    <h5>لورم ایپسوم متن</h5>
+                </div>
+
+            </a>
+
+        </div>
+    </div>
+
+</div>
+
+
+</main>
+{% endblock %}
