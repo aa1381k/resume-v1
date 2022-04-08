@@ -1,0 +1,153 @@
+main{
+    margin-top: 0px;
+}
+
+.container{
+    margin-top: 90px;
+}
+
+.about-head{
+    display: flex;
+    justify-content: space-around;
+}
+
+.about-head .bg-img img{
+    width: 100%;
+}
+
+.about-title{
+
+}
+
+.about-title h1{
+    direction: rtl;
+    font-size: 70px;
+    margin-top: 90px;
+}
+
+.about-body{
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 90px;
+}
+
+.about-body .text{
+    direction: rtl;
+    background-color: white;
+    padding: 50px;
+    border-radius: 20px;
+    border: 1px solid #dbd8d8;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    position: relative;
+    margin-right: 30px;
+    margin-top: -50px;
+}
+
+.info .count{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0px;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    border: 1px solid #dbd8d8;
+    border-radius: 10px;
+    text-align: center;
+    padding: 30px;
+}
+
+.info .count i{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    padding: 14px;
+    background-color: #0e6dfb;
+    border-radius: 100%;
+    font-size: 20px;
+    color: white;
+}
+
+.info .info-text{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.info .info-text p:first-of-type{
+    font-weight: 700;
+}
+
+.info .info-text p:last-of-type{
+    font-weight: 500;
+    color: #c2c1c1;
+}
+
+.info .count-user{
+    margin-top: -340px;
+    margin-right: 150px;
+}
+
+.info .col1{
+    margin-left: 300px;
+}
+
+.about-us-btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* margin-top: -240px; */
+    margin-bottom: 100px;
+}
+
+.about-us-btn .create-resume{
+    width: 30%;
+    text-align: center;
+}
+
+@media screen and (max-width:991px) {
+
+}
+
+@media screen and (max-width:767px) {
+    .about-body{
+        flex-direction: column;
+    }
+
+    .info{
+        margin: 0;
+    }
+
+    .info .col1{
+        margin: 0;
+    }
+
+    .info .count-user{
+        margin: 0;
+    }
+
+    .about-head{
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .about-title h1{
+        text-align: center;
+    }
+
+    .about-us-btn{
+        justify-content: center;
+        margin: -100px 0px 100px 0px;
+    }
+
+    .about-us-btn .create-resume{
+        width: 80%;
+        text-align: center;
+    }
+}

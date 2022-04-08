@@ -1,0 +1,245 @@
+:root{
+    /* --theme: #0d6efd; */
+    --theme: rgb(255, 38, 0);
+}
+
+*{
+    font-family: dirooz;
+}
+
+main .container{
+    display: flex;
+    justify-content: center;
+}
+
+h6{
+    font-size: 18px;
+}
+
+.active{
+    color: var(--theme);
+    border-bottom: 1px solid var(--theme);
+}
+
+.sectionname {
+    font-size: 18px;
+    margin: 30px 20px;
+    position: relative;
+    font-weight: 500;
+}
+
+.sectionname:after {
+    position: absolute;
+    content: '';
+    left: 86%;
+    right: 0;
+    top: 45px;
+    bottom: 0;
+    width: 15%;
+    height: 2px;
+    background-color: var(--theme);
+}
+
+.main-profile{
+    margin-top: 270px;
+    border-radius: 10px 10px;
+    margin-bottom: 150px;
+}
+
+.main-profile-header{
+    border-radius: 10px;
+    direction: rtl;
+    margin-bottom: 30px;
+}
+
+.main-profile-header .bg-image{
+    height: 270px;
+    background-image: url('../images/curved0.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 20px;
+}
+
+.main-profile-header .gradiant-bg{
+    box-shadow: inset 0 0px 1px 1px rgb(254 254 254 / 90%), 0 20px 27px 0 rgb(0 0 0 / 5%) !important;
+    -webkit-backdrop-filter: saturate(200%) blur(30px);
+    backdrop-filter: saturate(200%) blur(30px);
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    border-radius: 20px;
+    /* height: 200px; */
+    margin-top: -100px;
+    display: flex;
+}
+
+/* .user-info-bg{
+
+} */
+
+.main-profile-header .user-image{
+    width: 160px;
+    height: 160px;
+    border-radius: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 10px;
+}
+
+.main-profile-header .user-image img{
+    width: 100%;
+    border-radius: 100%; 
+    padding: 10px;
+    background-color: white;
+    padding: 10px;
+    margin-top: 10px;
+    border: 2px solid #dee2e6;
+}
+
+.main-profile-header .user-name{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    /* margin-top: 60px; */
+}
+
+.main-profile-header .user-description{
+    margin: 250px 50px 70px 50px;
+}
+
+.main-profile-header .user-description p{
+    font-family: dirooz;
+}
+
+.main-profile-header .user-info{
+    font-family: dirooz;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    margin: -110px -30px 0 -30px;
+}
+
+.main-profile-header .user-info .user-follower{
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 40px 50px 40px;
+}
+
+.user-info .user-follower span{
+    font-weight: 700;
+}
+
+.main-profile-header .user-info .profile-btns{
+    margin-left: -20px;
+}
+
+.main-profile-header .profile-tabs{
+    font-size: 30px;
+    font-family: dirooz;
+    margin: 160px -330px 0px -330px;
+    /* margin-right: -300px; */
+    /* margin-top: 160px; */
+}
+
+.main-profile-header .profile-tabs ul li button:hover{
+    color: var(--theme);
+    border-bottom: 1px solid var(--theme);
+}
+
+.main-profile-body{
+    border-radius: 10px;
+    direction: rtl;
+    margin-top: 400px;
+}
+
+.main-profile-body .about-me,
+.main-profile-body .skills,
+.main-profile-body .job-exp,
+.main-profile-body .education{
+    border-radius: 20px;
+    font-family: dirooz;
+}
+
+.main-profile-body .about-me p,
+.main-profile-body .job-exp p,
+.main-profile-body .education p,
+.main-profile-body .about-me span,
+.main-profile-body .job-exp span,
+.main-profile-body .education span{
+    font-family: dirooz;
+}
+
+.main-profile-body .job-exp-item,
+.main-profile-body .education-item{
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-top: 50px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.main-profile-body .job-exp-item:last-of-type,
+.main-profile-body .education-item:last-of-type{
+    border: 0;
+}
+
+.education-date .date-start,
+.education-date .date-end,
+.job-date .date-start,
+.job-date .date-end{
+    color: #aaaaaa;
+}
+
+.skills .skill-items{
+    display: grid;
+    grid-template-columns: repeat(3,30%);
+    justify-content: space-evenly;
+    margin-top: 100px;
+}
+
+.skills .skill-items .skill-item{
+    text-align: end;
+    margin-bottom: 60px;
+    /* background-color: #0d6efd; */
+}
+
+.skills .skill-items .skill-item .percentage {
+    margin: -55px 100px 0 10px;
+}
+
+
+
+@keyframes growProgressBar {
+    0%, 33% { --pgPercentage: 0; }
+    100% { --pgPercentage: var(--value); }
+  }
+  
+  @property --pgPercentage {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+  }
+  
+  div[role="progressbar"] {
+    --size: 5rem;
+    --fg: var(--theme);
+    --bg: #def;
+    --pgPercentage: var(--value);
+    animation: growProgressBar 3s 1 forwards;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 100%;
+    display: grid;
+    place-items: center;
+    background: 
+      radial-gradient(closest-side, white 80%, transparent 0 99.9%, white 0),
+      conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0)
+      ;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: calc(var(--size) / 5);
+    color: var(--fg);
+  }
+  
+  div[role="progressbar"]::before {
+    counter-reset: percentage var(--value);
+    content: counter(percentage) '%';
+  }

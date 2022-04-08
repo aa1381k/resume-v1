@@ -1,0 +1,904 @@
+* {
+    padding: 0;
+}
+
+main {
+    margin-top: 70px;
+}
+
+.tab-btn {
+    border: none;
+    background-color: white;
+}
+
+.sectionname {
+    font-family: dirooz;
+}
+
+.active-tab {
+    color: #0d6efd !important;
+}
+
+.tab-data {
+    display: block !important;
+}
+
+.resume-info-tabs {
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.resume-info-tabs ul {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.resume-info-tabs ul li {
+    display: inline-block;
+}
+
+.resume-info-tabs ul li a span:last-of-type {
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.resume-info-tabs ul li span {
+    font-size: 15px;
+    font-weight: 400;
+    font-family: dirooz;
+}
+
+
+.resume-info-body {
+    background-color: white;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+}
+
+.resume-forms {
+    width: 90%;
+}
+
+.invisible {
+    display: none !important;
+}
+
+.tab-tittle {
+    margin-top: 10px;
+}
+
+.tab-tittle h2 {
+    font-size: 16px;
+}
+
+.tab-tittle h2:after {
+    top: 38px;
+    left: 40%;
+    width: 20%;
+}
+
+.tab-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sectionname {
+    text-align: end;
+    margin: 30px 0px;
+    position: relative;
+}
+
+.sectionname:after {
+    position: absolute;
+    content: '';
+    left: 84%;
+    right: 0;
+    top: 30px;
+    bottom: 0;
+    width: 15%;
+    height: 2px;
+    background-color: #0d6efd;
+}
+
+.tab-body .row input,
+.tab-body .row textarea {
+    border-radius: 5px;
+    border: 1px solid #d1d2d6;
+    padding: 5px;
+    width: 100%;
+    outline: none;
+    background-color: #f2f5fa;
+    text-align: end;
+    margin: 0px 10px;
+}
+
+.tab-body .row input:focus,
+.tab-body .row textarea:focus {
+    border: 1px solid #0d6efd;
+}
+
+.tab-body .row span {
+    color: #aeaab1;
+    display: block;
+    text-align: end;
+    margin-bottom: 10px;
+}
+
+.tab-body .row .row1 {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    width: 80%;
+}
+
+.tab-body .row .row1 input {
+    width: 90%;
+}
+
+.tab-body .row .row2 {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    /* margin-left: 25px; */
+    /* width: 60%; */
+    padding: 0;
+}
+
+select {
+    border: 1px solid #d1d2d6;
+    background-color: #f2f5fa;
+    border-radius: 5px;
+    width: 100%;
+    height: 36px !important;
+    outline: none;
+}
+
+input {
+    height: 36px !important;
+}
+
+select:focus {
+    border: 1px solid #0d6efd;
+}
+
+.tab-body .row .row3 {
+    width: 72%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+.tab-body .row .row3 .birghtday {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-body .row .row3 .birghtday .birtday-body {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tab-body .row .row3 .birghtday input {
+    width: 32%;
+    text-align: end;
+    margin: 0;
+}
+
+.tab-body .row .row3 .birghtday span {
+    display: block !important;
+}
+
+.tab-body .row .row3 .birghtday select {
+    width: 30%;
+    height: 100%;
+
+}
+
+.tab-body .row .row3 .srm {
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+    margin-right: 10px;
+}
+
+.tab-body .row .row3 .srm select {
+    height: 50%;
+    margin-left: 3px;
+}
+
+
+.tab-body .row .row3 .srm .inner-srm {
+    width: 32%;
+    height: 100%;
+    display: block;
+    margin: auto;
+}
+
+.tab-body .row .block {
+    margin-bottom: -500px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: end;
+}
+
+.tab-body .row .block .profile-image {
+    margin-top: 50px;
+}
+
+.tab-body .row .block img {
+    width: 130px !important;
+    height: 130px !important;
+    border-radius: 100%;
+}
+
+.tab-body .row .block .btns {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.tab-body .row .block .btns .upload {
+    background-color: #0d6efd;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+}
+
+.tab-body .row .block .btns .trash {
+    background-color: red;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+}
+
+.personal-info-page .summary-description span {
+    margin-right: -20px;
+}
+
+.personal-info-page .summary-description textarea {
+    height: 100px;
+    width: 100%;
+    resize: none;
+}
+
+.personal-info-page .row>* {
+    padding: 0 !important;
+}
+
+.user-social-media {
+    display: grid;
+    grid-template-columns: repeat(2, 40%);
+    justify-content: center;
+    gap: 20px;
+}
+
+.user-social-media-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 1px solid #d1d2d6;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.user-social-media-item .move-btns {
+    visibility: hidden;
+    margin-left: 200px !important;
+    margin-top: -40px !important;
+    margin-bottom: 30px !important;
+}
+
+.user-social-media-item:hover .move-btns {
+    visibility: visible;
+}
+
+.user-social-media-item .item-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.user-social-media-item .item-inputs i {
+    color: #0d6efd;
+    border: 1px solid #d1d2d6;
+    background-color: #f2f5fa;
+    padding: 15px;
+    border-radius: 100%;
+    font-size: 30px;
+}
+
+.user-social-media-item .item-inputs span {
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.user-social-media-item .item-inputs select {
+    width: 100%;
+    text-align: center;
+}
+
+.user-social-media-item .item-inputs .social-media-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.user-social-media-item .item-inputs .social-media-body input {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+.user-social-media-item .item-inputs .social-media-body select {
+    margin-bottom: 10px;
+}
+
+.resume-info-bottom-tab {
+    display: none;
+}
+
+.skills-page .lang-items {
+    display: grid;
+    grid-template-columns: repeat(2, 49%);
+    direction: rtl;
+    justify-content: space-around;
+}
+
+.skills-page .lang-item {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding: 20px;
+    direction: ltr;
+}
+
+.skills-page .lang-item select {
+    margin-left: 10px;
+}
+
+.move-btns{
+    height: 10px;
+    margin-top: -35px;
+    margin-right: -30px;
+    margin-bottom: 5px;
+    padding: 10px;
+    direction: ltr;
+    display: flex;
+    visibility: hidden;
+}
+
+.move-btns button {
+    outline: none;
+    padding: 5px 10px;
+    background-color: white;
+    border: 1px solid #dee2e6;
+    margin: 0 5px;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.10)!important;
+}
+
+.move-btns i:hover {
+    color: #0d6efd;
+}
+
+.lang-item .item-inputs {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.lang-item .item-inputs input,
+.lang-item .item-inputs select {
+    width: 90%;
+}
+
+.skills-page .skill-items .skill-item {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    direction: ltr;
+}
+
+.skill-item .item-inputs {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    width: 80%;
+    /* direction: rtl; */
+}
+
+.skill-item .item-inputs input,
+.skill-item .item-inputs select {
+    width: 80%;
+}
+
+.skills-page .skill-items {
+    display: grid;
+    grid-template-columns: repeat(2, 49%);
+    justify-content: space-around;
+    direction: rtl;
+}
+
+.skills-page .skill-item .move-btns{
+    justify-content: end;
+    margin-bottom: 20px;
+}
+
+.certification-item .item-inputs .item-data-inputs{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.education-page .education-date,
+.job-page .job-date,
+.project-page .project-date,
+.other-page .other-date,
+.certification-date{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.education-page .education-item,
+.job-page .job-item,
+.project-page .project-item,
+.internship-item,
+.introduced-item,
+.certification-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 15px;
+}
+
+.education-page .education-item .move-btns,
+.job-page .job-item .move-btns,
+.project-page .project-item .move-btns,
+.internship-item .move-btns,
+.introduced-item .move-btns {
+    margin-right: 10px;
+    margin-bottom: 50px;
+    margin-top: 1px;
+}
+
+.education-page .education-item:hover .move-btns,
+.skills-page .lang-item:hover .move-btns,
+.skills-page .skill-item:hover .move-btns,
+.entertainment-items .entertainment-item:hover .move-btns,
+.certification-items .certification-item:hover .move-btns,
+.job-page .job-item:hover .move-btns,
+.project-page .project-item:hover .move-btns,
+.internship-item:hover .move-btns,
+.introduced-item:hover .move-btns {
+    visibility: visible;
+}
+
+.education-page .education-item .item-inputs,
+.job-page .job-item .item-inputs,
+.project-page .project-item .item-inputs,
+.internship-item .item-inputs,
+.introduced-item .item-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.education-page .education-item .item-inputs .flex-item,
+.job-page .job-item .item-inputs .flex-item,
+.project-page .project-item .item-inputs .flex-item,
+.internship-item .item-inputs .flex-item,
+.introduced-item .item-inputs .flex-item {
+    flex: 40% 0;
+}
+
+.education-page .education-item .item-inputs textarea,
+.job-page .job-item .item-inputs textarea,
+.project-page .project-item .item-inputs textarea,
+.internship-item .item-inputs textarea,
+.introduced-item .item-inputs textarea {
+    height: 100px;
+}
+
+.education-page .education-item .item-inputs textarea,
+.education-page .education-item .item-inputs input,
+.job-page .job-item .item-inputs textarea,
+.job-page .job-item .item-inputs input,
+.project-page .project-item .item-inputs textarea,
+.project-page .project-item .item-inputs input,
+.project-item .item-inputs textarea,
+.project-item .item-inputs input,
+.internship-item .item-inputs input,
+.internship-item .item-inputs textarea,
+.introduced-item .item-inputs textarea,
+.introduced-item .item-inputs input {
+    margin: 0;
+}
+
+
+.entertainment-items{
+    display: grid;
+    grid-template-columns: repeat(2,40%);
+    justify-content: space-around;
+    direction: rtl;
+}
+
+.entertainment-items .entertainment-item{
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    direction: ltr;
+}
+
+.entertainment-items .entertainment-item .item-inputs{
+    display: flex;
+    justify-content: center;
+}
+
+.entertainment-item .item-inputs input{
+    margin: 0;
+}
+
+.modal-body .tabs{
+    display: grid;
+    grid-template-columns: repeat(2,40%);
+    justify-content: center;
+    border-collapse: collapse;
+    gap: 10px;
+}
+
+.modal-body .tabs .tab-item{
+    height: 100px;
+    text-align: center;
+    border: 1px solid #dee2e6!important;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+@media screen and (max-width:991px) {
+    .personal-info-page .base-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .personal-info-page .base-info .row1,
+    .personal-info-page .base-info .row2 {
+        width: 100%;
+        margin-top: 30px;
+        margin-left: 0;
+    }
+
+    .personal-info-page .base-info .row1 * {
+        margin-top: 10px;
+    }
+
+    .personal-info-page .base-info .row2 {
+        flex-direction: column;
+    }
+
+    .personal-info-page .base-info .row2 * {
+        margin-top: 10px;
+    }
+
+    .personal-info-page .base-info .row3 {
+        width: 100%;
+        margin-left: 10px;
+    }
+
+    .personal-info-page .base-info .row3 .srm {
+        width: 50%;
+    }
+
+    .personal-info-page .base-info .row3 .birghtday {
+        width: 50%;
+    }
+
+
+    .personal-info-page .tab-body .row .block {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 0;
+    }
+
+    .personal-info-page .tab-body .row input {
+        margin: 0;
+    }
+
+    .personal-info-page .base-info .row1 input {
+        width: 96%;
+        margin: 10px;
+    }
+
+    .personal-info-page .base-info .sectionname {
+        display: none;
+
+    }
+
+    .personal-info-page .Contact .row1 {
+        width: 100%;
+    }
+
+    .personal-info-page .Contact input {
+        width: 96% !important;
+        margin-top: 10px;
+    }
+
+    .personal-info-page .Contact * {
+        margin-top: 10px;
+    }
+
+    .personal-info-page .summary .row {
+        width: 100%;
+    }
+
+    span {
+        text-align: center !important;
+    }
+
+    .skills-page .lang-items {
+        grid-template-columns: repeat(1, 100%);
+    }
+
+    .skills-page .skill-items .skill-item {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .skills-page .skill-items {
+        grid-template-columns: repeat(1, 100%);
+    }
+    
+    .move-btns{
+        visibility: visible;
+    }
+}
+
+
+
+@media screen and (max-width:767px) {
+
+    .personal-info-page .base-info .row3 {
+        flex-direction: column;
+    }
+
+    .personal-info-page .base-info .row3 .srm {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .personal-info-page .base-info .row3 .birghtday {
+        width: 100%;
+    }
+
+    .personal-info-page .base-info .row3 .birghtday select {
+        width: 32%;
+    }
+
+    .user-social-media {
+        display: grid;
+        grid-template-columns: repeat(1, 100%);
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .user-social-media-item .move-btns {
+        visibility: visible !important;
+        margin-left: 10px !important;
+        margin-top: 0px !important;
+        margin-bottom: 30px !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .resume-info-bottom-tab {
+        display: block;
+        position: fixed;
+        width: 100%;
+        height: 50px;
+        background-color: white;
+        z-index: 2;
+        left: 0;
+        bottom: 0;
+        padding: 10px;
+    }
+
+    .resume-info-tabs {
+        display: none;
+    }
+
+    .resume-info-bottom-tab ul {
+        display: flex;
+        justify-content: space-around;
+        margin-right: 30px;
+    }
+
+    .resume-info-bottom-tab .all-tabs {
+        margin-top: -35px;
+        outline: none;
+        background-color: #ffffff00;
+    }
+
+    .resume-info-bottom-tab .all-tabs i {
+        background-color: #0d6efd;
+        padding: 10px 10px;
+        border-radius: 100%;
+        color: white;
+        font-size: 30px;
+    }
+
+    .resume-info-bottom-tab .btn {
+        display: flex;
+        align-items: center;
+    }
+
+    .resume-info-bottom-tab .per .btn i {
+        margin-left: 10px;
+    }
+
+    .resume-info-bottom-tab .nxt .btn i {
+        margin-right: 10px;
+    }
+
+    .resume-info-bottom-tab span {
+        font-family: dirooz;
+    }
+
+    .education-page .education-item,
+    .job-page .job-item,
+    .project-page .project-item,
+    .internship-item,
+    .introduced-item {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .education-page .education-item .item-inputs,
+    .job-page .job-item .item-inputs,
+    .project-page .project-item .item-inputs,
+    .internship-item .item-inputs,
+    .introduced-item .item-inputs {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .education-page .education-date .education-date-start,
+    .job-page .job-date .job-date-start,
+    .project-page .project-date .project-date-start,
+    .other-page .other-date .other-date-start {
+        margin-right: -13px;
+    }
+
+    .education-page .education-date .education-date-start input,
+    .education-page .education-date .education-date-end input,
+    .job-page .job-date .job-date-start input,
+    .job-page .job-date .job-date-end input,
+    .project-page .project-date .project-date-start input,
+    .project-page .project-date .project-date-end input,
+    .other-page .other-date .other-date-start input,
+    .other-page .other-date .other-date-end input{
+        width: 90%;
+    }
+
+    .education-page .education-desc-textarea,
+    .job-page .job-desc-textarea,
+    .project-page .project-desc-textarea,
+    .other-page .other-desc-textarea  {
+        margin: 0;
+    }
+
+    .entertainment-items{
+        grid-template-columns: repeat(1,100%);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .entertainment-items .move-btns{
+        margin-bottom: 20px;
+        margin-right: 10px;
+    }
+
+    .certification-item{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .certification-item .item-data-inputs{
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .certification-item .item-data-inputs >*{
+        margin-bottom: 20px;
+    }
+
+    .certification-item .item-data-inputs .certification-date input{
+        width: 90%;
+    }
+
+    .certification-item .item-data-inputs .certification-date {
+        justify-content: space-between;
+    }
+
+    .certification-item .item-inputs input{
+        margin: 0;
+    }
+
+}
+
+
+@media screen and (max-width:520px) {
+
+    .personal-info-page .base-info .row1 {
+        width: 100% !important;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .personal-info-page .base-info .row1 input {
+        width: 100%;
+        margin: 0;
+    }
+
+    .tab-body .row .row3 {
+        margin-left: 2px;
+    }
+
+    .birtday-body * {
+        margin: 0;
+    }
+
+    .skill-item .item-inputs {
+        width: 100% !important;
+    }
+
+    .skill-item .item-inputs input,
+    .skill-item .item-inputs select,
+    .lang_item .item-inputs input,
+    .lang_item .item-inputs select {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .skill-item {
+        flex-direction: column !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .move-btns {
+        margin-bottom: 40px;
+        margin-right: 3px;
+    }
+
+    .skill-item .item-inputs,
+    .lang-item .item-inputs {
+        flex-direction: column;
+    }
+
+    .skills-page .lang-item {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+}

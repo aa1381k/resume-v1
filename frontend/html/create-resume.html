@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/create-resume.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css"
+        rel="stylesheet" type="text/css" />
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <header class="fixed-top bg-white p-2 border-bottom">
+
+        <div class="container mt-2 headder-container">
+
+            <div class="header-btns">
+                <a href="login&register.html" class="btn btn-outline-primary register pt-2">ثبت نام / ورود</a>
+
+                <a class="menu-btn" data-bs-toggle="offcanvas" data-bs-target="#demo">
+                    <i class="fa fa-bars bg-white border-0"></i>
+                </a>
+            </div>
+
+            <div class="nav-section">
+
+                <ul class="nav nav-tab">
+
+                    <li class="nav-item">
+                        <a href="about-us.html" class="nav-link">درباره ما</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="contact-us.html" class="nav-link">تماس با ما</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">بلاگ</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="" class="nav-link">ساخت رزومه</a>
+                    </li>
+
+                </ul>
+
+                <div class="offcanvas offcanvas-end w-75" id="demo">
+                    <div class="offcanvas-header">
+                        <img class="offcanvas-title w-25 m-auto" src="../images/BMW_logo_(gray).jpg" alt="">
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="">
+                            <li class="nav-item">
+                                <a href="" class="nav-link active">درباره ما</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="" class="nav-link">تماس با ما</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="" class="nav-link">بلاگ</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="" class="nav-link">ساخت رزومه</a>
+                            </li>
+
+                        </ul>
+                        <a href="" class="btn btn-primary pt-2">ثبت نام / ورود</a>
+                    </div>
+                </div>
+
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="../images/BMW_logo_(gray).jpg" alt="">
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <main>
+
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">انتخاب صفحه</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="tabs">
+
+                            <button class="btn tab-item active-tab" id="PERSONAL-INFO" onclick="pages(this.id)">
+                                <div class="tab-item-icon">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                                <div class="tab-item-name">
+                                    <p>اطلاعات شخصی</p>
+                                </div>
+                            </button>
+
+                            <button class="btn tab-item" id="SKILLS" onclick="pages(this.id)">
+                                <div class="tab-item-icon">
+                                    <i class="fa-solid fa-user-gear"></i>
+                                </div>
+                                <div class="tab-item-name">
+                                    <p>مهارت ها</p>
+                                </div>
+                            </button>
+
+                            <button class="btn tab-item" id="EDUCATION" onclick="pages(this.id)">
+                                <div class="tab-item-icon">
+                                    <i class="fa-solid fa-user-graduate"></i>
+                                </div>
+                                <div class="tab-item-name">
+                                    <p>سوابق تحصیلی</p>
+                                </div>
+                            </button>
+
+                            <button class="btn tab-item" id="JOB" onclick="pages(this.id)">
+                                <div class="tab-item-icon">
+                                    <i class="fa-solid fa-briefcase"></i>
+                                </div>
+                                <div class="tab-item-name">
+                                    <p>سوابق شغلی</p>
+                                </div>
+                            </button>
+
+                            <button class="btn tab-item" id="PROJECT" onclick="pages(this.id)">
+                                <div class="tab-item-icon">
+                                    <i class="fa-solid fa-rectangle-list"></i>
+                                </div>
+                                <div class="tab-item-name">
+                                    <p>پروژه ها</p>
+                                </div>
+                            </button>
+
+                            <button class="btn tab-item" id="OTHER" onclick="pages(this.id)">
+                                <div class="tab-item-icon">
+                                    <i class="fa-solid fa-grip"></i>
+                                </div>
+                                <div class="tab-item-name">
+                                    <p>سایر</p>
+                                </div>
+                            </button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container col-md-12">
+
+            <div class="resume-info-tabs border">
+                <ul>
+
+                    <li>
+                        <button id="other" onclick="pages(this.id)" class="tab-btn">
+                            <span>سایر</span>
+                            <span><i class="fa-solid fa-grip"></i></span>
+                        </button>
+                    </li>
+
+                    <li>
+                        <button id="project" onclick="pages(this.id)" class="tab-btn">
+                            <span>پروژه ها</span>
+                            <span><i class="fa-solid fa-rectangle-list"></i></span>
+                        </button>
+                    </li>
+
+                    <li>
+                        <button id="job" onclick="pages(this.id)" class="tab-btn">
+                            <span>سوابق شغلی</span>
+                            <span><i class="fa-solid fa-briefcase"></i></span>
+                        </button>
+                    </li>
+
+                    <li>
+                        <button id="education" onclick="pages(this.id)" class="tab-btn">
+                            <span>سوابق تحصیلی</span>
+                            <span><i class="fa-solid fa-user-graduate"></i></span>
+                        </button>
+                    </li>
+
+                    <li>
+                        <button id="skills" onclick="pages(this.id)" class="tab-btn">
+                            <span>مهارت ها</span>
+                            <span><i class="fa-solid fa-user-gear"></i></span>
+                        </button>
+                    </li>
+
+                    <li>
+                        <button id="personal-info" onclick="pages(this.id)" class="tab-btn active-tab">
+                            <span>اطلاعات شخصی</span>
+                            <span><i class="fa-solid fa-user"></i></span>
+                        </button>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="resume-info-bottom-tab border">
+                <ul>
+                    <li class="nxt"><button class="tab-btn"><i
+                                class="fa-solid fa-angle-left"></i></i><span>بعدی</span></button></li>
+
+                    <li class="all-tabs"><button class="tab-btn bg-transparent" data-bs-toggle="modal"
+                            data-bs-target="#myModal"><i class="fa-solid fa-grip"></i></button></li>
+
+                    <li class="per"><button class="tab-btn"><span>قبلی</span> <i
+                                class="fa-solid fa-angle-right"></i></button></li>
+                </ul>
+            </div>
+
+            <div class="resume-info-body border">
+                <form action="" class="resume-forms">
+
+                    <div class="personal-info-page ">
+                        <div class="tab-tittle row-title">
+                            <h2>اطلاعات شخصی</h2>
+                        </div>
+                        <div class="tab-body col-md-12">
+                            <div class="row base-info col-md-12">
+                                <p class="sectionname">اطلاعات پایه</p>
+
+                                <div class="block col-md-2">
+                                    <div class="profile-image">
+                                        <img id="profileimage" src="../images/user.png" alt="your image" />
+
+                                        <div class="btns">
+                                            <label class="btn btn-default btn-file">
+                                                <i class="fa-solid fa-upload upload"></i> <input type="file"
+                                                    style="display: none;" onchange="readURL(this)" required>
+                                            </label>
+
+                                            <label class="btn btn-default btn-file" id="removeimage">
+                                                <i class="fa-solid fa-trash trash"></i> <input type="button"
+                                                    style="display: none;" onclick="removeprofileimage()" required>
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row1 col-md-10">
+                                    <div class="firstname">
+                                        <span>نام</span>
+                                        <input type="text" class="col-md-2">
+                                    </div>
+                                    <div class="lastname">
+                                        <span>نام خانوادگی</span>
+                                        <input type="text" class="col-md-2">
+                                    </div>
+                                    <div class="jobtitle">
+                                        <span>عنوان شغلی</span>
+                                        <input type="text" class="col-md-2">
+                                    </div>
+
+                                </div>
+
+                                <div class="row1 col-md-10 mt-4">
+                                    <div class="firstname">
+                                        <span>کشور</span>
+                                        <input type="text" class="col-md-2">
+                                    </div>
+                                    <div class="lastname">
+                                        <span>استان</span>
+                                        <input type="text" class="col-md-2">
+                                    </div>
+                                    <div class="jobtitle">
+                                        <span>شهر</span>
+                                        <input type="text" class="col-md-2">
+                                    </div>
+
+                                </div>
+
+                                <div class="row3 col-md-10">
+
+                                    <div class="birghtday col-md-4">
+                                        <span>تاریخ تولد</span>
+                                        <div class="birtday-body col-md-12">
+                                            <input type="text" placeholder="سال">
+                                            <select name="" id="">
+                                                <option value="">ماه</option>
+                                                <option value="">test</option>
+                                                <option value="">test</option>
+                                            </select>
+                                            <select name="" id="">
+                                                <option value="">روز</option>
+                                                <option value="">1</option>
+                                                <option value="">2</option>
+                                                <option value="">3</option>
+                                                <option value="">4</option>
+                                                <option value="">5</option>
+                                                <option value="">6</option>
+                                                <option value="">7</option>
+                                                <option value="">8</option>
+                                                <option value="">9</option>
+                                                <option value="">10</option>
+                                                <option value="">11</option>
+                                                <option value="">12</option>
+                                                <option value="">13</option>
+                                                <option value="">14</option>
+                                                <option value="">15</option>
+                                                <option value="">16</option>
+                                                <option value="">17</option>
+                                                <option value="">18</option>
+                                                <option value="">19</option>
+                                                <option value="">20</option>
+                                                <option value="">21</option>
+                                                <option value="">22</option>
+                                                <option value="">23</option>
+                                                <option value="">24</option>
+                                                <option value="">25</option>
+                                                <option value="">26</option>
+                                                <option value="">27</option>
+                                                <option value="">28</option>
+                                                <option value="">29</option>
+                                                <option value="">30</option>
+                                                <option value="">31</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="srm col-md-4">
+
+                                        <div class="sex inner-srm col-md-2">
+                                            <span>جنسیت</span>
+                                            <select name="" id="">
+                                                <option value=""></option>
+                                                <option value="">مرد</option>
+                                                <option value="">زن</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="relationship inner-srm col-md-2">
+                                            <span>تاهل</span>
+                                            <select name="" id="">
+                                                <option value="0"></option>
+                                                <option value="1">مجرد</option>
+                                                <option value="2">متاهل</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="military-service inner-srm col-md-2">
+                                            <span>سربازی</span>
+                                            <select name="" id="">
+                                                <option value="0"></option>
+                                                <option value="1">مشمول</option>
+                                                <option value="2">در حال خدمت</option>
+                                                <option value="2">پایان خدمت</option>
+                                                <option value="2">معاف</option>
+                                                <option value="2">معافیت تحصیلی</option>
+                                                <option value="2">معافیت پزشکی</option>
+                                                <option value="2">معافیت غیر پزشکی</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="row Contact col-md-12 mt-5">
+                                <p class="sectionname">اطلاعات تماس</p>
+
+                                <div class="row1 col-md-10">
+                                    <div class="phone">
+                                        <span>شماره تماس</span>
+                                        <input type="text" class="col-md-2">
+                                    </div>
+                                    <div class="email">
+                                        <span>ایمیل</span>
+                                        <input type="text" class="col-md-2">
+                                    </div>
+                                    <div class="website">
+                                        <span>وب سایت</span>
+                                        <input type="text" class="col-md-2">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row summary col-md-12 mt-5">
+                                <p class="sectionname">توصیف خلاصه</p>
+
+                                <div class="row col-md-10">
+                                    <div class="summary-description col-md-11 m-auto">
+                                        <span>خلاصه ای از مهارت ها و تجربیات</span>
+                                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row user-social-medias col-md-12 mt-5">
+                                <p class="sectionname">شبکه های اجتماعی</p>
+
+                                <div class="user-social-media">
+
+                                    <div id="social_0" name="social_0" class="user-social-media-item col-md-10">
+
+                                        <div class="move-btns">
+                                            <span><button class="btn"
+                                                    onclick="moveupelement(this, 'user-social-media','user-social-media-item','social')"><i
+                                                        class="fa-solid fa-angle-up"></i></button></span>
+                                            <span><button class="btn"
+                                                    onclick="movedownelement(this, 'user-social-media','user-social-media-item','social')"><i
+                                                        class="fa-solid fa-angle-down"></i></button></span>
+                                            <span><button class="btn" onclick="removeitem(this,'user-social-media')"><i
+                                                        class="fa-solid fa-xmark"></i></button></span>
+                                        </div>
+
+                                        <div class="item-inputs col-md-12">
+                                            <span><i class="fa-brands fa-telegram"></i></span>
+                                            <div class="social-media-body col-md-12">
+                                                <select name="" id="" onchange="changeicon(this,0)">
+                                                    <option value="">نام شبکه اجتماعی</option>
+                                                    <option value="linkedin">لینکداین</option>
+                                                    <option value="twitter">توییتر</option>
+                                                    <option value="facebook">فیسبوک</option>
+                                                    <option value="instagram">اینستاگرام</option>
+                                                    <option value="telegram">تلگرام</option>
+                                                    <option value="github">گیت‌هاب</option>
+                                                    <option value="dribbble">دریبل</option>
+                                                    <option value="whatsapp">واتساپ</option>
+                                                    <option value="skype">اسکایپ</option>
+                                                    <option value="youtube">یوتیوب</option>
+                                                    <option value="stack-overflow">StackOverflow</option>
+                                                </select>
+                                                <div class="social-media-id">
+                                                    <!-- <p>آدرس شبکه اجتماعی</p> -->
+                                                    <input type="text" name="" id="" placeholder="ID">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                <button class="btn btn-outline-primary col-md-3 m-auto mt-3" onclick="addsocial()">اضافه
+                                    کردن شبکه اجتماعی <i class="fa fa-plus"></i></button>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="skills-page invisible">
+                        <div class="tab-tittle row-title">
+                            <h2>مهارت ها</h2>
+                        </div>
+                        <div class="tab-body col-md-12">
+
+
+                            <div class="row">
+                                <p class="sectionname">زبان</p>
+                                <div class="lang-items col-md-12">
+
+                                    <div id="lang_0" name="lang_0" class="col-md-12 lang-item border rounded-2 mb-3">
+                                        <div class="move-btns">
+                                            <span><button class="btn"
+                                                    onclick="moveupelement(this, 'lang-items','lang-item','lang')"><i
+                                                        class="fa-solid fa-angle-up"></i></button></span>
+                                            <span><button class="btn"
+                                                    onclick="movedownelement(this, 'lang-items','lang-item','lang')"><i
+                                                        class="fa-solid fa-angle-down"></i></button></span>
+                                            <span><button class="btn" onclick="removeitem(this)"><i
+                                                        class="fa-solid fa-xmark"></i></button></span>
+                                        </div>
+
+                                        <div class="item-inputs">
+
+                                            <div class="lang col-md-6">
+                                                <span>نام زبان</span>
+                                                <select name="" id="">
+                                                    <option value="" selected=""></option>
+                                                    <option value="English">انگلیسی</option>
+                                                    <option value="Arabic">عربی</option>
+                                                    <option value="German">آلمانی</option>
+                                                    <option value="France">فرانسوی</option>
+                                                    <option value="Spanish">اسپانیایی</option>
+                                                    <option value="Russian">روسی</option>
+                                                    <option value="Italy">ایتالیایی</option>
+                                                    <option value="Turkish">ترکی استانبولی</option>
+                                                    <option value="Persian">فارسی</option>
+                                                    <option value="China">چینی</option>
+                                                    <option value="Hebrew">عبری</option>
+                                                    <option value="Azerbaijani">ترکی آذربایجانی</option>
+                                                    <option value="Armenian">ارمنی</option>
+                                                    <option value="Japanese">ژاپنی</option>
+                                                    <option value="Georgian">گرجی</option>
+                                                    <option value="Kurdish">کُردی</option>
+                                                    <option value="Portuguese">پرتغالی</option>
+                                                    <option value="Bengali">بنگالی</option>
+                                                    <option value="Lahnda">لندا</option>
+                                                    <option value="Javanese">جاوه‌ای</option>
+                                                    <option value="Korean">کره ای</option>
+                                                    <option value="Vietnamese">ویتنامی</option>
+                                                    <option value="Urdu">اردو</option>
+                                                    <option value="Hindi">هندی</option>
+                                                    <option value="Egyptian">مصری</option>
+                                                    <option value="Telugu">تلوگو</option>
+                                                    <option value="Gujarati">گجراتی</option>
+                                                    <option value="Tamil">تامیلی</option>
+                                                    <option value="Marathi">مراتی</option>
+                                                    <option value="Hungarian">مجاری</option>
+                                                    <option value="Swedish">سوئدی</option>
+                                                    <option value="Pashto">پشتو</option>
+                                                    <option value="Greek">یونانی</option>
+                                                    <option value="Dutch">هلندی</option>
+                                                    <option value="Danish">دانمارکی</option>
+                                                    <option value="Latin">لاتین</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="lang-rate col-md-5">
+                                                <span>سطح</span>
+                                                <select name="" id="">
+                                                    <option value="0"></option>
+                                                    <option value="1">نیتیو</option>
+                                                    <option value="2">کاملا مسلط</option>
+                                                    <option value="3">دارای تسلط خوب</option>
+                                                    <option value="4">تسلط کامل به استفاده روزمره</option>
+                                                    <option value="5">تسلط نسبی به استفاده‌ روزمره</option>
+                                                    <option value="6">C2</option>
+                                                    <option value="7">C1</option>
+                                                    <option value="8">B2</option>
+                                                    <option value="9">B1</option>
+                                                    <option value="10">A2</option>
+                                                    <option value="11">A1</option>
+                                                    <option value="12">زبان مادری</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <button class="btn btn-outline-primary col-md-3 m-auto mt-3" onclick="addlang()">اضافه
+                                    کردن زبان <i class="fa fa-plus"></i></button>
+                            </div>
+
+                            <div class="row">
+                                <p class="sectionname">مهارت ها</p>
+                                <div class="skill-items col-md-12">
+
+                                    <div id="skill_0" name="skill_0" class="skill-item col-md-12 border rounded-3 p-3">
+                                        <div class="move-btns">
+                                            <span><button class="btn"
+                                                    onclick="moveupelement(this, 'skill-items', 'skill-item', 'skill')"><i
+                                                        class="fa-solid fa-angle-up"></i></button></span>
+                                            <span><button class="btn"
+                                                    onclick="movedownelement(this,'skill-items', 'skill-item', 'skill')"><i
+                                                        class="fa-solid fa-angle-down"></i></button></span>
+                                            <span><button class="btn" onclick="removeitem(this)"><i
+                                                        class="fa-solid fa-xmark"></i></button></span>
+                                        </div>
+
+                                        <div class="item-inputs">
+
+                                            <div class="skill-name text-center col-md-7">
+                                                <span>نام مهارت</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="skill-rate text-center col-md-5">
+                                                <span>سطح مهارت</span>
+                                                <select name="" id="">
+                                                    <option value=""></option>
+                                                    <option value="1">&#11088;(در حال یادگیری)</option>
+                                                    <option value="2">&#11088;&#11088;(کم تجربه)</option>
+                                                    <option value="3">&#11088;&#11088;&#11088;(تسلط نسبی)</option>
+                                                    <option value="4">&#11088;&#11088;&#11088;&#11088;(تسلط کامل)
+                                                    </option>
+                                                    <option value="5">&#11088;&#11088;&#11088;&#11088;&#11088;(حرفه ای)
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                <button class="btn btn-outline-primary col-md-3 m-auto mt-3" onclick="addskill()">اضافه
+                                    کردن مهارت <i class="fa fa-plus"></i></button>
+                            </div>
+
+                            <div class="row">
+                                <p class="sectionname">دوره ها و گواهینامه ها</p>
+
+                                <div class="certification-items col-md-12">
+
+                                    <div class="certification-item col-md-11 m-auto border rounded-2 mb-3">
+
+                                        <div class="move-btns">
+                                            <span><button class="btn"
+                                                    onclick="moveupelement(this, 'certification-items','certification-item','certification')"><i
+                                                        class="fa-solid fa-angle-up"></i></button></span>
+                                            <span><button class="btn"
+                                                    onclick="movedownelement(this, 'certification-items','certification-item','certification')"><i
+                                                        class="fa-solid fa-angle-down"></i></button></span>
+                                            <span><button class="btn" onclick="removeitem(this,'certification')"><i
+                                                        class="fa-solid fa-xmark"></i></button></span>
+                                        </div>
+
+                                        <div class="item-inputs col-md-12 d-flex flex-column align-items-center justify-content-around mt-5 mb-5 ">
+
+                                            <div class="col-md-10">
+                                                <span>عنوان گواهی نامه</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-10 item-data-inputs">
+
+                                                <div class="col-md-6 d-flex flex-column justify-content-between">
+                                                    <span>تاریخ شروع و پایان</span>
+                                                    <div class="col-md-12 certification-date">
+                                                        <div class="col-md-5 skill-date-start">
+                                                            <input type="text" placeholder="شروع">
+                                                        </div>
+                                                        <div class="col-md-5 skill-date-end">
+                                                            <input type="text" placeholder="پایان">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-5">
+                                                    <span>عنوان موسسه</span>
+                                                    <input type="text">
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-outline-primary col-md-3 m-auto mt-3"
+                                    onclick="addcertification()">گواهی نامه جدید <i class="fa fa-plus"></i></button>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="education-page invisible">
+                        <div class="tab-tittle row-title">
+                            <h2>سوابق تحصیلی</h2>
+                        </div>
+                        <div class="tab-body col-md-12">
+                            <div class="row">
+                                <div class="education-items col-md-12">
+                                    <div class="education-item col-md-11 m-auto border rounded-2 mb-3">
+
+                                        <div class="move-btns">
+                                            <span><button class="btn"
+                                                    onclick="moveupelement(this, 'education-items','education-item','education')"><i
+                                                        class="fa-solid fa-angle-up"></i></button></span>
+                                            <span><button class="btn"
+                                                    onclick="movedownelement(this, 'education-items','education-item','education')"><i
+                                                        class="fa-solid fa-angle-down"></i></button></span>
+                                            <span><button class="btn" onclick="removeitem(this,'education')"><i
+                                                        class="fa-solid fa-xmark"></i></button></span>
+                                        </div>
+
+                                        <div class="item-inputs">
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>مقطع تحصیلی</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>رشته تحصیلی</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>نام دانشگاه/موسسه</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>تاریخ شروع و پایان</span>
+                                                <div class="col-md-12 education-date">
+                                                    <div class="col-md-5 education-date-start">
+                                                        <input type="text" placeholder="شروع">
+                                                    </div>
+                                                    <div class="col-md-5 education-date-end">
+                                                        <input type="text" placeholder="پایان">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-11 education-desc-textarea">
+                                                <span>توضیحات</span>
+                                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-outline-primary col-md-3 m-auto mt-3"
+                                    onclick="addeducation()">سابقه
+                                    تحصیلی جدید <i class="fa fa-plus"></i></button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="job-page invisible">
+                        <div class="tab-tittle row-title">
+                            <h2>سوابق شغلی</h2>
+                        </div>
+                        <div class="tab-body col-md-12">
+                            <div class="row">
+                                <div class="job-items col-md-12">
+                                    <div class="job-item col-md-11 m-auto border rounded-2 mb-3">
+
+                                        <div class="move-btns">
+                                            <span><button class="btn"
+                                                    onclick="moveupelement(this, 'job-items','job-item','job')"><i
+                                                        class="fa-solid fa-angle-up"></i></button></span>
+                                            <span><button class="btn"
+                                                    onclick="movedownelement(this, 'job-items','job-item','job')"><i
+                                                        class="fa-solid fa-angle-down"></i></button></span>
+                                            <span><button class="btn" onclick="removeitem(this,'job')"><i
+                                                        class="fa-solid fa-xmark"></i></button></span>
+                                        </div>
+
+                                        <div class="item-inputs">
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>نام شرکت / سازمان</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>سمت شغلی</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>شهر</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>تاریخ شروع و پایان</span>
+                                                <div class="col-md-12 job-date">
+                                                    <div class="col-md-5 job-date-start">
+                                                        <input type="text" placeholder="شروع">
+                                                    </div>
+                                                    <div class="col-md-5 job-date-end">
+                                                        <input type="text" placeholder="پایان">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-11 job-desc-textarea">
+                                                <span>توضیحات</span>
+                                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-outline-primary col-md-3 m-auto mt-3" onclick="addjob()">سابقه
+                                    شغلی جدید <i class="fa fa-plus"></i></button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-page invisible">
+                        <div class="tab-tittle row-title">
+                            <h2>پروژه ها</h2>
+                        </div>
+                        <div class="tab-body col-md-12">
+                            <div class="row">
+                                <div class="project-items col-md-12">
+                                    <div class="project-item col-md-11 m-auto border rounded-2 mb-3">
+
+                                        <div class="move-btns">
+                                            <span><button class="btn"
+                                                    onclick="moveupelement(this, 'project-items','project-item','project')"><i
+                                                        class="fa-solid fa-angle-up"></i></button></span>
+                                            <span><button class="btn"
+                                                    onclick="movedownelement(this, 'project-items','project-item','project')"><i
+                                                        class="fa-solid fa-angle-down"></i></button></span>
+                                            <span><button class="btn" onclick="removeitem(this,'project')"><i
+                                                        class="fa-solid fa-xmark"></i></button></span>
+                                        </div>
+
+                                        <div class="item-inputs">
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>کارفرما / درخواست دهنده</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>عنوان</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>لینک</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>تاریخ شروع و پایان</span>
+                                                <div class="col-md-12 project-date">
+                                                    <div class="col-md-5 project-date-start">
+                                                        <input type="text" placeholder="شروع">
+                                                    </div>
+                                                    <div class="col-md-5 project-date-end">
+                                                        <input type="text" placeholder="پایان">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-11 project-desc-textarea">
+                                                <span>توضیحات</span>
+                                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-outline-primary col-md-3 m-auto mt-3"
+                                    onclick="addproject()">پروژه جدید <i class="fa fa-plus"></i></button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="other-page invisible">
+                        <div class="tab-tittle row-title">
+                            <h2>سایر اطلاعات</h2>
+                        </div>
+                        <div class="tab-body col-md-12">
+
+                            <div class="row">
+
+                                <p class="sectionname">کارآموزی</p>
+                                <div class="internship-items col-md-12">
+
+                                    <div class="internship-item col-md-11 m-auto border rounded-2 mb-3">
+
+                                        <div class="move-btns">
+                                            <span><button class="btn"
+                                                    onclick="moveupelement(this, 'internship-items','internship-item','internship')"><i
+                                                        class="fa-solid fa-angle-up"></i></button></span>
+                                            <span><button class="btn"
+                                                    onclick="movedownelement(this, 'internship-items','internship-item','internship')"><i
+                                                        class="fa-solid fa-angle-down"></i></button></span>
+                                            <span><button class="btn" onclick="removeitem(this,'internship')"><i
+                                                        class="fa-solid fa-xmark"></i></button></span>
+                                        </div>
+
+                                        <div class="item-inputs">
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>نام شرکت / مرکز اشتغال</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>عنوان شغلی</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>شهر</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>تاریخ شروع و پایان</span>
+                                                <div class="col-md-12 other-date">
+                                                    <div class="col-md-5 other-date-start">
+                                                        <input type="text" placeholder="شروع">
+                                                    </div>
+                                                    <div class="col-md-5 other-date-end">
+                                                        <input type="text" placeholder="پایان">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-11">
+                                                <span>توضیحات</span>
+                                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-outline-primary col-md-3 m-auto mt-3"
+                                    onclick="addinternship()">کارآموزی جدید <i class="fa fa-plus"></i></button>
+                            </div>
+
+                            <div class="row">
+                                <p class="sectionname">معرف</p>
+                                <div class="introduced-items col-md-12">
+
+                                    <div class="introduced-item col-md-11 m-auto border rounded-2 mb-3">
+
+                                        <div class="move-btns">
+                                            <span><button class="btn"
+                                                    onclick="moveupelement(this, 'introduced-items','introduced-item','introduced')"><i
+                                                        class="fa-solid fa-angle-up"></i></button></span>
+                                            <span><button class="btn"
+                                                    onclick="movedownelement(this, 'introduced-items','introduced-item','introduced')"><i
+                                                        class="fa-solid fa-angle-down"></i></button></span>
+                                            <span><button class="btn" onclick="removeitem(this,'introduced')"><i
+                                                        class="fa-solid fa-xmark"></i></button></span>
+                                        </div>
+
+                                        <div class="item-inputs mb-5">
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>نام مرکز</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>نام معرف</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>ایمیل</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>شماره تلفن</span>
+                                                <input type="text">
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-outline-primary col-md-3 m-auto mt-3"
+                                    onclick="addintroduced()">معرف جدید <i class="fa fa-plus"></i></button>
+
+                            </div>
+
+                            <div class="row">
+                                <p class="sectionname">علاقه مندی ها و تفریحات</p>
+
+                                <div class="entertainment-items col-md-12">
+
+                                    <div class="entertainment-item col-md-5 m-auto border rounded-2 mb-3">
+
+                                        <div class="move-btns">
+                                            <span><button class="btn"
+                                                    onclick="moveupelement(this, 'entertainment-items','entertainment-item','entertainment')"><i
+                                                        class="fa-solid fa-angle-up"></i></button></span>
+                                            <span><button class="btn"
+                                                    onclick="movedownelement(this, 'entertainment-items','entertainment-item','entertainment')"><i
+                                                        class="fa-solid fa-angle-down"></i></button></span>
+                                            <span><button class="btn" onclick="removeitem(this,'entertainment')"><i
+                                                        class="fa-solid fa-xmark"></i></button></span>
+                                        </div>
+
+                                        <div class="col-md-11 item-inputs">
+
+                                            <div class="col-md-12">
+                                                <span>نام علاقه مندی</span>
+                                                <input type="text">
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-outline-primary col-md-3 m-auto mt-3"
+                                    onclick="addentertainment()">علاقه مندی جدید <i class="fa fa-plus"></i></button>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-list">
+
+            <div class="footer-info">
+                <img src="../images/BMW_logo_(gray).jpg" alt="">
+                <ul class="social-medias">
+                    <li>
+                        <a href="">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="footer-License">
+                    <img src="../images/zarinpal-badge.png" alt="">
+                </div>
+            </div>
+
+            <div class="footer-guide">
+
+                <div class="footer-item">
+                    <h6>lorem</h6>
+                    <ul>
+                        <li><a href="">Lorem ipsum</a></li>
+                        <li><a href="">Lorem ipsum</a></li>
+                        <li><a href="">Lorem ipsum</a></li>
+                        <li><a href="">Lorem ipsum</a></li>
+                        <li><a href="">Lorem ipsum</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-item">
+                    <h6>lorem</h6>
+                    <ul>
+                        <li><a href="">Lorem ipsum</a></li>
+                        <li><a href="">Lorem ipsum</a></li>
+                        <li><a href="">Lorem ipsum</a></li>
+                        <li><a href="">Lorem ipsum</a></li>
+                        <li><a href="">Lorem ipsum</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="../js/showimage.js"></script>
+    <script src="../js/createresume.js"></script>
+    <script src="../js/test.js"></script>
+</body>
+
+</html>
