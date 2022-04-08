@@ -1,0 +1,122 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+main{
+    margin-top: 0px;
+}
+
+.page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headder-container{
+    justify-content: end;
+}
+ 
+.page img {
+    width: 50%;
+    margin-top: 50px;
+}
+
+.header-btns .register{
+    display: none;
+}
+
+.forms{
+    width: 400px;
+    height: 410px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.forms .form-title{
+    font-family: dirooz;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 25px;
+    font-weight: 550;
+}
+
+.forms form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: -37px;
+    padding: 30px;
+}
+
+label{
+    text-align: end;
+    margin-right: 5px;
+    font-family: dirooz;
+    font-weight: 100;
+    color: #aeaab1;
+}
+
+.forms form input{
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background-color: #f4f5f8;
+}
+
+input:-moz-placeholder {
+    text-align: right;
+}
+input:-ms-input-placeholder {
+    text-align: right;
+}
+input::-webkit-input-placeholder {
+    text-align: right;
+}
+
+
+button[type='submit']{
+    margin-top: 10px; 
+}
+
+.forms form input:focus{
+    border-bottom: 3px solid #8db1ff;
+}
+
+.show-password{
+    border: none;
+    width: 10%;
+    height: 10%;
+    background-color: #f4f5f8;
+    position: relative;
+    bottom: 220px;
+    left: 280px;
+    outline: none;
+}
+
+.show-confirm-password{
+    border: none;
+    width: 10%;
+    height: 10%;
+    background-color: #f4f5f8;
+    position: relative;
+    bottom: 132px;
+    left: 324px;
+    outline: none;
+}
+
+
+@media screen and (max-width:991px) {
+    .page{
+        flex-direction: column-reverse;
+        margin-top: 80px;
+    }
+}
+
+@media screen and (max-width:767px) {
+    .headder-container{
+        justify-content: space-between ;
+    }
+}

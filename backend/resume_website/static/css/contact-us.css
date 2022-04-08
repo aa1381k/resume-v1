@@ -1,0 +1,104 @@
+main{
+    margin-top: 0px;
+}
+
+main .container {
+    margin-top: 80px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 90px;
+}
+
+.form {
+    background-color: white;
+    width: 45%;
+    height: 100%;
+    border-radius: 10px;
+    direction: rtl;
+    margin-top: 30px;
+}
+
+form input:focus{
+    border-bottom: 3px solid #8db1ff;
+}
+
+.inputs {
+    display: grid;
+    grid-template-columns: repeat(2, 45%);
+    grid-template-rows: repeat(2, 70px);
+    text-align: right;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.inputs input {
+    width: 100%;
+    padding: 5px;
+    outline: none;
+    border: 1px solid #dbd8d8;
+    background-color: #f2f5fa;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+span {
+    color: #aeaab1;
+}
+
+.contact-text{
+    width: 40%;
+    height: 100%;
+}
+
+.contact-text .image img {
+    width: 70%;
+}
+
+.contact-text .text .body {
+    text-align: right;
+    margin-top: 30px;
+    font-family: dirooz;
+}
+
+.texterea span{
+    display: block;
+}
+
+.texterea textarea {
+    width: 90%;
+    height: 100%;
+    border: 1px solid #dbd8d8;
+    background-color: #f2f5fa;
+    outline: none;
+    resize: none;
+    margin-top: 10px;
+}
+
+.submit-button {
+    margin: 20px 0px;
+    width: 200px;
+}
+
+
+@media screen and (max-width:767px) {
+    main .container{
+        justify-content: space-between !important;
+        flex-direction: column;
+        margin-top: 80px;
+    }
+    .contact-text{
+        width: 90%;
+        text-align: center;
+    }
+
+    .form{
+        width: 100%;
+    }
+
+    .form .inputs{
+        grid-template-columns: 80%;
+    }
+}
