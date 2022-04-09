@@ -1,0 +1,60 @@
+{% extends 'shared/base.html' %}
+
+{% block title %}
+contact us
+{% endblock %}
+
+{% block refrence %}
+    <link rel="stylesheet" href="/static/css/contact-us.css">
+{% endblock %}
+
+{% block content %}
+<main>
+        <div class="container col-sm-12">
+
+            <div class="contact-text col-md-6">
+                <div class="text">
+                    <div class="title">
+                        <h1>ارتباط با ما</h1>
+                    </div>
+                    <div class="body">
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                        چاپگرها
+                        و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز
+                    </div>
+                </div>
+                <div class="image">
+                    <img src="/static/images/Contact us-pana.png" alt="">
+                </div>
+            </div>
+
+            <div class="form col-md-6 shadow-lg">
+                <form action="" class="col-md-12">
+                    <div class="inputs">
+                        <div class="subject">
+                            <span>موضوع</span>
+                            <input type="text">
+                        </div>
+                        <div class="name">
+                            <span>نام</span>
+                            <input type="text">
+                        </div>
+                        <div class="email">
+                            <span>ایمیل</span>
+                            <input type="text">
+                        </div>
+                        <div class="phone">
+                            <span>شماره تماس</span>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="texterea">
+                        <span>متن پیام</span>
+                        <textarea name="" id="" cols="50" rows="9"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit-button">ارسال پیام</button>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}

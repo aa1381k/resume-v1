@@ -1,0 +1,195 @@
+{% extends 'shared/base.html' %}
+
+{% block title %}
+blogs
+{% endblock %}
+
+{% block refrence %}
+    <link rel="stylesheet" href="/static/css/blog.css">
+{% endblock %}
+
+{% block content %}
+<main id="header">
+        <div class="container">
+            <div class="row col-md-12">
+                <div class="blog-table col-md-12">
+
+                    <div class="main-blog col-md-12">
+                        <div id="carouselExampleIndicators" data-interval="100" class="carousel slide" data-bs-ride="carousel">
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item" data-bs-interval="2000">
+                                    <img src="/static/images/blog1.jpeg" class="d-block" alt="...">
+                                    <a href="">
+                                        <span class="carousel-caption text-white">بهترین برنامه نویس های جهان</span>
+                                    </a>
+                                </div>
+                                <div class="carousel-item active" data-bs-interval="2000">
+                                    <img src="/static/images/blog2.jpeg" class="d-block" alt="...">
+                                    <a href="">
+                                        <span class="carousel-caption text-white">برسی بهترین لپتاپ برای برنامه
+                                            نویسان</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="side-blogs col-md-4">
+                        <div class="items col-md-4">
+                            <img src="/static/images/blog2.jpeg" class="w-100" alt="">
+                            <a href="">
+                                <p>لورم ایپسوم متن</p>
+                            </a>
+                        </div>
+                        <div class="items col-md-4">
+                            <img src="/static/images/blog2.jpeg" class="w-100" alt="">
+                            <a href="">
+                                <p>لورم ایپسوم متن</p>
+                            </a>
+                        </div>
+                        <div class="items col-md-4">
+                            <img src="/static/images/blog2.jpeg" class="w-100" alt="">
+                            <a href="">
+                                <p>لورم ایپسوم متن</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-title">
+                <h2>آخرین بلاگ</h2>
+            </div>
+            <div class="row col-md-12 blog-main">
+                <div class="blogs-list col-md-10">
+
+                    <div class="blog-item shadow">
+                        <img src="/static/images/blog1.jpeg" alt="">
+                        <h5>لورم ایپسوم متن</h5>
+
+                        <div class="blog-item-footer col-md-12">
+                            <div class="user">
+                                <a href="">
+                                    <img src="/static/images/user1.jpg" alt="">
+                                    <span>علی عبدلی</span>
+                                </a>
+                            </div>
+
+                            <div class="tag">
+                                <a href="">
+                                    <p>آموزشی</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="sidepage col-md-2">
+                    <div class="side-tags">
+                        <div class="head">
+                            <span>پر بازدیدترین تگ ها</span>
+                            <i class="fa-solid fa-hashtag"></i>
+                        </div>
+                        <hr>
+                        <div class="body mt-4">
+                            <a href="">
+                                <span>#demo</span>
+                            </a>
+                            <a href="">
+                                <span>#demo</span>
+                            </a>
+                            <a href="">
+                                <span>#تست</span>
+                            </a>
+                            <a href="">
+                                <span>#demo</span>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="category side-tags mt-5">
+                        <div class="head">
+                            <span>دسته بندی ها</span>
+                            <i class="fa-solid fa-list"></i>
+                        </div>
+                        <hr>
+                        <div class="body">
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        <span>100</span>
+                                        <span>test</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="">
+                                        <span>100</span>
+                                        <span>test</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="">
+                                        <span>100</span>
+                                        <span>test</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="">
+                                        <span>100</span>
+                                        <span>test</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="">
+                                        <span>100</span>
+                                        <span>test</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="">
+                                        <span>100</span>
+                                        <span>test</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="">
+                                        <span>100</span>
+                                        <span>test</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="paging">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li>
+                </ul>
+            </nav>
+        </div>
+
+    </main>
+{% endblock %}
