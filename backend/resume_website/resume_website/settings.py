@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Home_page',
-    'Register_page',
     'contact_module',
+    'account_module',
     'blog_module',
     'django_render_partial',
 ]
