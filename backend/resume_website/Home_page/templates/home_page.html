@@ -39,13 +39,13 @@ home page
             </div>
 
             <div class="intro-image ">
-                <img src="/static/images/Online resume-pana.png" alt="">
+                <img src="{{ home_settings.home_page_image.url }}" alt="">
             </div>
 
 
         </div>
 
-        <div class="status">
+        <div class="status {% if not home_settings.show_counter  %} deactive {% endif %}">
             <p>1000 تعداد رزومه های ساخته شده امروز <i class="spinner-grow spinner-grow-sm text-primary"></i>
             </p>
         </div>
@@ -63,11 +63,12 @@ home page
 
             <ul id="autoplay" class="cs-hidden">
 
-                <li class="item-a">
+                {% for slider_image in slider_images %}
+                    <li class="item-a">
                     <div class="resume-item border rounded">
                         <a href="#">
                             <div class="slide-image">
-                                <img src="/static/images/resume.png" alt="">
+                                <img src="{{ slider_image.template_image.url }}" alt="">
                                 <div class="overlay">
                                     <div class="box-3">
                                         <div class="btn-resume btn-three">
@@ -79,108 +80,9 @@ home page
                         </a>
                     </div>
                 </li>
+                {% endfor %}
 
-                <li class="item-a">
-                    <div class="resume-item border rounded">
-                        <a href="#">
-                            <div class="slide-image">
-                                <img src="/static/images/resume.png" alt="">
-                                <div class="overlay">
-                                    <div class="box-3">
-                                        <div class="btn-resume btn-three">
-                                            <span>ساخت رزومه</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </li>
 
-                <li class="item-a">
-                    <div class="resume-item border rounded">
-                        <a href="#">
-                            <div class="slide-image">
-                                <img src="/static/images/resume1.png" alt="">
-                                <div class="overlay">
-                                    <div class="box-3">
-                                        <div class="btn-resume btn-three">
-                                            <span>ساخت رزومه</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-
-                <li class="item-a">
-                    <div class="resume-item border rounded">
-                        <a href="#">
-                            <div class="slide-image">
-                                <img src="/static/images/resume2.png" alt="">
-                                <div class="overlay">
-                                    <div class="box-3">
-                                        <div class="btn-resume btn-three">
-                                            <span>ساخت رزومه</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-
-                <li class="item-a">
-                    <div class="resume-item border rounded">
-                        <a href="#">
-                            <div class="slide-image">
-                                <img src="/static/images/resume3.jpg" alt="">
-                                <div class="overlay">
-                                    <div class="box-3">
-                                        <div class="btn-resume btn-three">
-                                            <span>ساخت رزومه</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-
-                <li class="item-a">
-                    <div class="resume-item border rounded">
-                        <a href="#">
-                            <div class="slide-image">
-                                <img src="/static/images/resume4.jpg" alt="">
-                                <div class="overlay">
-                                    <div class="box-3">
-                                        <div class="btn-resume btn-three">
-                                            <span>ساخت رزومه</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-
-                <li class="item-a">
-                    <div class="resume-item border rounded">
-                        <a href="#">
-                            <div class="slide-image">
-                                <img src="/static/images/resume5.jpg" alt="">
-                                <div class="overlay">
-                                    <div class="box-3">
-                                        <div class="btn-resume btn-three">
-                                            <span>ساخت رزومه</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </li>
 
             </ul>
 
