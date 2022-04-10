@@ -1,0 +1,36 @@
+{% extends 'shared/base.html' %}
+
+{% block title %}
+register
+{% endblock %}
+
+{% block refrence %}
+    <link rel="stylesheet" href="/static/css/login&register.css">
+{% endblock %}
+
+{% block content %}
+<main>
+        <div class="container">
+                <div class="page col-md-12">
+                    {{ forms.email.errors }}
+
+                    <img src="/static/images/Computer login-rafiki.png" alt="">
+                    <div class="forms shadow-lg">
+                        <p class="form-title">بازیابی کلمه عبور</p>
+                        <form action="{% url 'forgot-page' %}" method="POST" class="mt-5">
+                            {% csrf_token %}
+                            <label for="">ایمیل</label>
+                            {{ forms.email }}
+                            <button type="submit" class="btn btn-primary rounded">بازیابی</button>
+                        </form>
+                    </div>
+                </div>
+                
+        </div>
+    </main>
+{% endblock %}
+
+
+{% block footer-refrence %}
+    <script src="/static/js/password-inputs.js"></script>
+{% endblock %}
