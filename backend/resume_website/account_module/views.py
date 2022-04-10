@@ -1,10 +1,10 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.utils.crypto import get_random_string
 from django.views import View
-from .forms import Register_form, Login_form
+from .forms import Register_form, Login_form, Forgotpassword_form, Resetpassword_form
 from .models import User_model
 from utils.send_email import send_email
 
@@ -37,7 +37,7 @@ class register_view(View):
                                       )
                 new_user.set_password(password)
                 new_user.save()
-                send_email('ثبت نام در رزومه ساز علی', email,{'user':new_user},'emails/email_template.html')
+                send_email('ثبت نام در رزومه ساز علی', email,{'user':new_user},'emails/active_email_template.html')
 
                 return redirect('home-page')
 
@@ -76,6 +76,11 @@ class Login(View):
                 form.add_error('email', 'کاربری با این مشخصات یافت نشد')
 
 
+class Loguot(View):
+    def get(self, request):
+        logout(request)
+        return redirect('home-page')
+
 
 class activate_account(View):
     def get(self, request, active_code):
@@ -88,3 +93,37 @@ class activate_account(View):
                 return redirect('home-page')
         except:
             pass
+
+
+class Forgotpassword(View):
+    def get(self, request):
+        form = Forgotpassword_form()
+        context = {
+            'forms' : form
+        }
+        return render(request, 'forgotpass.html', context)
+
+    def post(self, request):
+        form = Forgotpassword_form(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get('email')
+            user = User_model.objects.filter(email__iexact=email).first()
+            if user:
+                send_email('بازیابی کلمه عبور', email, {'user':user},'emails/resetpass_email_template.html')
+                return redirect('home-page')
+            else:
+                form.add_error('email','ایمیل یافت نشد.')
+
+
+class Resetpassword(View):
+    def get(self, request, active_code):
+        form = Resetpassword_form()
+
+        user = User_model.objects.filter(email_active_code__iexact=active_code).first()
+        if user:
+            context = {
+                'forms' : form,
+            }
+            return render(request, 'resetpass.html', context)
+        else:
+            form.add_error('password', 'کاربری با این مشخصات یافت نشد')

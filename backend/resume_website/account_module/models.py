@@ -13,7 +13,7 @@ class User_model(AbstractUser):
         verbose_name = 'کاربر'
         verbose_name_plural = 'کاربران'
 
-    def __str__(self):
-        if not self.get_full_name() == '':
-            return self.get_full_name()
-        return self.username
+    # def __str__(self):
+    #     if not self.get_full_name() == '':
+    #         return self.get_full_name()
+    #     return self.username

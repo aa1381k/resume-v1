@@ -3,8 +3,9 @@
     <div class="container mt-2 headder-container">
 
         <div class="header-btns">
-            <a href="{% url 'register-page' %}" class="btn btn-outline-primary register pt-2">ثبت نام / ورود</a>
-
+            {% if not user.is_authenticated %}
+                <a href="{% url 'register-page' %}" class="btn btn-outline-primary register pt-2">ثبت نام / ورود</a>
+            {% endif %} 
             <a class="menu-btn" data-bs-toggle="offcanvas" data-bs-target="#demo">
                 <i class="fa fa-bars bg-white border-0"></i>
             </a>
