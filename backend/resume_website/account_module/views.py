@@ -72,8 +72,13 @@ class Login(View):
                         return redirect('home-page')
                     else:
                         form.add_error('password', 'کلمه عبور اشتباه است')
+                        # return redirect('login-page')
             else:
                 form.add_error('email', 'کاربری با این مشخصات یافت نشد')
+        context = {
+            'forms' : form
+        }
+        return render(request, 'login.html', context)
 
 
 class Loguot(View):
@@ -113,6 +118,10 @@ class Forgotpassword(View):
                 return redirect('home-page')
             else:
                 form.add_error('email','ایمیل یافت نشد.')
+        context = {
+            'forms' : form
+        }
+        return render(request, 'forgotpass.html', context)
 
 
 class Resetpassword(View):
@@ -127,3 +136,20 @@ class Resetpassword(View):
             return render(request, 'resetpass.html', context)
         else:
             form.add_error('password', 'کاربری با این مشخصات یافت نشد')
+
+    def post(self, request, active_code):
+        form = Resetpassword_form(request.POST)
+        if form.is_valid():
+            user = User_model.objects.filter(email_active_code__iexact=active_code).first()
+            if user:
+                new_password = form.cleaned_data.get('password')
+                user.set_password(new_password)
+                user.email_active_code = get_random_string(72)
+                user.save()
+                return redirect('login-page')
+            else:
+                form.add_error('password', 'کاربری با این مشخصات یافت نشد')
+        context = {
+            'forms': form,
+        }
+        return render(request, 'resetpass.html', context)
