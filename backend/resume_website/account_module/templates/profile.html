@@ -1,0 +1,296 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ user.username }} profile
+{% endblock %}
+
+{% block refrence %}
+    <link rel="stylesheet" href="/static/css/profile2.css">
+    <style>
+
+        {% if  user.bg_image %}
+            .main-profile-header .bg-image {
+                background-image: url("{{ user.bg_image.url }}") !important;
+            }
+        {% else %}
+            .main-profile-header .bg-image {
+                background-image: url("/static/images/curved0.jpg") !important;
+            }
+        {% endif %}
+
+    </style>
+{% endblock %}
+
+{% block content %}
+        <main>
+        <div class="container">
+
+            <div class="main-profile col-md-12 d-flex flex-column align-items-center">
+
+                <div class="main-profile-header d-flex flex-column align-items-center col-md-12">
+
+                    <div class="bg-image col-md-12">
+                    </div>
+
+                    <div class="user-info-bg col-md-11">
+                        <div class="gradiant-bg col-md-12">
+
+                            <div class="user-base-info col-md-7 mb-3 d-flex align-items-center">
+                                <div class="user-image col-md-3">
+                                    {% if user.avatar %}
+                                        <img src="{{ user.avatar.url }}" alt="">
+                                        
+                                    {% else %}
+                                        <img src="/static/images/icons8-male-user-96.png" alt="">
+
+                                    {% endif %}
+                                </div>
+
+                                <div class="user-name col-md-5">
+                                    <h2>{{ user.get_full_name }}</h2>
+                                    <span class="text-muted">{{ user.username }}</span>
+                                    <br>
+{#                                    <span class="text-muted">co founder apple</span>#}
+                                </div>
+                            </div>
+
+                            <div class="profile-tabs col-md-5">
+                                <ul class="d-flex justify-content-between">
+                                    <li><button class="btn active">درباره من</button></li>
+                                    <li><button class="btn">نمونه کار ها</button></li>
+                                    <li><button class="btn">ارتباط با من</button></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="main-profile-body col-md-11 mt-4">
+
+                    <div class="about-me col-md-12 border p-4 bg-white">
+                        <p class="sectionname">درباره من</p>
+                        <p class="col-md-11 m-4">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
+                            از طراحان گرافیک
+                            است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
+                            فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای
+                            زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با
+                            نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو
+                            در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه
+                            راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و
+                            جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                        </p>
+                    </div>
+
+                    <div class="skills col-md-12 border p-4 bg-white mt-4">
+                        <p class="sectionname">مهارت ها</p>
+
+                        <div class="skill-items col-md-12">
+
+                            <div class="skill-item">
+                                <span>Lorem</span>
+                                <div class="percentage" role="progressbar" aria-valuenow="65" aria-valuemin="0"
+                                    aria-valuemax="100" style="--value:65"></div>
+                            </div>
+
+                            <div class="skill-item">
+                                <span>Lorem</span>
+                                <div class="percentage" role="progressbar" aria-valuenow="65" aria-valuemin="0"
+                                    aria-valuemax="100" style="--value:65"></div>
+                            </div>
+
+                            <div class="skill-item">
+                                <span>Lorem</span>
+                                <div class="percentage" role="progressbar" aria-valuenow="65" aria-valuemin="0"
+                                    aria-valuemax="100" style="--value:65"></div>
+                            </div>
+
+                            <div class="skill-item">
+                                <span>Lorem</span>
+                                <div class="percentage" role="progressbar" aria-valuenow="65" aria-valuemin="0"
+                                    aria-valuemax="100" style="--value:65"></div>
+                            </div>
+
+                            <div class="skill-item">
+                                <span>Lorem</span>
+                                <div class="percentage" role="progressbar" aria-valuenow="65" aria-valuemin="0"
+                                    aria-valuemax="100" style="--value:90"></div>
+                            </div>
+
+                            <div class="skill-item">
+                                <span>Lorem</span>
+                                <div class="percentage" role="progressbar" aria-valuenow="65" aria-valuemin="0"
+                                    aria-valuemax="100" style="--value:65"></div>
+                            </div>
+
+                            <div class="skill-item">
+                                <span>Lorem</span>
+                                <div class="percentage" role="progressbar" aria-valuenow="65" aria-valuemin="0"
+                                    aria-valuemax="100" style="--value:65"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="job-exp col-md-12 border p-4 bg-white mt-4">
+                        <div class="sectionname">سوابق شغلی</div>
+
+                        <div class="job-exp-items">
+
+                            <div class="job-exp-item">
+
+                                <div class="job-position">
+                                    <h6>لورم ایپسوم</h6>
+                                </div>
+
+                                <div class="company-name">
+                                    <span>لورم ایپسوم</span>
+                                </div>
+
+                                <div class="job-date">
+                                    <span class="date-start">2018</span>
+                                    -
+                                    <span class="date-end">2020</span>
+                                </div>
+
+                                <div class="job-desc w-50">
+                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                                        طراحان گرافیک است.
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                                        طراحان گرافیک است.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="job-exp-item">
+
+                                <div class="job-position">
+                                    <h6>لورم ایپسوم</h6>
+                                </div>
+
+                                <div class="company-name">
+                                    <span>لورم ایپسوم</span>
+                                </div>
+
+                                <div class="job-date">
+                                    <span class="date-start">2018</span>
+                                    -
+                                    <span class="date-end">2020</span>
+                                </div>
+
+                                <div class="job-desc w-50">
+                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                                        طراحان گرافیک است.
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                                        طراحان گرافیک است.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="job-exp-item">
+
+                                <div class="job-position">
+                                    <h6>لورم ایپسوم</h6>
+                                </div>
+
+                                <div class="company-name">
+                                    <span>لورم ایپسوم</span>
+                                </div>
+
+                                <div class="job-date">
+                                    <span class="date-start">2018</span>
+                                    -
+                                    <span class="date-end">2020</span>
+                                </div>
+
+                                <div class="job-desc w-50">
+                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                                        طراحان گرافیک است.
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                                        طراحان گرافیک است.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="education col-md-12 border p-4 bg-white mt-4">
+                        <p class="sectionname">سوابق تحصیلی</p>
+
+                        <div class="education-items">
+
+                            <div class="education-item">
+
+                                <div class="education-name">
+                                    <h6>لورم ایپسوم</h6>
+                                </div>
+
+                                <div class="education-grade">
+                                    <p>لورم ایپسوم لورم ایپسوم</p>
+                                </div>
+
+                                <div class="education-date">
+                                    <span class="date-start">2018</span>
+                                    -
+                                    <span class="date-end">2021</span>
+                                </div>
+
+                            </div>
+
+                            <div class="education-item">
+
+                                <div class="education-name">
+                                    <h6>لورم ایپسوم</h6>
+                                </div>
+
+                                <div class="education-grade">
+                                    <p>لورم ایپسوم لورم ایپسوم</p>
+                                </div>
+
+                                <div class="education-date">
+                                    <span class="date-start">2018</span>
+                                    -
+                                    <span class="date-end">2021</span>
+                                </div>
+
+                            </div>
+
+                            <div class="education-item">
+
+                                <div class="education-name">
+                                    <h6>لورم ایپسوم</h6>
+                                </div>
+
+                                <div class="education-grade">
+                                    <p>لورم ایپسوم لورم ایپسوم</p>
+                                </div>
+
+                                <div class="education-date">
+                                    <span class="date-start">2018</span>
+                                    -
+                                    <span class="date-end">2021</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+{% endblock %}
