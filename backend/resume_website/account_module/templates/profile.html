@@ -19,6 +19,17 @@
             }
         {% endif %}
 
+        {% if user.theme_color %}
+            :root{
+               /* --theme: #0d6efd; */
+                --theme: {{ user.theme_color }};
+            }
+        {% else %}
+            :root{
+               --theme: #0d6efd;
+            }
+        {% endif %}
+
     </style>
 {% endblock %}
 
