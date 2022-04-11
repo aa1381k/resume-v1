@@ -8,6 +8,19 @@ from .forms import Register_form, Login_form, Forgotpassword_form, Resetpassword
 from .models import User_model
 from utils.send_email import send_email
 
+
+class profile_view(View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            user = request.user
+            context = {
+                'user': user
+            }
+            return render(request, 'profile.html', context)
+        return redirect('home-page')
+
+
+
 class register_view(View):
     def get(self, request):
         if request.user.is_authenticated:
@@ -50,11 +63,13 @@ class register_view(View):
 
 class Login(View):
     def get(self, request):
-        form = Login_form()
-        context = {
-            'forms' : form
-        }
-        return render(request, 'login.html', context)
+        if not request.user.is_authenticated:
+            form = Login_form()
+            context = {
+                'forms' : form
+            }
+            return render(request, 'login.html', context)
+        return redirect('home-page')
 
     def post(self, request):
         form = Login_form(request.POST)
