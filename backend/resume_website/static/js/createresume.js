@@ -235,8 +235,9 @@ function pages(id) {
         tb1 = lower_id + '-' + 'page';
         id1 = lower_id;
         id2 = upper_id;
-
         savedata(tb1);
+        alert('test')
+
     }
 }
 
@@ -271,8 +272,8 @@ function personal_info_page_ajax(){
     var month = document.getElementsByName('month')[0].value;
     var year = document.getElementsByName('year')[0].value;
     var avatar = document.getElementsByName('avatar')[0].value;
-    var resume_id = document.getElementsByName('resume_id')[0].value;
-    console.log(first_name);
+    var resume_id = document.getElementById('resume_id').value;
+    console.log(resume_id);
     $.get('/create-resume/savedata/', {
         first_name,
         last_name,

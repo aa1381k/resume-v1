@@ -10,9 +10,10 @@ class create_resume(View):
         user = request.user
         resume = basic_info.objects.filter(user_base_info_id=user.id)
         count_resume = resume.count()
-        if resume == None or resume == '':
+        print(count_resume)
+        if resume.first() == None or resume.first() == '':
             context = {
-                'resume_id': 1
+                'resume_id': 0
             }
         else:
             context = {
@@ -39,6 +40,8 @@ def user_base_info_ajax(request):
         resume_id = request.GET.get('resume_id')
         user = request.user
 
+        print(sex)
+
         resume = basic_info.objects.filter(user_base_info_id=user.id, resume_id=resume_id).first()
 
         if resume == None:
@@ -62,6 +65,5 @@ def user_base_info_ajax(request):
             resume.birth_year = year
             resume.avatar = avatar
             resume.save()
-            print(resume_id)
 
     return HttpResponse('saved')
