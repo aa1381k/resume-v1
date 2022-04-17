@@ -271,6 +271,7 @@ function personal_info_page_ajax(){
     var month = document.getElementsByName('month')[0].value;
     var year = document.getElementsByName('year')[0].value;
     var avatar = document.getElementsByName('avatar')[0].value;
+    var resume_id = document.getElementsByName('resume_id')[0].value;
     console.log(first_name);
     $.get('/create-resume/savedata/', {
         first_name,
@@ -286,6 +287,7 @@ function personal_info_page_ajax(){
         month,
         year,
         avatar,
+        resume_id,
     }).then(res=>{
     console.log(res);
     });

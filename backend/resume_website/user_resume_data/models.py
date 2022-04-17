@@ -42,7 +42,13 @@ class basic_info(models.Model):
     email = models.CharField(max_length=200, null=True, default='')
     website = models.CharField(max_length=200, null=True, default='')
     summary = models.TextField(null=True, default='')
+    avatar = models.ImageField(upload_to='images/user-profile',default='')
+    resume_id = models.CharField(max_length=200, null=True, default='', unique=True)
+    is_active = models.BooleanField(default=False)
     user_base_info = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
+
+    def __str__(self):
+        return self.first_name + " " + self.last_name
 
 
 
