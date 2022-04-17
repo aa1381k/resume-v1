@@ -24,6 +24,7 @@ urlpatterns = [
     path('contact-us/', include('contact_module.urls')),
     path('blogs/', include('blog_module.urls')),
     path('', include('account_module.urls')),
+    path('create-resume/', include('user_resume_data.urls')),
 ]
 
 if settings.DEBUG:

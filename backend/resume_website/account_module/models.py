@@ -1,7 +1,5 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.db.models.signals import pre_delete
-from django.dispatch.dispatcher import receiver
 # Create your models here.
 
 
@@ -16,10 +14,6 @@ class User_model(AbstractUser):
         verbose_name = 'کاربر'
         verbose_name_plural = 'کاربران'
 
-    def __str__(self):
-        if not self.get_full_name() == '':
-            return self.get_full_name()
-        return self.username
 
     def get_full_name(self):
         return self.first_name + " " + self.last_name

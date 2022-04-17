@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'contact_module',
     'account_module',
     'blog_module',
+    'user_resume_data',
     'django_render_partial',
     'django_cleanup.apps.CleanupConfig',
 

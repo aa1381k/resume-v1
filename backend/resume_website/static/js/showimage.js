@@ -15,7 +15,7 @@ function readURL(input) {
 }
 
 function removeprofileimage() {
-    var default_image = '../images/user.png';
+    var default_image = 'http://127.0.0.1:8000/static/images/user.png';
     var image = document.getElementById('profileimage').src;
 
     if (image != default_image) {

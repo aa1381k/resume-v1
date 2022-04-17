@@ -213,7 +213,7 @@ function moveupelement(id, parr, list, sec) {
 
 var tb1 = 'personal-info-page';
 var id1 = 'personal-info';
-var id2 = 'PERSONAL-INFO'
+var id2 = 'PERSONAL-INFO';
 function pages(id) {
     if (tb1 != (id + '-' + 'page')) {
         document.getElementsByClassName(tb1)[0].className = tb1 + ' invisible';
@@ -235,11 +235,70 @@ function pages(id) {
         tb1 = lower_id + '-' + 'page';
         id1 = lower_id;
         id2 = upper_id;
+
+        savedata(tb1);
     }
 }
 
+var recentpage = 'personal-info-page';
+function savedata(obj){
+    if (recentpage == 'personal-info-page'){
+        personal_info_page_ajax();
+    }
+    if (recentpage == 'skills-page'){
+        skills_page_ajax();
+    }
+    if (recentpage == 'education-page'){
+        education_page_ajax();
+    }
+    if (recentpage == 'job-page'){
+        job_page_ajax();
+    }
+    recentpage = obj;
+}
 
+function personal_info_page_ajax(){
+    var first_name = document.getElementsByName('firstname')[0].value;
+    var last_name = document.getElementsByName('lastname')[0].value;
+    var job_title = document.getElementsByName('jobtitle')[0].value;
+    var country = document.getElementsByName('country')[0].value;
+    var state = document.getElementsByName('state')[0].value;
+    var city = document.getElementsByName('city')[0].value;
+    var military = document.getElementsByName('military')[0].value;
+    var relationship = document.getElementsByName('relationship')[0].value;
+    var sex = document.getElementsByName('sex')[0].value;
+    var day = document.getElementsByName('day')[0].value;
+    var month = document.getElementsByName('month')[0].value;
+    var year = document.getElementsByName('year')[0].value;
+    var avatar = document.getElementsByName('avatar')[0].value;
+    console.log(first_name);
+    $.get('/create-resume/savedata/', {
+        first_name,
+        last_name,
+        job_title,
+        country,
+        state,
+        city,
+        military,
+        relationship,
+        sex,
+        day,
+        month,
+        year,
+        avatar,
+    }).then(res=>{
+    console.log(res);
+    });
+}
 
-function test() {
-    alert('salaaaaaaam');
+function skills_page_ajax(){
+
+}
+
+function education_page_ajax(){
+
+}
+
+function job_page_ajax(){
+
 }
