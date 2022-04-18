@@ -2,6 +2,9 @@ function changeicon(test, index) {
     var selected_value = test.options[test.selectedIndex].value;
     var icon = document.getElementsByClassName('user-social-media-item')[index].getElementsByClassName('item-inputs')[0].getElementsByTagName('i')[0];
     icon.className = 'fa-brands fa-' + selected_value;
+    if (selected_value==''){
+         icon.className = 'fa fa-globe';
+    }
 }
 
 function addsocial() {
@@ -236,7 +239,6 @@ function pages(id) {
         id1 = lower_id;
         id2 = upper_id;
         savedata(tb1);
-        alert('test')
 
     }
 }
@@ -267,14 +269,44 @@ function personal_info_page_ajax(){
     var city = document.getElementsByName('city')[0].value;
     var military = document.getElementsByName('military')[0].value;
     var relationship = document.getElementsByName('relationship')[0].value;
-    var sex = document.getElementsByName('sex')[0].value;
+    var sex = document.getElementsByName('sex')[0].value;                       //base info
     var day = document.getElementsByName('day')[0].value;
     var month = document.getElementsByName('month')[0].value;
     var year = document.getElementsByName('year')[0].value;
     var avatar = document.getElementsByName('avatar')[0].value;
+    var phone = document.getElementsByName('phone')[0].value;
+    var email = document.getElementsByName('email')[0].value;
+    var website = document.getElementsByName('website')[0].value;
+    var summary = document.getElementsByName('summary')[0].value;
     var resume_id = document.getElementById('resume_id').value;
-    console.log(resume_id);
-    $.get('/create-resume/savedata/', {
+
+    var social_media_count = document.getElementsByClassName('user-social-media-item').length;
+
+    for (var i=0; i<social_media_count; i++){
+        var social_media_item = document.getElementById('social_'+i);
+        var social_media_id = social_media_item.getElementsByTagName('input')[0].value;
+        var social_media_name = social_media_item.getElementsByTagName('select')[0].value;
+        var social_media_number = i;
+
+        // $.get('/create-resume/savedata/user_social/',{
+        //     social_media_name,
+        //     social_media_number,
+        //     social_media_id
+        // }).then(res=>{
+        //     console.log(res);
+        // })
+
+
+        $.post('/create-resume/savedata/user_social/', {
+        'social_media_name': social_media_name,
+        'social_media_number': social_media_number,
+        'social_media_id': social_media_id,
+        })
+
+
+    }
+
+    $.get('/create-resume/savedata/user_base_info/', {
         first_name,
         last_name,
         job_title,
@@ -289,8 +321,17 @@ function personal_info_page_ajax(){
         year,
         avatar,
         resume_id,
+        phone,
+        email,
+        website,
+        summary,
     }).then(res=>{
-    console.log(res);
+    if (res == 'datasaved'){
+        alert('اطلاعات شما با موفقیت ثبت شد.')
+    }
+    else{
+        alert('لطفا فیلد ها را پر کنید')
+    }
     });
 }
 

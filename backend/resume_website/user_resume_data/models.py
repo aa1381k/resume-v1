@@ -25,6 +25,41 @@ SEX_CHOICES = (
     ("2", "زن"),
 )
 
+DAY_CHOICES = (
+    ("0", ""),("1", "1"),
+    ("2", "2"),("3", "3"),
+    ("4", "4"),("5", "5"),
+    ("6", "6"),("7", "7"),
+    ("8", "8"),("9", "9"),
+    ("10", "10"),("11", "11"),
+    ("12", "12"),("13", "13"),
+    ("14", "14"),("15", "15"),
+    ("16", "16"),("17", "17"),
+    ("18", "18"),("19", "19"),
+    ("20", "20"),("21", "21"),
+    ("22", "22"),("23", "23"),
+    ("24", "24"),("25", "25"),
+    ("26", "26"),("27", "27"),
+    ("28", "28"),("29", "29"),
+    ("30", "30"),("31", "31"),
+)
+
+MONTH_CHOICES = (
+    ("0", ""),
+    ("1", "فروردین"),
+    ("2", "اردیبهشت"),
+    ("3", "خرداد"),
+    ("4", "تیر"),
+    ("5", "مرداد"),
+    ("6", "شهریور"),
+    ("7", "مهر"),
+    ("8", "آبان"),
+    ("9", "آذر"),
+    ("10", "دی"),
+    ("11", "بهمن"),
+    ("12", "اسفند"),
+)
+
 class basic_info(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -35,17 +70,18 @@ class basic_info(models.Model):
     military = models.CharField(max_length=50,choices=MILITARY_CHOICES, default='0')
     married = models.CharField(max_length=50,choices=MARRIED_CHOICES, default='0')
     sex = models.CharField(max_length=50,choices=SEX_CHOICES, default='0')
-    birth_day = models.CharField(max_length=200, null=True, default='')
-    birth_month = models.CharField(max_length=200, null=True, default='')
+    birth_day = models.CharField(max_length=200, choices=DAY_CHOICES, null=True, default='')
+    birth_month = models.CharField(max_length=200, choices=MONTH_CHOICES, null=True, default='')
     birth_year = models.CharField(max_length=200, null=True, default='')
     phone = models.CharField(max_length=200, null=True, default='')
     email = models.CharField(max_length=200, null=True, default='')
     website = models.CharField(max_length=200, null=True, default='')
     summary = models.TextField(null=True, default='')
     avatar = models.ImageField(upload_to='images/user-profile',default='')
-    resume_id = models.CharField(max_length=200, null=True, default='', unique=True)
+    resume_id = models.CharField(max_length=200, null=True, default='')
     is_active = models.BooleanField(default=False)
     user_base_info = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
+    social_media = models.ForeignKey("user_socialmedia", on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
@@ -55,3 +91,8 @@ class basic_info(models.Model):
 class user_socialmedia(models.Model):
     social_media = models.CharField(max_length=200)
     username = models.CharField(max_length=200)
+    is_active = models.BooleanField(default=True)
+    social_id = models.CharField(max_length=200, null=True, default='')
+
+    def __str__(self):
+        return self.social_media
