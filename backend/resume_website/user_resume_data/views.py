@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from . models import basic_info
+from . models import basic_info, user_socialmedia
 # Create your views here.
 from django.views import View
 
@@ -26,26 +26,26 @@ class create_resume(View):
 
 
 def user_base_info_ajax(request):
-    if request.GET:
+    if request.POST:
         if request.user.is_authenticated:
-            first_name = request.GET.get('first_name')
-            last_name = request.GET.get('last_name')
-            job_title = request.GET.get('job_title')
-            country = request.GET.get('country')
-            state = request.GET.get('state')
-            city = request.GET.get('city')
-            military = request.GET.get('military')
-            relationship = request.GET.get('relationship')
-            sex = request.GET.get('sex')
-            day = request.GET.get('day')
-            month = request.GET.get('month')
-            year = request.GET.get('year')
-            avatar = request.GET.get('avatar')
-            resume_id = request.GET.get('resume_id')
-            phone = request.GET.get('phone')
-            email = request.GET.get('email')
-            website = request.GET.get('website')
-            summary = request.GET.get('summary')
+            first_name = request.POST.get('first_name')
+            last_name = request.POST.get('last_name')
+            job_title = request.POST.get('job_title')
+            country = request.POST.get('country')
+            state = request.POST.get('state')
+            city = request.POST.get('city')
+            military = request.POST.get('military')
+            relationship = request.POST.get('relationship')
+            sex = request.POST.get('sex')
+            day = request.POST.get('day')
+            month = request.POST.get('month')
+            year = request.POST.get('year')
+            avatar = request.POST.get('avatar')
+            resume_id = request.POST.get('resume_id')
+            phone = request.POST.get('phone')
+            email = request.POST.get('email')
+            website = request.POST.get('website')
+            summary = request.POST.get('summary')
             user = request.user
 
 
@@ -89,5 +89,22 @@ def user_base_info_ajax(request):
 
 def user_socialmedia_ajax(request):
     if request.POST:
-        print('ok')
+        if request.user.is_authenticated:
+            social_media_name = request.POST.get('social_media_name')
+            social_media_id = request.POST.get('social_media_id')
+            social_media_number = request.POST.get('social_media_number')
+
+            print(social_media_id, social_media_number, social_media_name)
+
+            if social_media_name != '' and social_media_id != '':
+                social_media = user_socialmedia.objects.filter(social_media=social_media_name, username__exact=social_media_id).first()
+
+            if social_media == None or social_media == '':
+                new_user_socialmedia = user_socialmedia(social_media=social_media_name, username=social_media_id, social_id=social_media_number)
+                new_user_socialmedia.save()
+
+            else:
+                social_media.social_media = social_media_name
+                social_media.username = social_media_id
+                social_media.save()
     return HttpResponse('ok social')

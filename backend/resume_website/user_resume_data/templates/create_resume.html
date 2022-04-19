@@ -159,190 +159,192 @@
 
                         <div class="tab-body col-md-12">
 
-                            <div class="row base-info col-md-12">
-                                <p class="sectionname">اطلاعات پایه</p>
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="row base-info col-md-12">
+                                    <p class="sectionname">اطلاعات پایه</p>
 
-                                <div class="block col-md-2">
-                                    <div class="profile-image">
-                                        <img id="profileimage" src="/static/images/user.png" alt="your image">
+                                    <div class="block col-md-2">
+                                        <div class="profile-image">
+                                            <img id="profileimage" src="/static/images/user.png" alt="your image">
 
-                                        <div class="btns">
-                                            <label class="btn btn-default btn-file">
-                                                <i class="fa-solid fa-upload upload"></i> <input type="file" name="avatar" style="display: none;" onchange="readURL(this)" required="">
-                                            </label>
+                                            <div class="btns">
+                                                <label class="btn btn-default btn-file">
+                                                    <i class="fa-solid fa-upload upload"></i> <input type="file" name="avatar" style="display: none;" onchange="readURL(this)" required="">
+                                                </label>
 
-                                            <label class="btn btn-default btn-file" id="removeimage" style="display: inline;">
-                                                <i class="fa-solid fa-trash trash"></i> <input type="button" style="display: none;" onclick="removeprofileimage()" required="">
-                                            </label>
+                                                <label class="btn btn-default btn-file" id="removeimage" style="display: inline;">
+                                                    <i class="fa-solid fa-trash trash"></i> <input type="button" style="display: none;" onclick="removeprofileimage()" required="">
+                                                </label>
 
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row1 col-md-10">
-                                    <div class="firstname">
-                                        <span>نام</span>
-                                        <input type="text" name="firstname" class="col-md-2">
-                                    </div>
-                                    <div class="lastname">
-                                        <span>نام خانوادگی</span>
-                                        <input type="text" name="lastname" class="col-md-2">
-                                    </div>
-                                    <div class="jobtitle">
-                                        <span>عنوان شغلی</span>
-                                        <input type="text" name="jobtitle" class="col-md-2">
-                                    </div>
-
-                                </div>
-
-                                <div class="row1 col-md-10 mt-4">
-                                    <div class="firstname">
-                                        <span>کشور</span>
-                                        <input type="text" name="country" class="col-md-2">
-                                    </div>
-                                    <div class="lastname">
-                                        <span>استان</span>
-                                        <input type="text" name="state" class="col-md-2">
-                                    </div>
-                                    <div class="jobtitle">
-                                        <span>شهر</span>
-                                        <input type="text" name="city" class="col-md-2">
-                                    </div>
-
-                                </div>
-
-                                <div class="row3 col-md-10">
-
-                                    <div class="birghtday col-md-4">
-                                        <span>تاریخ تولد</span>
-                                        <div class="birtday-body col-md-12">
-                                            <input type="text" name="year" placeholder="سال">
-                                            <select name="month" id="">
-                                                <option value="0">ماه</option>
-                                                <option value="1">فروردین</option>
-                                                <option value="2">اردیبهشت</option>
-                                                <option value="3">خرداد</option>
-                                                <option value="4">تیر</option>
-                                                <option value="5">مرداد</option>
-                                                <option value="6">شهریور</option>
-                                                <option value="7">مهر</option>
-                                                <option value="8">آبان</option>
-                                                <option value="9">آذز</option>
-                                                <option value="10">دی</option>
-                                                <option value="11">بهمن</option>
-                                                <option value="12">اسفند</option>
-                                            </select>
-                                            <select name="day" id="">
-                                                <option value="0">روز</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                                <option value="13">13</option>
-                                                <option value="14">14</option>
-                                                <option value="15">15</option>
-                                                <option value="16">16</option>
-                                                <option value="17">17</option>
-                                                <option value="18">18</option>
-                                                <option value="19">19</option>
-                                                <option value="20">20</option>
-                                                <option value="21">21</option>
-                                                <option value="22">22</option>
-                                                <option value="23">23</option>
-                                                <option value="24">24</option>
-                                                <option value="25">25</option>
-                                                <option value="26">26</option>
-                                                <option value="27">27</option>
-                                                <option value="28">28</option>
-                                                <option value="29">29</option>
-                                                <option value="30">30</option>
-                                                <option value="31">31</option>
-                                            </select>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="srm col-md-4">
-
-                                        <div class="sex inner-srm col-md-2">
-                                            <span>جنسیت</span>
-                                            <select name="sex" id="">
-                                                <option value="0"></option>
-                                                <option value="1">مرد</option>
-                                                <option value="2">زن</option>
-                                            </select>
+                                    <div class="row1 col-md-10">
+                                        <div class="firstname">
+                                            <span>نام</span>
+                                            <input type="text" name="firstname" class="col-md-2">
                                         </div>
-
-                                        <div class="relationship inner-srm col-md-2">
-                                            <span>تاهل</span>
-                                            <select name="relationship" id="">
-                                                <option value="0"></option>
-                                                <option value="1">مجرد</option>
-                                                <option value="2">متاهل</option>
-                                            </select>
+                                        <div class="lastname">
+                                            <span>نام خانوادگی</span>
+                                            <input type="text" name="lastname" class="col-md-2">
                                         </div>
-
-                                        <div class="military-service inner-srm col-md-2">
-                                            <span>سربازی</span>
-                                            <select name="military" id="">
-                                                <option value="0"></option>
-                                                <option value="1">مشمول</option>
-                                                <option value="2">در حال خدمت</option>
-                                                <option value="3">پایان خدمت</option>
-                                                <option value="4">معاف</option>
-                                                <option value="5">معافیت تحصیلی</option>
-                                                <option value="6">معافیت پزشکی</option>
-                                                <option value="7">معافیت غیر پزشکی</option>
-                                            </select>
+                                        <div class="jobtitle">
+                                            <span>عنوان شغلی</span>
+                                            <input type="text" name="jobtitle" class="col-md-2">
                                         </div>
 
                                     </div>
 
+                                    <div class="row1 col-md-10 mt-4">
+                                        <div class="firstname">
+                                            <span>کشور</span>
+                                            <input type="text" name="country" class="col-md-2">
+                                        </div>
+                                        <div class="lastname">
+                                            <span>استان</span>
+                                            <input type="text" name="state" class="col-md-2">
+                                        </div>
+                                        <div class="jobtitle">
+                                            <span>شهر</span>
+                                            <input type="text" name="city" class="col-md-2">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row3 col-md-10">
+
+                                        <div class="birghtday col-md-4">
+                                            <span>تاریخ تولد</span>
+                                            <div class="birtday-body col-md-12">
+                                                <input type="text" name="year" placeholder="سال">
+                                                <select name="month" id="">
+                                                    <option value="0">ماه</option>
+                                                    <option value="1">فروردین</option>
+                                                    <option value="2">اردیبهشت</option>
+                                                    <option value="3">خرداد</option>
+                                                    <option value="4">تیر</option>
+                                                    <option value="5">مرداد</option>
+                                                    <option value="6">شهریور</option>
+                                                    <option value="7">مهر</option>
+                                                    <option value="8">آبان</option>
+                                                    <option value="9">آذز</option>
+                                                    <option value="10">دی</option>
+                                                    <option value="11">بهمن</option>
+                                                    <option value="12">اسفند</option>
+                                                </select>
+                                                <select name="day" id="">
+                                                    <option value="0">روز</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                    <option value="13">13</option>
+                                                    <option value="14">14</option>
+                                                    <option value="15">15</option>
+                                                    <option value="16">16</option>
+                                                    <option value="17">17</option>
+                                                    <option value="18">18</option>
+                                                    <option value="19">19</option>
+                                                    <option value="20">20</option>
+                                                    <option value="21">21</option>
+                                                    <option value="22">22</option>
+                                                    <option value="23">23</option>
+                                                    <option value="24">24</option>
+                                                    <option value="25">25</option>
+                                                    <option value="26">26</option>
+                                                    <option value="27">27</option>
+                                                    <option value="28">28</option>
+                                                    <option value="29">29</option>
+                                                    <option value="30">30</option>
+                                                    <option value="31">31</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="srm col-md-4">
+
+                                            <div class="sex inner-srm col-md-2">
+                                                <span>جنسیت</span>
+                                                <select name="sex" id="">
+                                                    <option value="0"></option>
+                                                    <option value="1">مرد</option>
+                                                    <option value="2">زن</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="relationship inner-srm col-md-2">
+                                                <span>تاهل</span>
+                                                <select name="relationship" id="">
+                                                    <option value="0"></option>
+                                                    <option value="1">مجرد</option>
+                                                    <option value="2">متاهل</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="military-service inner-srm col-md-2">
+                                                <span>سربازی</span>
+                                                <select name="military" id="">
+                                                    <option value="0"></option>
+                                                    <option value="1">مشمول</option>
+                                                    <option value="2">در حال خدمت</option>
+                                                    <option value="3">پایان خدمت</option>
+                                                    <option value="4">معاف</option>
+                                                    <option value="5">معافیت تحصیلی</option>
+                                                    <option value="6">معافیت پزشکی</option>
+                                                    <option value="7">معافیت غیر پزشکی</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
                                 </div>
 
+                                <div class="row Contact col-md-12 mt-5">
+                                    <p class="sectionname">اطلاعات تماس</p>
 
+                                    <div class="row1 col-md-10">
+                                        <div class="phone">
+                                            <span>شماره تماس</span>
+                                            <input type="text" name="phone" class="col-md-2">
+                                        </div>
+                                        <div class="email">
+                                            <span>ایمیل</span>
+                                            <input type="text" name="email" class="col-md-2">
+                                        </div>
+                                        <div class="website">
+                                            <span>وب سایت</span>
+                                            <input type="text" name="website" class="col-md-2">
+                                        </div>
 
-                            </div>
-
-                            <div class="row Contact col-md-12 mt-5">
-                                <p class="sectionname">اطلاعات تماس</p>
-
-                                <div class="row1 col-md-10">
-                                    <div class="phone">
-                                        <span>شماره تماس</span>
-                                        <input type="text" name="phone" class="col-md-2">
-                                    </div>
-                                    <div class="email">
-                                        <span>ایمیل</span>
-                                        <input type="text" name="email" class="col-md-2">
-                                    </div>
-                                    <div class="website">
-                                        <span>وب سایت</span>
-                                        <input type="text" name="website" class="col-md-2">
                                     </div>
 
                                 </div>
 
-                            </div>
+                                <div class="row summary col-md-12 mt-5">
+                                    <p class="sectionname">توصیف خلاصه</p>
 
-                            <div class="row summary col-md-12 mt-5">
-                                <p class="sectionname">توصیف خلاصه</p>
-
-                                <div class="row col-md-10">
-                                    <div class="summary-description col-md-11 m-auto">
-                                        <span>خلاصه ای از مهارت ها و تجربیات</span>
-                                        <textarea name="summary" id="" cols="30" rows="10"></textarea>
+                                    <div class="row col-md-10">
+                                        <div class="summary-description col-md-11 m-auto">
+                                            <span>خلاصه ای از مهارت ها و تجربیات</span>
+                                            <textarea name="summary" id="" cols="30" rows="10"></textarea>
+                                        </div>
                                     </div>
-                                </div>
 
-                            </div>
+                                </div>
+                            </form>
 
                             <div class="row user-social-medias col-md-12 mt-5">
                                 <p class="sectionname">شبکه های اجتماعی</p>

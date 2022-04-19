@@ -288,50 +288,51 @@ function personal_info_page_ajax(){
         var social_media_name = social_media_item.getElementsByTagName('select')[0].value;
         var social_media_number = i;
 
-        // $.get('/create-resume/savedata/user_social/',{
-        //     social_media_name,
-        //     social_media_number,
-        //     social_media_id
-        // }).then(res=>{
-        //     console.log(res);
-        // })
 
-
-        $.post('/create-resume/savedata/user_social/', {
-        'social_media_name': social_media_name,
-        'social_media_number': social_media_number,
-        'social_media_id': social_media_id,
-        })
-
-
+        if(social_media_id != '' || social_media_id != null){
+            $.ajax({
+            method:'POST',
+            url:'/create-resume/savedata/user_social/',
+            data:{
+                'social_media_name': social_media_name,
+                'social_media_number': social_media_number,
+                'social_media_id': social_media_id,
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            }
+        });
+        }
     }
 
-    $.get('/create-resume/savedata/user_base_info/', {
-        first_name,
-        last_name,
-        job_title,
-        country,
-        state,
-        city,
-        military,
-        relationship,
-        sex,
-        day,
-        month,
-        year,
-        avatar,
-        resume_id,
-        phone,
-        email,
-        website,
-        summary,
-    }).then(res=>{
-    if (res == 'datasaved'){
-        alert('اطلاعات شما با موفقیت ثبت شد.')
-    }
-    else{
-        alert('لطفا فیلد ها را پر کنید')
-    }
+    $.ajax({
+        method:'POST',
+        url:'/create-resume/savedata/user_base_info/',
+        data:{
+            first_name,
+            last_name,
+            job_title,
+            country,
+            state,
+            city,
+            military,
+            relationship,
+            sex,
+            day,
+            month,
+            year,
+            avatar,
+            resume_id,
+            phone,
+            email,
+            website,
+            summary,
+            'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+        }
+    }).then(res=> {
+        if (res == 'datasaved') {
+            alert('اطلاعات شما با موفقیت ثبت شد.');
+        } else {
+            alert('لطفا فیلد ها را پر کنید');
+        }
     });
 }
 
