@@ -337,7 +337,29 @@ function personal_info_page_ajax(){
 }
 
 function skills_page_ajax(){
+    var lang_items = document.getElementsByClassName('lang-item').length;
+    console.log(lang_items);
+    for(var i=0; i<lang_items; i++){
 
+        var lang_item = document.getElementById('lang_'+i);
+
+        var lang_name = lang_item.getElementsByTagName('select')[0].value;
+        var lang_grade = lang_item.getElementsByTagName('select')[1].value;
+        var lang_id = i;
+
+        if(lang_name != '' || lang_name != null){
+            $.ajax({
+            method:'POST',
+            url:'/create-resume/savedata/user_lang/',
+            data:{
+                'lang_name': lang_name,
+                'lang_grade': lang_grade,
+                'lang_id': lang_id,
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            }
+        });
+        }
+    }
 }
 
 function education_page_ajax(){

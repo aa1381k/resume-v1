@@ -82,6 +82,7 @@ class basic_info(models.Model):
     is_active = models.BooleanField(default=False)
     user_base_info = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
     social_media = models.ForeignKey("user_socialmedia", on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
+    langurage = models.ForeignKey("user_langurage", on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
@@ -96,3 +97,15 @@ class user_socialmedia(models.Model):
 
     def __str__(self):
         return self.social_media
+
+
+class user_langurage(models.Model):
+    langurage = models.CharField(max_length=200)
+    grade = models.CharField(max_length=200)
+    is_active = models.BooleanField(default=True)
+    lang_id = models.CharField(max_length=200, null=True, default='')
+
+
+
+    def __str__(self):
+        return self.langurage

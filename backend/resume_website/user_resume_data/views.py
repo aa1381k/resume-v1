@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from . models import basic_info, user_socialmedia
+from . models import basic_info, user_socialmedia, user_langurage
 # Create your views here.
 from django.views import View
 
@@ -94,17 +94,36 @@ def user_socialmedia_ajax(request):
             social_media_id = request.POST.get('social_media_id')
             social_media_number = request.POST.get('social_media_number')
 
-            print(social_media_id, social_media_number, social_media_name)
-
             if social_media_name != '' and social_media_id != '':
                 social_media = user_socialmedia.objects.filter(social_media=social_media_name, username__exact=social_media_id).first()
 
-            if social_media == None or social_media == '':
-                new_user_socialmedia = user_socialmedia(social_media=social_media_name, username=social_media_id, social_id=social_media_number)
-                new_user_socialmedia.save()
+                if social_media == None or social_media == '':
+                    new_user_socialmedia = user_socialmedia(social_media=social_media_name, username=social_media_id, social_id=social_media_number)
+                    new_user_socialmedia.save()
 
-            else:
-                social_media.social_media = social_media_name
-                social_media.username = social_media_id
-                social_media.save()
+                else:
+                    social_media.social_media = social_media_name
+                    social_media.username = social_media_id
+                    social_media.save()
+
     return HttpResponse('ok social')
+
+
+def user_langurages_ajax(request):
+    if request.POST:
+        lang_name = request.POST.get('lang_name')
+        lang_grade = request.POST.get('lang_grade')
+        lang_id = request.POST.get('lang_id')
+        user = request.user
+        print(lang_id)
+        if lang_name != '' or lang_name != None:
+            User_langurage = user_langurage.objects.filter(langurage=lang_name, user_base_info_id=user.id).first()
+            if User_langurage == None:
+                new_langurage = user_langurage(langurage=lang_name, grade=lang_grade, user_base_info_id=user.id, lang_id=lang_id)
+                new_langurage.save()
+            else:
+                User_langurage.langurage = lang_name
+                User_langurage.grade = lang_grade
+                User_langurage.save()
+
+    return HttpResponse('langurage saved')
