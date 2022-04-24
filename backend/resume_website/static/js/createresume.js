@@ -23,7 +23,7 @@ function addsocial() {
 function addlang() {
     var index = document.getElementsByClassName('lang-item');
     index = index.length;
-    var lang = `<div class="move-btns"> <span><button class="btn" onclick="moveupelement(this, 'lang-items','lang-item','lang')"><i class="fa-solid fa-angle-up"></i></button></span> <span><button class="btn" onclick="movedownelement(this, 'lang-items','lang-item','lang')"><i class="fa-solid fa-angle-down"></i></button></span> <span><button class="btn" onclick="removeitem(this,'lang')"><i class="fa-solid fa-xmark"></i></button></span> </div> <div class="item-inputs"> <div class="lang col-md-6"> <span>نام زبان</span> <select name="" id=""> <option value="" selected=""></option> <option value="English">انگلیسی</option> <option value="Arabic">عربی</option> <option value="German">آلمانی</option> <option value="France">فرانسوی</option> <option value="Spanish">اسپانیایی</option> <option value="Russian">روسی</option> <option value="Italy">ایتالیایی</option> <option value="Turkish">ترکی استانبولی</option> <option value="Persian">فارسی</option> <option value="China">چینی</option> <option value="Hebrew">عبری</option> <option value="Azerbaijani">ترکی آذربایجانی</option> <option value="Armenian">ارمنی</option> <option value="Japanese">ژاپنی</option> <option value="Georgian">گرجی</option> <option value="Kurdish">کُردی</option> <option value="Portuguese">پرتغالی</option> <option value="Bengali">بنگالی</option> <option value="Lahnda">لندا</option> <option value="Javanese">جاوه‌ای</option> <option value="Korean">کره ای</option> <option value="Vietnamese">ویتنامی</option> <option value="Urdu">اردو</option> <option value="Hindi">هندی</option> <option value="Egyptian">مصری</option> <option value="Telugu">تلوگو</option> <option value="Gujarati">گجراتی</option> <option value="Tamil">تامیلی</option> <option value="Marathi">مراتی</option> <option value="Hungarian">مجاری</option> <option value="Swedish">سوئدی</option> <option value="Pashto">پشتو</option> <option value="Greek">یونانی</option> <option value="Dutch">هلندی</option> <option value="Danish">دانمارکی</option> <option value="Latin">لاتین</option> </select> </div> <div class="lang-rate col-md-5"> <span>سطح</span> <select name="" id=""> <option value="0"></option> <option value="1">نیتیو</option> <option value="2">کاملا مسلط</option> <option value="3">دارای تسلط خوب</option> <option value="4">تسلط کامل به استفاده روزمره</option> <option value="5">تسلط نسبی به استفاده‌ روزمره</option> <option value="6">C2</option> <option value="7">C1</option> <option value="8">B2</option> <option value="9">B1</option> <option value="10">A2</option> <option value="11">A1</option> <option value="12">زبان مادری</option> </select> </div> </div>`;
+    var lang = `<div class="move-btns"> <span><button class="btn" onclick="moveupelement(this, 'lang-items','lang-item','lang')"><i class="fa-solid fa-angle-up"></i></button></span> <span><button class="btn" onclick="movedownelement(this, 'lang-items','lang-item','lang')"><i class="fa-solid fa-angle-down"></i></button></span> <span><button class="btn" onclick="removeitem(this)"><i class="fa-solid fa-xmark"></i></button></span> </div> <div class="item-inputs"> <div class="lang col-md-6"> <span>نام زبان</span> <input type="text"> </div> <div class="lang-rate col-md-5"> <span>سطح</span> <select name="" id=""> <option value=""></option> <option value="1">⭐(در حال یادگیری)</option> <option value="2">⭐⭐(کم تجربه)</option> <option value="3">⭐⭐⭐(تسلط نسبی)</option> <option value="4">⭐⭐⭐⭐(تسلط کامل)</option> <option value="5">⭐⭐⭐⭐⭐(حرفه ای)</option> </select> </div> </div>`;
     var elem = document.createElement('div');
     elem.id = `lang_${index}`;
     elem.setAttribute('name', `lang_${index}`);
@@ -338,14 +338,17 @@ function personal_info_page_ajax(){
 
 function skills_page_ajax(){
     var lang_items = document.getElementsByClassName('lang-item').length;
-    console.log(lang_items);
+    var skills_items = document.getElementsByClassName('skill-item').length;
+
     for(var i=0; i<lang_items; i++){
 
         var lang_item = document.getElementById('lang_'+i);
 
-        var lang_name = lang_item.getElementsByTagName('select')[0].value;
-        var lang_grade = lang_item.getElementsByTagName('select')[1].value;
+        var lang_name = lang_item.getElementsByTagName('input')[0].value;
+        var lang_grade = lang_item.getElementsByTagName('select')[0].value;
         var lang_id = i;
+        console.log(lang_name);
+
 
         if(lang_name != '' || lang_name != null){
             $.ajax({
@@ -359,6 +362,28 @@ function skills_page_ajax(){
             }
         });
         }
+    }
+
+    for(var i=0; i<skills_items; i++){
+
+        var skill_item = document.getElementById('skill_'+i);
+        var skill_name = skill_item.getElementsByTagName('input')[0].value;
+        var skill_grade = skill_item.getElementsByTagName('select')[0].value;
+        var skill_id = i;
+
+        if(skill_name != '' || skill_name != null){
+            $.ajax({
+            method:'POST',
+            url:'/create-resume/savedata/user_skill/',
+            data:{
+                'skill_name': skill_name,
+                'skill_grade': skill_grade,
+                'skill_id': skill_id,
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            }
+        });
+        }
+
     }
 }
 

@@ -1,28 +1,38 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from . models import basic_info, user_socialmedia, user_langurage
+from django.shortcuts import render, redirect
+from . models import basic_info, user_socialmedia, user_langurage, user_skill
 # Create your views here.
 from django.views import View
 
 
 class create_resume(View):
     def get(self, request):
-        user = request.user
-        resume = basic_info.objects.filter(user_base_info_id=user.id)
-        count_resume = resume.count()
-        if resume.first() == None or resume.first() == '':
+        if request.user.is_authenticated:
+            user = request.user
+            resume = basic_info.objects.filter(user_base_info_id=user.id)
+            count_resume = resume.count()
+            user_langurages = user_langurage.objects.filter(user_id=user.id).order_by('lang_id')
+            user_skills = user_skill.objects.filter(user_id=user.id).order_by('skill_id')
+            if resume.first() == None or resume.first() == '':
 
-            context = {
-                'resume_id': 0
-            }
+                context = {
+                    'resume_id': 0,
+                    'user_langurages': user_langurages,
+                    'user_skills': user_skills,
+                }
+
+            else:
+
+                context = {
+                    'resume_id': count_resume + 1,
+                    'user_langurages': user_langurages,
+
+                }
+
+            return render(request, 'create_resume.html', context)
 
         else:
-
-            context = {
-                'resume_id': count_resume+1
-            }
-
-        return render(request, 'create_resume.html', context)
+            return redirect('login-page')
 
 
 def user_base_info_ajax(request):
@@ -108,22 +118,43 @@ def user_socialmedia_ajax(request):
 
     return HttpResponse('ok social')
 
-
 def user_langurages_ajax(request):
     if request.POST:
         lang_name = request.POST.get('lang_name')
         lang_grade = request.POST.get('lang_grade')
         lang_id = request.POST.get('lang_id')
         user = request.user
-        print(lang_id)
         if lang_name != '' or lang_name != None:
-            User_langurage = user_langurage.objects.filter(langurage=lang_name, user_base_info_id=user.id).first()
+            User_langurage = user_langurage.objects.filter(langurage=lang_name, user_id=user.id).first()
             if User_langurage == None:
-                new_langurage = user_langurage(langurage=lang_name, grade=lang_grade, user_base_info_id=user.id, lang_id=lang_id)
+                new_langurage = user_langurage(langurage=lang_name, grade=lang_grade, user_id=user.id, lang_id=lang_id)
                 new_langurage.save()
             else:
                 User_langurage.langurage = lang_name
                 User_langurage.grade = lang_grade
+                User_langurage.lang_id = lang_id
                 User_langurage.save()
 
     return HttpResponse('langurage saved')
+
+def user_skills_ajax(request):
+    if request.POST:
+        skill_name = request.POST.get('skill_name')
+        skill_grade = request.POST.get('skill_grade')
+        skill_id = request.POST.get('skill_id')
+        user = request.user
+
+        if skill_name !='' or skill_name != None:
+            skill = user_skill.objects.filter(skill=skill_name, user_id=user.id).first()
+
+            if skill == None:
+                new_user_skill = user_skill(skill=skill_name, grade=skill_grade, user_id=user.id, skill_id=skill_id)
+                new_user_skill.save()
+
+            else:
+                skill.skill = skill_name
+                skill.grade = skill_grade
+                skill.skill_id = skill_id
+                skill.save()
+
+        return HttpResponse('skill saved')
