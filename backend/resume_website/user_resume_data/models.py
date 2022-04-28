@@ -94,6 +94,8 @@ class user_socialmedia(models.Model):
     username = models.CharField(max_length=200)
     is_active = models.BooleanField(default=True)
     social_id = models.CharField(max_length=200, null=True, default='')
+    user = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
+
 
     def __str__(self):
         return self.social_media
@@ -118,3 +120,16 @@ class user_skill(models.Model):
 
     def __str__(self):
         return self.skill
+
+
+class user_certificate_model(models.Model):
+    certificate_title = models.CharField(max_length=200)
+    organization_title = models.CharField(max_length=200)
+    start_date = models.CharField(max_length=200)
+    end_date = models.CharField(max_length=200)
+    is_active = models.BooleanField(default=True)
+    certificate_id = models.CharField(max_length=200, null=True, default='')
+    user = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
+
+    def __str__(self):
+        return self.certificate_title

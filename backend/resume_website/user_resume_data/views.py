@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from . models import basic_info, user_socialmedia, user_langurage, user_skill
+from . models import basic_info, user_socialmedia, user_langurage, user_skill, user_certificate_model
 # Create your views here.
 from django.views import View
 
@@ -10,22 +10,32 @@ class create_resume(View):
         if request.user.is_authenticated:
             user = request.user
             resume = basic_info.objects.filter(user_base_info_id=user.id)
+            resume_data = basic_info.objects.filter(user_base_info_id=user.id, resume_id=0).first()
             count_resume = resume.count()
             user_langurages = user_langurage.objects.filter(user_id=user.id).order_by('lang_id')
             user_skills = user_skill.objects.filter(user_id=user.id).order_by('skill_id')
+            user_socials = user_socialmedia.objects.filter(user_id=user.id).order_by('social_id')
+            user_certificates = user_certificate_model.objects.filter(user_id=user.id).order_by('certificate_id')
             if resume.first() == None or resume.first() == '':
 
                 context = {
                     'resume_id': 0,
                     'user_langurages': user_langurages,
                     'user_skills': user_skills,
+                    'resume': resume_data,
+                    'user_socialmedias' : user_socials,
+                    'user_certificates' : user_certificates,
                 }
 
             else:
 
                 context = {
-                    'resume_id': count_resume + 1,
+                    'resume_id': 0,
                     'user_langurages': user_langurages,
+                    'user_skills': user_skills,
+                    'resume': resume_data,
+                    'user_socialmedias': user_socials,
+                    'user_certificates': user_certificates,
 
                 }
 
@@ -61,59 +71,65 @@ def user_base_info_ajax(request):
 
             if email != '' and first_name != '':
                 resume = basic_info.objects.filter(user_base_info_id=user.id, resume_id=resume_id).first()
+
+                if resume == None or resume == '':
+
+                    new_info = basic_info(first_name=first_name, last_name=last_name, job_title=job_title,
+                                          country=country,
+                                          state=state, city=city, military=military, married=relationship, sex=sex,
+                                          birth_day=day,
+                                          birth_month=month, birth_year=year, user_base_info=user, avatar=avatar,
+                                          resume_id=resume_id,
+                                          phone=phone, email=email, website=website, summary=summary,
+                                          )
+                    new_info.save()
+
+                else:
+
+                    resume.first_name = first_name
+                    resume.last_name = last_name
+                    resume.job_title = job_title
+                    resume.country = country
+                    resume.state = state
+                    resume.city = city
+                    resume.military = military
+                    resume.married = relationship
+                    resume.sex = sex
+                    resume.birth_day = day
+                    resume.birth_month = month
+                    resume.birth_year = year
+                    resume.avatar = avatar
+                    resume.summary = summary
+                    resume.website = website
+                    resume.phone = phone
+                    resume.email = email
+                    resume.save()
+
             else:
                 return HttpResponse('error')
-
-
-            if resume == None:
-
-                new_info = basic_info(first_name=first_name, last_name=last_name, job_title=job_title, country=country,
-                           state=state, city=city, military=military, married=relationship, sex=sex, birth_day=day,
-                           birth_month=month, birth_year=year, user_base_info=user, avatar=avatar, resume_id=resume_id,
-                           phone=phone, email=email, website=website, summary=summary,
-                           )
-                new_info.save()
-
-            else:
-
-                resume.first_name = first_name
-                resume.last_name = last_name
-                resume.job_title = job_title
-                resume.country = country
-                resume.state = state
-                resume.city = city
-                resume.military = military
-                resume.married = relationship
-                resume.sex = sex
-                resume.birth_day = day
-                resume.birth_month = month
-                resume.birth_year = year
-                resume.avatar = avatar
-                resume.summary = summary
-                resume.website = website
-                resume.phone = phone
-                resume.email = email
-                resume.save()
 
         return HttpResponse('datasaved')
 
 def user_socialmedia_ajax(request):
     if request.POST:
         if request.user.is_authenticated:
+            user = request.user
             social_media_name = request.POST.get('social_media_name')
             social_media_id = request.POST.get('social_media_id')
             social_media_number = request.POST.get('social_media_number')
+            print(social_media_number)
 
             if social_media_name != '' and social_media_id != '':
-                social_media = user_socialmedia.objects.filter(social_media=social_media_name, username__exact=social_media_id).first()
+                social_media = user_socialmedia.objects.filter(social_media=social_media_name, user_id=user.id).first()
 
                 if social_media == None or social_media == '':
-                    new_user_socialmedia = user_socialmedia(social_media=social_media_name, username=social_media_id, social_id=social_media_number)
+                    new_user_socialmedia = user_socialmedia(social_media=social_media_name, username=social_media_id, user_id=user.id, social_id=social_media_number)
                     new_user_socialmedia.save()
 
                 else:
                     social_media.social_media = social_media_name
                     social_media.username = social_media_id
+                    social_media.social_id = social_media_number
                     social_media.save()
 
     return HttpResponse('ok social')
@@ -144,9 +160,8 @@ def user_skills_ajax(request):
         skill_id = request.POST.get('skill_id')
         user = request.user
 
-        if skill_name !='' or skill_name != None:
+        if skill_name != '' or skill_name != None:
             skill = user_skill.objects.filter(skill=skill_name, user_id=user.id).first()
-
             if skill == None:
                 new_user_skill = user_skill(skill=skill_name, grade=skill_grade, user_id=user.id, skill_id=skill_id)
                 new_user_skill.save()
@@ -158,3 +173,32 @@ def user_skills_ajax(request):
                 skill.save()
 
         return HttpResponse('skill saved')
+
+
+def user_certificate(request):
+    if request.POST:
+        certificate_title = request.POST.get('certificate_title')
+        organization_title = request.POST.get('organization_title')
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        certificate_id = request.POST.get('certificate_id')
+        user = request.user
+
+        if certificate_title != '' or certificate_title != None:
+            certificate = user_certificate_model.objects.filter(certificate_title=certificate_title, user_id=user.id).first()
+            print(certificate)
+            if certificate == None:
+                new_certificate = user_certificate_model(certificate_title=certificate_title,
+                                                   organization_title=organization_title, start_date=start_date,
+                                                   end_date=end_date, certificate_id=certificate_id, user_id=user.id)
+                new_certificate.save()
+            else:
+                certificate.certificate_title = certificate_title
+                certificate.organization_title = organization_title
+                certificate.start_date = start_date
+                certificate.end_date = end_date
+                certificate.certificate_id = certificate_id
+                certificate.save()
+
+
+        return HttpResponse('ok certificate')

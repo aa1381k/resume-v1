@@ -157,7 +157,8 @@
                             <h2>اطلاعات شخصی</h2>
                         </div>
 
-                        <div class="tab-body col-md-12">
+                        {% if resume %}
+                            <div class="tab-body col-md-12">
 
                             <form method="post">
                                 {% csrf_token %}
@@ -166,11 +167,296 @@
 
                                     <div class="block col-md-2">
                                         <div class="profile-image">
-                                            <img id="profileimage" src="/static/images/user.png" alt="your image">
+                                            {% if resume.avatar %}
+                                                <img class="profileimage" src="{{ resume.avatar.url }}" alt="your image">
+                                            {% else %}
+                                                <img class="profileimage" src="/static/images/user.png" alt="your image">
+                                            {% endif %}
 
                                             <div class="btns">
                                                 <label class="btn btn-default btn-file">
-                                                    <i class="fa-solid fa-upload upload"></i> <input type="file" name="avatar" style="display: none;" onchange="readURL(this)" required="">
+                                                    <i class="fa-solid fa-upload upload"></i> <input type="file" style="display: none;" onchange="readURL(this)" required="">
+                                                </label>
+
+                                                <label class="btn btn-default btn-file" id="removeimage" style="display: inline;">
+                                                    <i class="fa-solid fa-trash trash"></i> <input type="button" style="display: none;" onclick="removeprofileimage()" required="">
+                                                </label>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row1 col-md-10">
+                                        <div class="firstname">
+                                            <span>نام</span>
+                                            <input type="text" name="firstname" value="{{ resume.first_name }}" class="col-md-2">
+                                        </div>
+                                        <div class="lastname">
+                                            <span>نام خانوادگی</span>
+                                            <input type="text" name="lastname" value="{{ resume.last_name }}" class="col-md-2">
+                                        </div>
+                                        <div class="jobtitle">
+                                            <span>عنوان شغلی</span>
+                                            <input type="text" name="jobtitle" value="{{ resume.job_title }}" class="col-md-2">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row1 col-md-10 mt-4">
+                                        <div class="firstname">
+                                            <span>کشور</span>
+                                            <input type="text" name="country" value="{{ resume.country }}" class="col-md-2">
+                                        </div>
+                                        <div class="lastname">
+                                            <span>استان</span>
+                                            <input type="text" name="state" value="{{ resume.state }}" class="col-md-2">
+                                        </div>
+                                        <div class="jobtitle">
+                                            <span>شهر</span>
+                                            <input type="text" name="city" value="{{ resume.city }}" class="col-md-2">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row3 col-md-10">
+
+                                        <div class="birghtday col-md-4">
+                                            <span>تاریخ تولد</span>
+                                            <div class="birtday-body col-md-12">
+                                                <input type="text" name="year" value="{{ resume.birth_year }}" placeholder="سال">
+                                                <select name="month" id="">
+                                                    <option value="0" {% if resume.birth_month == '0' %} selected{% endif %}>ماه</option>
+                                                    <option value="1" {% if resume.birth_month == '1' %} selected{% endif %}>فروردین</option>
+                                                    <option value="2" {% if resume.birth_month == '2' %} selected{% endif %}>اردیبهشت</option>
+                                                    <option value="3" {% if resume.birth_month == '3' %} selected{% endif %}>خرداد</option>
+                                                    <option value="4" {% if resume.birth_month == '4' %} selected{% endif %}>تیر</option>
+                                                    <option value="5" {% if resume.birth_month == '5' %} selected{% endif %}>مرداد</option>
+                                                    <option value="6" {% if resume.birth_month == '6' %} selected{% endif %}>شهریور</option>
+                                                    <option value="7" {% if resume.birth_month == '7' %} selected{% endif %}>مهر</option>
+                                                    <option value="8" {% if resume.birth_month == '8' %} selected{% endif %}>آبان</option>
+                                                    <option value="9" {% if resume.birth_month == '9' %} selected{% endif %}>آذز</option>
+                                                    <option value="10" {% if resume.birth_month == '10' %} selected{% endif %}>دی</option>
+                                                    <option value="11" {% if resume.birth_month == '11' %} selected{% endif %}>بهمن</option>
+                                                    <option value="12" {% if resume.birth_month == '12' %} selected{% endif %}>اسفند</option>
+                                                </select>
+                                                <select name="day" id="">
+                                                    <option value="0" {% if resume.birth_day == '0' %} selected{% endif %}>روز</option>
+                                                    <option value="1" {% if resume.birth_day == '1' %} selected{% endif %}>1</option>
+                                                    <option value="2" {% if resume.birth_day == '2' %} selected{% endif %}>2</option>
+                                                    <option value="3" {% if resume.birth_day == '3' %} selected{% endif %}>3</option>
+                                                    <option value="4" {% if resume.birth_day == '4' %} selected{% endif %}>4</option>
+                                                    <option value="5" {% if resume.birth_day == '5' %} selected{% endif %}>5</option>
+                                                    <option value="6" {% if resume.birth_day == '6' %} selected{% endif %}>6</option>
+                                                    <option value="7" {% if resume.birth_day == '7' %} selected{% endif %}>7</option>
+                                                    <option value="8" {% if resume.birth_day == '8' %} selected{% endif %}>8</option>
+                                                    <option value="9" {% if resume.birth_day == '9' %} selected{% endif %}>9</option>
+                                                    <option value="10" {% if resume.birth_day == '10' %} selected{% endif %}>10</option>
+                                                    <option value="11" {% if resume.birth_day == '11' %} selected{% endif %}>11</option>
+                                                    <option value="12" {% if resume.birth_day == '12' %} selected{% endif %}>12</option>
+                                                    <option value="13" {% if resume.birth_day == '13' %} selected{% endif %}>13</option>
+                                                    <option value="14" {% if resume.birth_day == '14' %} selected{% endif %}>14</option>
+                                                    <option value="15" {% if resume.birth_day == '15' %} selected{% endif %}>15</option>
+                                                    <option value="16" {% if resume.birth_day == '16' %} selected{% endif %}>16</option>
+                                                    <option value="17" {% if resume.birth_day == '17' %} selected{% endif %}>17</option>
+                                                    <option value="18" {% if resume.birth_day == '18' %} selected{% endif %}>18</option>
+                                                    <option value="19" {% if resume.birth_day == '19' %} selected{% endif %}>19</option>
+                                                    <option value="20" {% if resume.birth_day == '20' %} selected{% endif %}>20</option>
+                                                    <option value="21" {% if resume.birth_day == '21' %} selected{% endif %}>21</option>
+                                                    <option value="22" {% if resume.birth_day == '22' %} selected{% endif %}>22</option>
+                                                    <option value="23" {% if resume.birth_day == '23' %} selected{% endif %}>23</option>
+                                                    <option value="24" {% if resume.birth_day == '24' %} selected{% endif %}>24</option>
+                                                    <option value="25" {% if resume.birth_day == '25' %} selected{% endif %}>25</option>
+                                                    <option value="26" {% if resume.birth_day == '26' %} selected{% endif %}>26</option>
+                                                    <option value="27" {% if resume.birth_day == '27' %} selected{% endif %}>27</option>
+                                                    <option value="28" {% if resume.birth_day == '28' %} selected{% endif %}>28</option>
+                                                    <option value="29" {% if resume.birth_day == '29' %} selected{% endif %}>29</option>
+                                                    <option value="30" {% if resume.birth_day == '30' %} selected{% endif %}>30</option>
+                                                    <option value="31" {% if resume.birth_day == '31' %} selected{% endif %}>31</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="srm col-md-4">
+
+                                            <div class="sex inner-srm col-md-2">
+                                                <span>جنسیت</span>
+                                                <select name="sex" id="">
+                                                    <option value="0"></option>
+                                                    <option value="1" {% if resume.sex == '1' %} selected{% endif %}>مرد</option>
+                                                    <option value="2" {% if resume.sex == '2' %} selected{% endif %}>زن</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="relationship inner-srm col-md-2">
+                                                <span>تاهل</span>
+                                                <select name="relationship" id="">
+                                                    <option value="0" {% if resume.married == '0' %} selected{% endif %}></option>
+                                                    <option value="1" {% if resume.married == '1' %} selected{% endif %}>مجرد</option>
+                                                    <option value="2" {% if resume.married == '2' %} selected{% endif %}>متاهل</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="military-service inner-srm col-md-2">
+                                                <span>سربازی</span>
+                                                <select name="military" id="">
+                                                    <option value="0" {% if resume.military == '0' %} selected{% endif %}></option>
+                                                    <option value="1" {% if resume.military == '1' %} selected{% endif %}>مشمول</option>
+                                                    <option value="2" {% if resume.military == '2' %} selected{% endif %}>در حال خدمت</option>
+                                                    <option value="3" {% if resume.military == '3' %} selected{% endif %}>پایان خدمت</option>
+                                                    <option value="4" {% if resume.military == '4' %} selected{% endif %}>معاف</option>
+                                                    <option value="5" {% if resume.military == '5' %} selected{% endif %}>معافیت تحصیلی</option>
+                                                    <option value="6" {% if resume.military == '6' %} selected{% endif %}>معافیت پزشکی</option>
+                                                    <option value="7" {% if resume.military == '7' %} selected{% endif %}>معافیت غیر پزشکی</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row Contact col-md-12 mt-5">
+                                    <p class="sectionname">اطلاعات تماس</p>
+
+                                    <div class="row1 col-md-10">
+                                        <div class="phone">
+                                            <span>شماره تماس</span>
+                                            <input type="text" name="phone" value="{{ resume.phone }}" class="col-md-2">
+                                        </div>
+                                        <div class="email">
+                                            <span>ایمیل</span>
+                                            <input type="text" name="email" value="{{ resume.email }}" class="col-md-2">
+                                        </div>
+                                        <div class="website">
+                                            <span>وب سایت</span>
+                                            <input type="text" name="website" value="{{ resume.website }}" class="col-md-2">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row summary col-md-12 mt-5">
+                                    <p class="sectionname">توصیف خلاصه</p>
+
+                                    <div class="row col-md-10">
+                                        <div class="summary-description col-md-11 m-auto">
+                                            <span>خلاصه ای از مهارت ها و تجربیات</span>
+                                            <textarea name="summary" id="" cols="30" rows="10">{{ resume.summary }}</textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+
+                            <div class="row user-social-medias col-md-12 mt-5">
+                                <p class="sectionname">شبکه های اجتماعی</p>
+
+                                <div class="user-social-media">
+                                     {% csrf_token %}
+                                        {% if user_socialmedias %}
+
+                                            {% for user_socialmedia in user_socialmedias %}
+
+                                                <div id="social_{{ user_socialmedia.social_id }}" name="social_{{ user_socialmedia.social_id }}" class="user-social-media-item col-md-10">
+
+                                                    <div class="move-btns">
+                                                        <span><button class="btn" onclick="moveupelement(this, 'user-social-media','user-social-media-item','social')"><i class="fa-solid fa-angle-up"></i></button></span>
+                                                        <span><button class="btn" onclick="movedownelement(this, 'user-social-media','user-social-media-item','social')"><i class="fa-solid fa-angle-down"></i></button></span>
+                                                        <span><button class="btn" onclick="removeitem(this,'user-social-media')"><i class="fa-solid fa-xmark"></i></button></span>
+                                                    </div>
+
+                                                    <div class="item-inputs col-md-12">
+                                                        <span><i class="fa-brands fa-{{ user_socialmedia.social_media }}"></i></span>
+                                                        <div class="social-media-body col-md-12">
+                                                            <select name="" id="" onchange="changeicon(this,0)">
+                                                                <option value="">نام شبکه اجتماعی</option>
+                                                                <option value="linkedin" {% if user_socialmedia.social_media == 'linkedin' %} selected {% endif %}>لینکدین</option>
+                                                                <option value="twitter" {% if user_socialmedia.social_media == 'twitter' %} selected {% endif %}>توییتر</option>
+                                                                <option value="facebook" {% if user_socialmedia.social_media == 'facebook' %} selected {% endif %}>فیسبوک</option>
+                                                                <option value="instagram" {% if user_socialmedia.social_media == 'instagram' %} selected {% endif %}>اینستاگرام</option>
+                                                                <option value="telegram" {% if user_socialmedia.social_media == 'telegram' %} selected {% endif %}>تلگرام</option>
+                                                                <option value="github" {% if user_socialmedia.social_media == 'github' %} selected {% endif %}>گیت‌هاب</option>
+                                                                <option value="dribbble" {% if user_socialmedia.social_media == 'dribbble' %} selected {% endif %}>دریبل</option>
+                                                                <option value="whatsapp" {% if user_socialmedia.social_media == 'whatsapp' %} selected {% endif %}>واتساپ</option>
+                                                                <option value="skype" {% if user_socialmedia.social_media == 'skype' %} selected {% endif %}>اسکایپ</option>
+                                                                <option value="youtube" {% if user_socialmedia.social_media == 'youtube' %} selected {% endif %}>یوتیوب</option>
+                                                                <option value="stack-overflow" {% if user_socialmedia.social_media == 'stack-overflow' %} selected {% endif %}>StackOverflow</option>
+                                                            </select>
+                                                            <div class="social-media-id">
+                                                                <!-- <p>آدرس شبکه اجتماعی</p> -->
+                                                                <input type="text" name="" id="" value="{{ user_socialmedia.username }}" placeholder="ID">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            {% endfor %}
+
+                                        {% else %}
+                                             <div id="social_0" name="social_0" class="user-social-media-item col-md-10">
+
+                                                <div class="move-btns">
+                                                    <span><button class="btn" onclick="moveupelement(this, 'user-social-media','user-social-media-item','social')"><i class="fa-solid fa-angle-up"></i></button></span>
+                                                    <span><button class="btn" onclick="movedownelement(this, 'user-social-media','user-social-media-item','social')"><i class="fa-solid fa-angle-down"></i></button></span>
+                                                    <span><button class="btn" onclick="removeitem(this,'user-social-media')"><i class="fa-solid fa-xmark"></i></button></span>
+                                                </div>
+
+                                                <div class="item-inputs col-md-12">
+                                                    <span><i class="fa fa-globe"></i></span>
+                                                    <div class="social-media-body col-md-12">
+                                                        <select name="" id="" onchange="changeicon(this,0)">
+                                                            <option value="">نام شبکه اجتماعی</option>
+                                                            <option value="linkedin">لینکداین</option>
+                                                            <option value="twitter">توییتر</option>
+                                                            <option value="facebook">فیسبوک</option>
+                                                            <option value="instagram">اینستاگرام</option>
+                                                            <option value="telegram">تلگرام</option>
+                                                            <option value="github">گیت‌هاب</option>
+                                                            <option value="dribbble">دریبل</option>
+                                                            <option value="whatsapp">واتساپ</option>
+                                                            <option value="skype">اسکایپ</option>
+                                                            <option value="youtube">یوتیوب</option>
+                                                            <option value="stack-overflow">StackOverflow</option>
+                                                        </select>
+                                                        <div class="social-media-id">
+                                                            <!-- <p>آدرس شبکه اجتماعی</p> -->
+                                                            <input type="text" name="" id="" placeholder="ID">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        {% endif %}
+
+                                </div>
+
+                                <button class="btn btn-outline-primary col-md-3 m-auto mt-3" onclick="addsocial()">اضافه
+                                    کردن شبکه اجتماعی <i class="fa fa-plus"></i></button>
+
+                            </div>
+
+                        </div>
+                            {% else %}
+                            <div class="tab-body col-md-12">
+
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="row base-info col-md-12">
+                                    <p class="sectionname">اطلاعات پایه</p>
+
+                                    <div class="block col-md-2">
+                                        <div class="profile-image">
+
+
+                                            <img class="profileimage" src="/static/images/user.png" alt="your image">
+
+                                            <div class="btns">
+                                                <label class="btn btn-default btn-file">
+                                                    <i class="fa-solid fa-upload upload"></i> <input type="file" style="display: none;" onchange="readURL(this)" required="">
                                                 </label>
 
                                                 <label class="btn btn-default btn-file" id="removeimage" style="display: inline;">
@@ -220,53 +506,53 @@
                                             <div class="birtday-body col-md-12">
                                                 <input type="text" name="year" placeholder="سال">
                                                 <select name="month" id="">
-                                                    <option value="0">ماه</option>
+                                                    <option value="0" >ماه</option>
                                                     <option value="1">فروردین</option>
-                                                    <option value="2">اردیبهشت</option>
-                                                    <option value="3">خرداد</option>
-                                                    <option value="4">تیر</option>
-                                                    <option value="5">مرداد</option>
-                                                    <option value="6">شهریور</option>
-                                                    <option value="7">مهر</option>
-                                                    <option value="8">آبان</option>
-                                                    <option value="9">آذز</option>
-                                                    <option value="10">دی</option>
-                                                    <option value="11">بهمن</option>
-                                                    <option value="12">اسفند</option>
+                                                    <option value="2" >اردیبهشت</option>
+                                                    <option value="3" >خرداد</option>
+                                                    <option value="4" >تیر</option>
+                                                    <option value="5" >مرداد</option>
+                                                    <option value="6" >شهریور</option>
+                                                    <option value="7" >مهر</option>
+                                                    <option value="8" >آبان</option>
+                                                    <option value="9" >آذز</option>
+                                                    <option value="10" >دی</option>
+                                                    <option value="11" >بهمن</option>
+                                                    <option value="12" >اسفند</option>
                                                 </select>
                                                 <select name="day" id="">
                                                     <option value="0">روز</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                    <option value="11">11</option>
-                                                    <option value="12">12</option>
-                                                    <option value="13">13</option>
-                                                    <option value="14">14</option>
-                                                    <option value="15">15</option>
-                                                    <option value="16">16</option>
-                                                    <option value="17">17</option>
-                                                    <option value="18">18</option>
-                                                    <option value="19">19</option>
-                                                    <option value="20">20</option>
-                                                    <option value="21">21</option>
-                                                    <option value="22">22</option>
-                                                    <option value="23">23</option>
-                                                    <option value="24">24</option>
-                                                    <option value="25">25</option>
-                                                    <option value="26">26</option>
-                                                    <option value="27">27</option>
-                                                    <option value="28">28</option>
-                                                    <option value="29">29</option>
-                                                    <option value="30">30</option>
-                                                    <option value="31">31</option>
+                                                    <option value="1" >1</option>
+                                                    <option value="2" >2</option>
+                                                    <option value="3" >3</option>
+                                                    <option value="4" >4</option>
+                                                    <option value="5" >5</option>
+                                                    <option value="6" >6</option>
+                                                    <option value="7" >7</option>
+                                                    <option value="8" >8</option>
+                                                    <option value="9" >9</option>
+                                                    <option value="10" >10</option>
+                                                    <option value="11" >11</option>
+                                                    <option value="12" >12</option>
+                                                    <option value="13" >13</option>
+                                                    <option value="14" >14</option>
+                                                    <option value="15" >15</option>
+                                                    <option value="16" >16</option>
+                                                    <option value="17" >17</option>
+                                                    <option value="18" >18</option>
+                                                    <option value="19" >19</option>
+                                                    <option value="20" >20</option>
+                                                    <option value="21" >21</option>
+                                                    <option value="22" >22</option>
+                                                    <option value="23" >23</option>
+                                                    <option value="24" >24</option>
+                                                    <option value="25" >25</option>
+                                                    <option value="26" >26</option>
+                                                    <option value="27" >27</option>
+                                                    <option value="28" >28</option>
+                                                    <option value="29" >29</option>
+                                                    <option value="30" >30</option>
+                                                    <option value="31" >31</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -277,31 +563,31 @@
                                                 <span>جنسیت</span>
                                                 <select name="sex" id="">
                                                     <option value="0"></option>
-                                                    <option value="1">مرد</option>
-                                                    <option value="2">زن</option>
+                                                    <option value="1" {% if resume.sex == '1' %} selected{% endif %}>مرد</option>
+                                                    <option value="2" {% if resume.sex == '2' %} selected{% endif %}>زن</option>
                                                 </select>
                                             </div>
 
                                             <div class="relationship inner-srm col-md-2">
                                                 <span>تاهل</span>
                                                 <select name="relationship" id="">
-                                                    <option value="0"></option>
-                                                    <option value="1">مجرد</option>
-                                                    <option value="2">متاهل</option>
+                                                    <option value="0" {% if resume.married == '0' %} selected{% endif %}></option>
+                                                    <option value="1" {% if resume.married == '1' %} selected{% endif %}>مجرد</option>
+                                                    <option value="2" {% if resume.married == '2' %} selected{% endif %}>متاهل</option>
                                                 </select>
                                             </div>
 
                                             <div class="military-service inner-srm col-md-2">
                                                 <span>سربازی</span>
                                                 <select name="military" id="">
-                                                    <option value="0"></option>
-                                                    <option value="1">مشمول</option>
-                                                    <option value="2">در حال خدمت</option>
-                                                    <option value="3">پایان خدمت</option>
-                                                    <option value="4">معاف</option>
-                                                    <option value="5">معافیت تحصیلی</option>
-                                                    <option value="6">معافیت پزشکی</option>
-                                                    <option value="7">معافیت غیر پزشکی</option>
+                                                    <option value="0" {% if resume.military == '0' %} selected{% endif %}></option>
+                                                    <option value="1" {% if resume.military == '1' %} selected{% endif %}>مشمول</option>
+                                                    <option value="2" {% if resume.military == '2' %} selected{% endif %}>در حال خدمت</option>
+                                                    <option value="3" {% if resume.military == '3' %} selected{% endif %}>پایان خدمت</option>
+                                                    <option value="4" {% if resume.military == '4' %} selected{% endif %}>معاف</option>
+                                                    <option value="5" {% if resume.military == '5' %} selected{% endif %}>معافیت تحصیلی</option>
+                                                    <option value="6" {% if resume.military == '6' %} selected{% endif %}>معافیت پزشکی</option>
+                                                    <option value="7" {% if resume.military == '7' %} selected{% endif %}>معافیت غیر پزشکی</option>
                                                 </select>
                                             </div>
 
@@ -318,15 +604,15 @@
                                     <div class="row1 col-md-10">
                                         <div class="phone">
                                             <span>شماره تماس</span>
-                                            <input type="text" name="phone" class="col-md-2">
+                                            <input type="text" name="phone" value="{{ resume.phone }}" class="col-md-2">
                                         </div>
                                         <div class="email">
                                             <span>ایمیل</span>
-                                            <input type="text" name="email" class="col-md-2">
+                                            <input type="text" name="email" value="{{ resume.email }}" class="col-md-2">
                                         </div>
                                         <div class="website">
                                             <span>وب سایت</span>
-                                            <input type="text" name="website" class="col-md-2">
+                                            <input type="text" name="website" value="{{ resume.website }}" class="col-md-2">
                                         </div>
 
                                     </div>
@@ -339,7 +625,7 @@
                                     <div class="row col-md-10">
                                         <div class="summary-description col-md-11 m-auto">
                                             <span>خلاصه ای از مهارت ها و تجربیات</span>
-                                            <textarea name="summary" id="" cols="30" rows="10"></textarea>
+                                            <textarea name="summary" id="" cols="30" rows="10">{{ resume.summary }}</textarea>
                                         </div>
                                     </div>
 
@@ -350,44 +636,82 @@
                                 <p class="sectionname">شبکه های اجتماعی</p>
 
                                 <div class="user-social-media">
+                                     {% csrf_token %}
+                                        {% if user_socialmedias %}
 
-                                    <form action="{% url 'social-media' %}" method="post">
-                                        {% csrf_token %}
-                                        <div id="social_0" name="social_0" class="user-social-media-item col-md-10">
+                                            {% for user_socialmedia in user_socialmedias %}
 
-                                        <div class="move-btns">
-                                            <span><button class="btn" onclick="moveupelement(this, 'user-social-media','user-social-media-item','social')"><i class="fa-solid fa-angle-up"></i></button></span>
-                                            <span><button class="btn" onclick="movedownelement(this, 'user-social-media','user-social-media-item','social')"><i class="fa-solid fa-angle-down"></i></button></span>
-                                            <span><button class="btn" onclick="removeitem(this,'user-social-media')"><i class="fa-solid fa-xmark"></i></button></span>
-                                        </div>
+                                                <div id="social_{{ user_socialmedia.social_id }}" name="social_{{ user_socialmedia.social_id }}" class="user-social-media-item col-md-10">
 
-                                        <div class="item-inputs col-md-12">
-                                            <span><i class="fa fa-globe"></i></span>
-                                            <div class="social-media-body col-md-12">
-                                                <select name="" id="" onchange="changeicon(this,0)">
-                                                    <option value="">نام شبکه اجتماعی</option>
-                                                    <option value="linkedin">لینکداین</option>
-                                                    <option value="twitter">توییتر</option>
-                                                    <option value="facebook">فیسبوک</option>
-                                                    <option value="instagram">اینستاگرام</option>
-                                                    <option value="telegram">تلگرام</option>
-                                                    <option value="github">گیت‌هاب</option>
-                                                    <option value="dribbble">دریبل</option>
-                                                    <option value="whatsapp">واتساپ</option>
-                                                    <option value="skype">اسکایپ</option>
-                                                    <option value="youtube">یوتیوب</option>
-                                                    <option value="stack-overflow">StackOverflow</option>
-                                                </select>
-                                                <div class="social-media-id">
-                                                    <!-- <p>آدرس شبکه اجتماعی</p> -->
-                                                    <input type="text" name="" id="" placeholder="ID">
+                                                    <div class="move-btns">
+                                                        <span><button class="btn" onclick="moveupelement(this, 'user-social-media','user-social-media-item','social')"><i class="fa-solid fa-angle-up"></i></button></span>
+                                                        <span><button class="btn" onclick="movedownelement(this, 'user-social-media','user-social-media-item','social')"><i class="fa-solid fa-angle-down"></i></button></span>
+                                                        <span><button class="btn" onclick="removeitem(this,'user-social-media')"><i class="fa-solid fa-xmark"></i></button></span>
+                                                    </div>
+
+                                                    <div class="item-inputs col-md-12">
+                                                        <span><i class="fa-brands fa-{{ user_socialmedia.social_media }}"></i></span>
+                                                        <div class="social-media-body col-md-12">
+                                                            <select name="" id="" onchange="changeicon(this,0)">
+                                                                <option value="">نام شبکه اجتماعی</option>
+                                                                <option value="linkedin" {% if user_socialmedia.social_media == 'linkedin' %} selected {% endif %}>لینکدین</option>
+                                                                <option value="twitter" {% if user_socialmedia.social_media == 'twitter' %} selected {% endif %}>توییتر</option>
+                                                                <option value="facebook" {% if user_socialmedia.social_media == 'facebook' %} selected {% endif %}>فیسبوک</option>
+                                                                <option value="instagram" {% if user_socialmedia.social_media == 'instagram' %} selected {% endif %}>اینستاگرام</option>
+                                                                <option value="telegram" {% if user_socialmedia.social_media == 'telegram' %} selected {% endif %}>تلگرام</option>
+                                                                <option value="github" {% if user_socialmedia.social_media == 'github' %} selected {% endif %}>گیت‌هاب</option>
+                                                                <option value="dribbble" {% if user_socialmedia.social_media == 'dribbble' %} selected {% endif %}>دریبل</option>
+                                                                <option value="whatsapp" {% if user_socialmedia.social_media == 'whatsapp' %} selected {% endif %}>واتساپ</option>
+                                                                <option value="skype" {% if user_socialmedia.social_media == 'skype' %} selected {% endif %}>اسکایپ</option>
+                                                                <option value="youtube" {% if user_socialmedia.social_media == 'youtube' %} selected {% endif %}>یوتیوب</option>
+                                                                <option value="stack-overflow" {% if user_socialmedia.social_media == 'stack-overflow' %} selected {% endif %}>StackOverflow</option>
+                                                            </select>
+                                                            <div class="social-media-id">
+                                                                <!-- <p>آدرس شبکه اجتماعی</p> -->
+                                                                <input type="text" name="" id="" value="{{ user_socialmedia.username }}" placeholder="ID">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
+
+                                            {% endfor %}
+
+                                        {% else %}
+                                             <div id="social_0" name="social_0" class="user-social-media-item col-md-10">
+
+                                                <div class="move-btns">
+                                                    <span><button class="btn" onclick="moveupelement(this, 'user-social-media','user-social-media-item','social')"><i class="fa-solid fa-angle-up"></i></button></span>
+                                                    <span><button class="btn" onclick="movedownelement(this, 'user-social-media','user-social-media-item','social')"><i class="fa-solid fa-angle-down"></i></button></span>
+                                                    <span><button class="btn" onclick="removeitem(this,'user-social-media')"><i class="fa-solid fa-xmark"></i></button></span>
+                                                </div>
+
+                                                <div class="item-inputs col-md-12">
+                                                    <span><i class="fa fa-globe"></i></span>
+                                                    <div class="social-media-body col-md-12">
+                                                        <select name="" id="" onchange="changeicon(this,0)">
+                                                            <option value="">نام شبکه اجتماعی</option>
+                                                            <option value="linkedin">لینکداین</option>
+                                                            <option value="twitter">توییتر</option>
+                                                            <option value="facebook">فیسبوک</option>
+                                                            <option value="instagram">اینستاگرام</option>
+                                                            <option value="telegram">تلگرام</option>
+                                                            <option value="github">گیت‌هاب</option>
+                                                            <option value="dribbble">دریبل</option>
+                                                            <option value="whatsapp">واتساپ</option>
+                                                            <option value="skype">اسکایپ</option>
+                                                            <option value="youtube">یوتیوب</option>
+                                                            <option value="stack-overflow">StackOverflow</option>
+                                                        </select>
+                                                        <div class="social-media-id">
+                                                            <!-- <p>آدرس شبکه اجتماعی</p> -->
+                                                            <input type="text" name="" id="" placeholder="ID">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </div>
-                                        </div>
-
-                                    </div>
-                                    </form>
-
+                                        {% endif %}
 
                                 </div>
 
@@ -397,6 +721,8 @@
                             </div>
 
                         </div>
+
+                        {% endif %}
 
                     </div>
 
@@ -525,36 +851,36 @@
                                             </div>
                                         {% endfor %}
 
-                                        {% else %}
-                                            <div id="skill_0" name="skill_0" class="skill-item col-md-12 border rounded-3 p-3">
-                                                <div class="move-btns">
-                                                    <span><button class="btn" onclick="moveupelement(this, 'skill-items', 'skill-item', 'skill')"><i class="fa-solid fa-angle-up"></i></button></span>
-                                                    <span><button class="btn" onclick="movedownelement(this,'skill-items', 'skill-item', 'skill')"><i class="fa-solid fa-angle-down"></i></button></span>
-                                                    <span><button class="btn" onclick="removeitem(this)"><i class="fa-solid fa-xmark"></i></button></span>
+                                    {% else %}
+                                        <div id="skill_0" name="skill_0" class="skill-item col-md-12 border rounded-3 p-3">
+                                            <div class="move-btns">
+                                                <span><button class="btn" onclick="moveupelement(this, 'skill-items', 'skill-item', 'skill')"><i class="fa-solid fa-angle-up"></i></button></span>
+                                                <span><button class="btn" onclick="movedownelement(this,'skill-items', 'skill-item', 'skill')"><i class="fa-solid fa-angle-down"></i></button></span>
+                                                <span><button class="btn" onclick="removeitem(this)"><i class="fa-solid fa-xmark"></i></button></span>
+                                            </div>
+
+                                            <div class="item-inputs">
+
+                                                <div class="skill-name text-center col-md-7">
+                                                    <span>نام مهارت</span>
+                                                    <input type="text">
                                                 </div>
 
-                                                <div class="item-inputs">
-
-                                                    <div class="skill-name text-center col-md-7">
-                                                        <span>نام مهارت</span>
-                                                        <input type="text">
-                                                    </div>
-
-                                                    <div class="skill-rate text-center col-md-5">
-                                                        <span>سطح مهارت</span>
-                                                        <select name="" id="">
-                                                            <option value=""></option>
-                                                            <option value="1">⭐(در حال یادگیری)</option>
-                                                            <option value="2">⭐⭐(کم تجربه)</option>
-                                                            <option value="3">⭐⭐⭐(تسلط نسبی)</option>
-                                                            <option value="4">⭐⭐⭐⭐(تسلط کامل)</option>
-                                                            <option value="5">⭐⭐⭐⭐⭐(حرفه ای)</option>
-                                                        </select>
-                                                    </div>
-
+                                                <div class="skill-rate text-center col-md-5">
+                                                    <span>سطح مهارت</span>
+                                                    <select name="" id="">
+                                                        <option value=""></option>
+                                                        <option value="1">⭐(در حال یادگیری)</option>
+                                                        <option value="2">⭐⭐(کم تجربه)</option>
+                                                        <option value="3">⭐⭐⭐(تسلط نسبی)</option>
+                                                        <option value="4">⭐⭐⭐⭐(تسلط کامل)</option>
+                                                        <option value="5">⭐⭐⭐⭐⭐(حرفه ای)</option>
+                                                    </select>
                                                 </div>
 
                                             </div>
+
+                                        </div>
 
 
                                     {% endif %}
@@ -571,47 +897,99 @@
                                 <p class="sectionname">دوره ها و گواهینامه ها</p>
 
                                 <div class="certification-items col-md-12">
+                                    {% csrf_token %}
 
-                                    <div class="certification-item col-md-11 m-auto border rounded-2 mb-3">
+                                    {% if user_certificates %}
 
-                                        <div class="move-btns">
-                                            <span><button class="btn" onclick="moveupelement(this, 'certification-items','certification-item','certification')"><i class="fa-solid fa-angle-up"></i></button></span>
-                                            <span><button class="btn" onclick="movedownelement(this, 'certification-items','certification-item','certification')"><i class="fa-solid fa-angle-down"></i></button></span>
-                                            <span><button class="btn" onclick="removeitem(this,'certification')"><i class="fa-solid fa-xmark"></i></button></span>
-                                        </div>
+                                        {% for user_certificate in user_certificates %}
 
-                                        <div class="item-inputs col-md-12 d-flex flex-column align-items-center justify-content-around mt-5 mb-5 ">
+                                            <div class="certification-item col-md-11 m-auto border rounded-2 mb-3" id="certificate_{{ user_certificate.certificate_id }}" name="certificate_{{ user_certificate.certificate_id }}">
 
-                                            <div class="col-md-10">
-                                                <span>عنوان گواهی نامه</span>
-                                                <input type="text">
-                                            </div>
+                                                <div class="move-btns">
+                                                    <span><button class="btn" onclick="moveupelement(this, 'certification-items','certification-item','certification')"><i class="fa-solid fa-angle-up"></i></button></span>
+                                                    <span><button class="btn" onclick="movedownelement(this, 'certification-items','certification-item','certification')"><i class="fa-solid fa-angle-down"></i></button></span>
+                                                    <span><button class="btn" onclick="removeitem(this,'certification')"><i class="fa-solid fa-xmark"></i></button></span>
+                                                </div>
 
-                                            <div class="col-md-10 item-data-inputs">
+                                                <div class="item-inputs col-md-12 d-flex flex-column align-items-center justify-content-around mt-5 mb-5 ">
 
-                                                <div class="col-md-6 d-flex flex-column justify-content-between">
-                                                    <span>تاریخ شروع و پایان</span>
-                                                    <div class="col-md-12 certification-date">
-                                                        <div class="col-md-5 skill-date-start">
-                                                            <input type="text" placeholder="شروع">
+                                                    <div class="col-md-10">
+                                                        <span>عنوان گواهی نامه</span>
+                                                        <input type="text" value="{{ user_certificate.certificate_title }}">
+                                                    </div>
+
+                                                    <div class="col-md-10 item-data-inputs">
+
+                                                        <div class="col-md-6 d-flex flex-column justify-content-between">
+                                                            <span>تاریخ شروع و پایان</span>
+                                                            <div class="col-md-12 certification-date">
+                                                                <div class="col-md-5 skill-date-start">
+                                                                    <input type="text" placeholder="شروع" value="{{ user_certificate.start_date }}">
+                                                                </div>
+                                                                <div class="col-md-5 skill-date-end">
+                                                                    <input type="text" placeholder="پایان" value="{{ user_certificate.end_date }}">
+                                                                </div>
+                                                            </div>
+
                                                         </div>
-                                                        <div class="col-md-5 skill-date-end">
-                                                            <input type="text" placeholder="پایان">
+
+                                                        <div class="col-md-5">
+                                                            <span>عنوان موسسه</span>
+                                                            <input type="text" value="{{ user_certificate.organization_title }}">
                                                         </div>
+
                                                     </div>
 
                                                 </div>
 
-                                                <div class="col-md-5">
-                                                    <span>عنوان موسسه</span>
-                                                    <input type="text">
-                                                </div>
-
                                             </div>
 
-                                        </div>
+                                        {% endfor %}
 
-                                    </div>
+
+{#                                    {% else %}#}
+{#                                        <div class="certification-item col-md-11 m-auto border rounded-2 mb-3" id="certificate_0" name="certificate_0">#}
+{##}
+{#                                        <div class="move-btns">#}
+{#                                            <span><button class="btn" onclick="moveupelement(this, 'certification-items','certification-item','certification')"><i class="fa-solid fa-angle-up"></i></button></span>#}
+{#                                            <span><button class="btn" onclick="movedownelement(this, 'certification-items','certification-item','certification')"><i class="fa-solid fa-angle-down"></i></button></span>#}
+{#                                            <span><button class="btn" onclick="removeitem(this,'certification')"><i class="fa-solid fa-xmark"></i></button></span>#}
+{#                                        </div>#}
+{##}
+{#                                        <div class="item-inputs col-md-12 d-flex flex-column align-items-center justify-content-around mt-5 mb-5 ">#}
+{##}
+{#                                            <div class="col-md-10">#}
+{#                                                <span>عنوان گواهی نامه</span>#}
+{#                                                <input type="text">#}
+{#                                            </div>#}
+{##}
+{#                                            <div class="col-md-10 item-data-inputs">#}
+{##}
+{#                                                <div class="col-md-6 d-flex flex-column justify-content-between">#}
+{#                                                    <span>تاریخ شروع و پایان</span>#}
+{#                                                    <div class="col-md-12 certification-date">#}
+{#                                                        <div class="col-md-5 skill-date-start">#}
+{#                                                            <input type="text" placeholder="شروع">#}
+{#                                                        </div>#}
+{#                                                        <div class="col-md-5 skill-date-end">#}
+{#                                                            <input type="text" placeholder="پایان">#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{##}
+{#                                                </div>#}
+{##}
+{#                                                <div class="col-md-5">#}
+{#                                                    <span>عنوان موسسه</span>#}
+{#                                                    <input type="text">#}
+{#                                                </div>#}
+{##}
+{#                                            </div>#}
+{##}
+{#                                        </div>#}
+{##}
+{#                                    </div>#}
+                                    {% endif %}
+
                                 </div>
 
                                 <button class="btn btn-outline-primary col-md-3 m-auto mt-3" onclick="addcertification()">گواهی نامه جدید <i class="fa fa-plus"></i></button>

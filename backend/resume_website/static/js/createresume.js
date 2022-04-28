@@ -10,7 +10,7 @@ function changeicon(test, index) {
 function addsocial() {
     var index = document.getElementsByClassName('user-social-media-item')
     index = index.length;
-    var social = `<div class="move-btns"> <span><button class="btn" onclick="moveupelement(this, 'user-social-media','user-social-media-item','social')"><i class="fa-solid fa-angle-up"></i></button></span> <span><button class="btn" onclick="movedownelement(this, 'user-social-media','user-social-media-item','social')"><i class="fa-solid fa-angle-down"></i></button></span> <span><button class="btn" onclick="removeitem(this,'user-social-media')"><i class="fa-solid fa-xmark"></i></button></span> </div> <div class="item-inputs col-md-12"> <span><i class="fa-brands fa-telegram"></i></span> <div class="social-media-body col-md-12"> <select name="" id="" onchange="changeicon(this,${index})"> <option value="">نام شبکه اجتماعی</option> <option value="linkedin">لینکداین</option> <option value="twitter">توییتر</option> <option value="facebook">فیسبوک</option> <option value="instagram">اینستاگرام</option> <option value="telegram">تلگرام</option> <option value="github">گیت‌هاب</option> <option value="dribbble">دریبل</option> <option value="whatsapp">واتساپ</option> <option value="skype">اسکایپ</option> <option value="youtube">یوتیوب</option> <option value="stack-overflow">StackOverflow</option> </select> <div class="social-media-id">  <input type="text" name="" id="" placeholder="ID"> </div> </div> </div>`;
+    var social = `<div class="move-btns"> <span><button class="btn" onclick="moveupelement(this, 'user-social-media','user-social-media-item','social')"><i class="fa-solid fa-angle-up"></i></button></span> <span><button class="btn" onclick="movedownelement(this, 'user-social-media','user-social-media-item','social')"><i class="fa-solid fa-angle-down"></i></button></span> <span><button class="btn" onclick="removeitem(this,'user-social-media')"><i class="fa-solid fa-xmark"></i></button></span> </div> <div class="item-inputs col-md-12"> <span><i class="fa fa-globe"></i></span> <div class="social-media-body col-md-12"> <select name="" id="" onchange="changeicon(this,${index})"> <option value="">نام شبکه اجتماعی</option> <option value="linkedin">لینکداین</option> <option value="twitter">توییتر</option> <option value="facebook">فیسبوک</option> <option value="instagram">اینستاگرام</option> <option value="telegram">تلگرام</option> <option value="github">گیت‌هاب</option> <option value="dribbble">دریبل</option> <option value="whatsapp">واتساپ</option> <option value="skype">اسکایپ</option> <option value="youtube">یوتیوب</option> <option value="stack-overflow">StackOverflow</option> </select> <div class="social-media-id">  <input type="text" name="" id="" placeholder="ID"> </div> </div> </div>`;
     var elem = document.createElement('div');
     elem.id = `social_${index}`;
     elem.setAttribute('name', `social_${index}`);
@@ -175,7 +175,6 @@ function movedownelement(id, parr, list, sec) {
 
 }
 
-
 function moveupelement(id, parr, list, sec) {
     console.log(parr);
     console.log(list);
@@ -273,7 +272,7 @@ function personal_info_page_ajax(){
     var day = document.getElementsByName('day')[0].value;
     var month = document.getElementsByName('month')[0].value;
     var year = document.getElementsByName('year')[0].value;
-    var avatar = document.getElementsByName('avatar')[0].value;
+    var avatar = document.getElementsByClassName('profileimage')[0].value;
     var phone = document.getElementsByName('phone')[0].value;
     var email = document.getElementsByName('email')[0].value;
     var website = document.getElementsByName('website')[0].value;
@@ -339,6 +338,7 @@ function personal_info_page_ajax(){
 function skills_page_ajax(){
     var lang_items = document.getElementsByClassName('lang-item').length;
     var skills_items = document.getElementsByClassName('skill-item').length;
+    var certificate_items = document.getElementsByClassName('certification-item').length;
 
     for(var i=0; i<lang_items; i++){
 
@@ -347,10 +347,9 @@ function skills_page_ajax(){
         var lang_name = lang_item.getElementsByTagName('input')[0].value;
         var lang_grade = lang_item.getElementsByTagName('select')[0].value;
         var lang_id = i;
-        console.log(lang_name);
 
 
-        if(lang_name != '' || lang_name != null){
+        if(lang_name != ""){
             $.ajax({
             method:'POST',
             url:'/create-resume/savedata/user_lang/',
@@ -371,7 +370,7 @@ function skills_page_ajax(){
         var skill_grade = skill_item.getElementsByTagName('select')[0].value;
         var skill_id = i;
 
-        if(skill_name != '' || skill_name != null){
+        if(skill_name != ""){
             $.ajax({
             method:'POST',
             url:'/create-resume/savedata/user_skill/',
@@ -385,6 +384,35 @@ function skills_page_ajax(){
         }
 
     }
+
+    for(var i=0; i<certificate_items; i++){
+
+        var certificate_item = document.getElementById('certificate_'+i);
+        var certificate_title = certificate_item.getElementsByTagName('input')[0].value;
+        var organization_title = certificate_item.getElementsByTagName('input')[3].value;
+        var start_date = certificate_item.getElementsByTagName('input')[1].value;
+        var end_date = certificate_item.getElementsByTagName('input')[2].value;
+        var certificate_id = i;
+
+        console.log(certificate_title, organization_title, start_date, end_date);
+
+        if(certificate_title != ""){
+            $.ajax({
+            method:'POST',
+            url:'/create-resume/savedata/user_certificate/',
+            data:{
+                'certificate_title': certificate_title,
+                'organization_title': organization_title,
+                'start_date': start_date,
+                'end_date': end_date,
+                'certificate_id': certificate_id,
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            }
+        });
+        }
+
+    }
+
 }
 
 function education_page_ajax(){
