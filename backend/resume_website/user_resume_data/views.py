@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from . models import basic_info, user_socialmedia, user_langurage, user_skill, user_certificate_model
+from . models import basic_info, user_socialmedia, user_langurage, user_skill, user_certificate_model, user_education_model
 # Create your views here.
 from django.views import View
 
@@ -16,6 +16,7 @@ class create_resume(View):
             user_skills = user_skill.objects.filter(user_id=user.id).order_by('skill_id')
             user_socials = user_socialmedia.objects.filter(user_id=user.id).order_by('social_id')
             user_certificates = user_certificate_model.objects.filter(user_id=user.id).order_by('certificate_id')
+            user_educations = user_education_model.objects.filter(user_id=user.id).order_by('education_id')
             if resume.first() == None or resume.first() == '':
 
                 context = {
@@ -25,6 +26,7 @@ class create_resume(View):
                     'resume': resume_data,
                     'user_socialmedias' : user_socials,
                     'user_certificates' : user_certificates,
+                    'user_educations' : user_educations,
                 }
 
             else:
@@ -36,6 +38,7 @@ class create_resume(View):
                     'resume': resume_data,
                     'user_socialmedias': user_socials,
                     'user_certificates': user_certificates,
+                    'user_educations': user_educations,
 
                 }
 
@@ -174,7 +177,6 @@ def user_skills_ajax(request):
 
         return HttpResponse('skill saved')
 
-
 def user_certificate(request):
     if request.POST:
         certificate_title = request.POST.get('certificate_title')
@@ -186,7 +188,6 @@ def user_certificate(request):
 
         if certificate_title != '' or certificate_title != None:
             certificate = user_certificate_model.objects.filter(certificate_title=certificate_title, user_id=user.id).first()
-            print(certificate)
             if certificate == None:
                 new_certificate = user_certificate_model(certificate_title=certificate_title,
                                                    organization_title=organization_title, start_date=start_date,
@@ -202,3 +203,36 @@ def user_certificate(request):
 
 
         return HttpResponse('ok certificate')
+
+def user_education_ajax(request):
+    if request.POST:
+        education_title = request.POST.get('education_title')
+        education_grade = request.POST.get('education_grade')
+        university_name = request.POST.get('university_name')
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        text = request.POST.get('text')
+        education_id = request.POST.get('education_id')
+        user = request.user
+
+        if education_title != '' or education_title != None:
+            education = user_education_model.objects.filter(education_title=education_title, user_id=user.id).first()
+
+            if education == None:
+                new_education = user_education_model(education_title=education_title, education_grade=education_grade,
+                                                      university_name=university_name, start_date=start_date,
+                                                     end_date=end_date, text=text, education_id=education_id,
+                                                     user_id=user.id)
+                new_education.save()
+
+            else:
+                education.education_title = education_title
+                education.education_grade = education_grade
+                education.university_name = university_name
+                education.start_date = start_date
+                education.end_date = end_date
+                education.text = text
+                education.education_id = education_id
+                education.save()
+
+        return HttpResponse('ok education')

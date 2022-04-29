@@ -61,12 +61,12 @@ MONTH_CHOICES = (
 )
 
 class basic_info(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    job_title = models.CharField(max_length=50)
-    country = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
-    city = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50, null=True, blank=True)
+    last_name = models.CharField(max_length=50, null=True, blank=True)
+    job_title = models.CharField(max_length=50, null=True, blank=True)
+    country = models.CharField(max_length=50, null=True, blank=True)
+    state = models.CharField(max_length=50, null=True, blank=True)
+    city = models.CharField(max_length=50, null=True, blank=True)
     military = models.CharField(max_length=50,choices=MILITARY_CHOICES, default='0')
     married = models.CharField(max_length=50,choices=MARRIED_CHOICES, default='0')
     sex = models.CharField(max_length=50,choices=SEX_CHOICES, default='0')
@@ -90,8 +90,8 @@ class basic_info(models.Model):
 
 
 class user_socialmedia(models.Model):
-    social_media = models.CharField(max_length=200)
-    username = models.CharField(max_length=200)
+    social_media = models.CharField(max_length=200, null=True, blank=True)
+    username = models.CharField(max_length=200, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     social_id = models.CharField(max_length=200, null=True, default='')
     user = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
@@ -103,7 +103,7 @@ class user_socialmedia(models.Model):
 
 class user_langurage(models.Model):
     langurage = models.CharField(max_length=200)
-    grade = models.CharField(max_length=200)
+    grade = models.CharField(max_length=200, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     lang_id = models.CharField(max_length=200, null=True, default='')
     user = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
@@ -112,8 +112,8 @@ class user_langurage(models.Model):
         return self.langurage
 
 class user_skill(models.Model):
-    skill = models.CharField(max_length=200)
-    grade = models.CharField(max_length=200)
+    skill = models.CharField(max_length=200, null=True, blank=True)
+    grade = models.CharField(max_length=200, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     skill_id = models.CharField(max_length=200, null=True, default='')
     user = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
@@ -123,13 +123,28 @@ class user_skill(models.Model):
 
 
 class user_certificate_model(models.Model):
-    certificate_title = models.CharField(max_length=200)
-    organization_title = models.CharField(max_length=200)
-    start_date = models.CharField(max_length=200)
-    end_date = models.CharField(max_length=200)
+    certificate_title = models.CharField(max_length=200, null=True, blank=True)
+    organization_title = models.CharField(max_length=200, null=True, blank=True)
+    start_date = models.CharField(max_length=200, null=True, blank=True)
+    end_date = models.CharField(max_length=200, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     certificate_id = models.CharField(max_length=200, null=True, default='')
     user = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
 
     def __str__(self):
         return self.certificate_title
+
+
+class user_education_model(models.Model):
+    education_title = models.CharField(max_length=200, null=True, blank=True)
+    education_grade = models.CharField(max_length=200, null=True, blank=True)
+    university_name = models.CharField(max_length=200, null=True, blank=True)
+    start_date = models.CharField(max_length=200, null=True, blank=True)
+    end_date = models.CharField(max_length=200, null=True, blank=True)
+    text = models.TextField(default='', null=True, blank=True)
+    education_id = models.CharField(max_length=200, null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    user = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
+
+    def __str__(self):
+        return self.education_title

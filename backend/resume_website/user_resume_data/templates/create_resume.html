@@ -906,9 +906,9 @@
                                             <div class="certification-item col-md-11 m-auto border rounded-2 mb-3" id="certificate_{{ user_certificate.certificate_id }}" name="certificate_{{ user_certificate.certificate_id }}">
 
                                                 <div class="move-btns">
-                                                    <span><button class="btn" onclick="moveupelement(this, 'certification-items','certification-item','certification')"><i class="fa-solid fa-angle-up"></i></button></span>
-                                                    <span><button class="btn" onclick="movedownelement(this, 'certification-items','certification-item','certification')"><i class="fa-solid fa-angle-down"></i></button></span>
-                                                    <span><button class="btn" onclick="removeitem(this,'certification')"><i class="fa-solid fa-xmark"></i></button></span>
+                                                    <span><button class="btn" onclick="moveupelement(this, 'certification-items','certification-item','certificate')"><i class="fa-solid fa-angle-up"></i></button></span>
+                                                    <span><button class="btn" onclick="movedownelement(this, 'certification-items','certification-item','certificate')"><i class="fa-solid fa-angle-down"></i></button></span>
+                                                    <span><button class="btn" onclick="removeitem(this,'certificate')"><i class="fa-solid fa-xmark"></i></button></span>
                                                 </div>
 
                                                 <div class="item-inputs col-md-12 d-flex flex-column align-items-center justify-content-around mt-5 mb-5 ">
@@ -947,47 +947,47 @@
                                         {% endfor %}
 
 
-{#                                    {% else %}#}
-{#                                        <div class="certification-item col-md-11 m-auto border rounded-2 mb-3" id="certificate_0" name="certificate_0">#}
-{##}
-{#                                        <div class="move-btns">#}
-{#                                            <span><button class="btn" onclick="moveupelement(this, 'certification-items','certification-item','certification')"><i class="fa-solid fa-angle-up"></i></button></span>#}
-{#                                            <span><button class="btn" onclick="movedownelement(this, 'certification-items','certification-item','certification')"><i class="fa-solid fa-angle-down"></i></button></span>#}
-{#                                            <span><button class="btn" onclick="removeitem(this,'certification')"><i class="fa-solid fa-xmark"></i></button></span>#}
-{#                                        </div>#}
-{##}
-{#                                        <div class="item-inputs col-md-12 d-flex flex-column align-items-center justify-content-around mt-5 mb-5 ">#}
-{##}
-{#                                            <div class="col-md-10">#}
-{#                                                <span>عنوان گواهی نامه</span>#}
-{#                                                <input type="text">#}
-{#                                            </div>#}
-{##}
-{#                                            <div class="col-md-10 item-data-inputs">#}
-{##}
-{#                                                <div class="col-md-6 d-flex flex-column justify-content-between">#}
-{#                                                    <span>تاریخ شروع و پایان</span>#}
-{#                                                    <div class="col-md-12 certification-date">#}
-{#                                                        <div class="col-md-5 skill-date-start">#}
-{#                                                            <input type="text" placeholder="شروع">#}
-{#                                                        </div>#}
-{#                                                        <div class="col-md-5 skill-date-end">#}
-{#                                                            <input type="text" placeholder="پایان">#}
-{#                                                        </div>#}
-{#                                                    </div>#}
-{##}
-{#                                                </div>#}
-{##}
-{#                                                <div class="col-md-5">#}
-{#                                                    <span>عنوان موسسه</span>#}
-{#                                                    <input type="text">#}
-{#                                                </div>#}
-{##}
-{#                                            </div>#}
-{##}
-{#                                        </div>#}
-{##}
-{#                                    </div>#}
+                                    {% else %}
+                                        <div class="certification-item col-md-11 m-auto border rounded-2 mb-3" id="certificate_0" name="certificate_0">
+
+                                        <div class="move-btns">
+                                            <span><button class="btn" onclick="moveupelement(this, 'certification-items','certification-item','certificate')"><i class="fa-solid fa-angle-up"></i></button></span>
+                                            <span><button class="btn" onclick="movedownelement(this, 'certification-items','certification-item','certificate')"><i class="fa-solid fa-angle-down"></i></button></span>
+                                            <span><button class="btn" onclick="removeitem(this,'certificate')"><i class="fa-solid fa-xmark"></i></button></span>
+                                        </div>
+
+                                        <div class="item-inputs col-md-12 d-flex flex-column align-items-center justify-content-around mt-5 mb-5 ">
+
+                                            <div class="col-md-10">
+                                                <span>عنوان گواهی نامه</span>
+                                                <input type="text">
+                                            </div>
+
+                                            <div class="col-md-10 item-data-inputs">
+
+                                                <div class="col-md-6 d-flex flex-column justify-content-between">
+                                                    <span>تاریخ شروع و پایان</span>
+                                                    <div class="col-md-12 certification-date">
+                                                        <div class="col-md-5 skill-date-start">
+                                                            <input type="text" placeholder="شروع">
+                                                        </div>
+                                                        <div class="col-md-5 skill-date-end">
+                                                            <input type="text" placeholder="پایان">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-5">
+                                                    <span>عنوان موسسه</span>
+                                                    <input type="text">
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
                                     {% endif %}
 
                                 </div>
@@ -1008,7 +1008,60 @@
                         <div class="tab-body col-md-12">
                             <div class="row">
                                 <div class="education-items col-md-12">
-                                    <div class="education-item col-md-11 m-auto border rounded-2 mb-3">
+                                    
+                                    {% if user_educations %}
+                                        {% for user_education in user_educations %}
+
+                                            <div class="education-item col-md-11 m-auto border rounded-2 mb-3" id="education_{{ user_education.education_id }}" name="education_{{ user_education.education_id }}">
+
+                                                <div class="move-btns">
+                                                    <span><button class="btn" onclick="moveupelement(this, 'education-items','education-item','education')"><i class="fa-solid fa-angle-up"></i></button></span>
+                                                    <span><button class="btn" onclick="movedownelement(this, 'education-items','education-item','education')"><i class="fa-solid fa-angle-down"></i></button></span>
+                                                    <span><button class="btn" onclick="removeitem(this,'education')"><i class="fa-solid fa-xmark"></i></button></span>
+                                                </div>
+
+                                                <div class="item-inputs">
+
+                                                    <div class="col-md-3 flex-item">
+                                                        <span>مقطع تحصیلی</span>
+                                                        <input type="text" value="{{ user_education.education_grade }}">
+                                                    </div>
+
+                                                    <div class="col-md-3 flex-item">
+                                                        <span>رشته تحصیلی</span>
+                                                        <input type="text" value="{{ user_education.education_title }}">
+                                                    </div>
+
+                                                    <div class="col-md-3 flex-item">
+                                                        <span>نام دانشگاه/موسسه</span>
+                                                        <input type="text" value="{{ user_education.university_name }}">
+                                                    </div>
+
+                                                    <div class="col-md-3 flex-item">
+                                                        <span>تاریخ شروع و پایان</span>
+                                                        <div class="col-md-12 education-date">
+                                                            <div class="col-md-5 education-date-start">
+                                                                <input type="text" placeholder="شروع" value="{{ user_education.start_date }}">
+                                                            </div>
+                                                            <div class="col-md-5 education-date-end">
+                                                                <input type="text" placeholder="پایان" value="{{ user_education.end_date }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-11 education-desc-textarea">
+                                                        <span>توضیحات</span>
+                                                        <textarea name="" id="" cols="30" rows="10" >{{ user_education.text }}</textarea>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        {% endfor %}
+
+                                    {% else %}
+                                        <div class="education-item col-md-11 m-auto border rounded-2 mb-3" id="education_0" name="education_0">
 
                                         <div class="move-btns">
                                             <span><button class="btn" onclick="moveupelement(this, 'education-items','education-item','education')"><i class="fa-solid fa-angle-up"></i></button></span>
@@ -1053,6 +1106,12 @@
                                         </div>
 
                                     </div>
+
+                                    
+                                    {% endif %} 
+
+
+
                                 </div>
 
                                 <button class="btn btn-outline-primary col-md-3 m-auto mt-3" onclick="addeducation()">سابقه

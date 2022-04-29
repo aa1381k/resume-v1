@@ -49,10 +49,10 @@ function addskill() {
 function addcertification() {
     var index = document.getElementsByClassName('certification-item');
     index = index.length;
-    var certification = `<div class="move-btns"> <span><button class="btn" onclick="moveupelement(this, 'certification-items','certification-item','certification')"><i class="fa-solid fa-angle-up"></i></button></span> <span><button class="btn" onclick="movedownelement(this, 'certification-items','certification-item','certification')"><i class="fa-solid fa-angle-down"></i></button></span> <span><button class="btn" onclick="removeitem(this,'certification')"><i class="fa-solid fa-xmark"></i></button></span> </div> <div class="item-inputs col-md-12 d-flex flex-column align-items-center justify-content-around mt-5 mb-5 "> <div class="col-md-10"> <span>عنوان گواهی نامه</span> <input type="text"> </div> <div class="col-md-10 item-data-inputs"> <div class="col-md-6 d-flex flex-column justify-content-between"> <span>تاریخ شروع و پایان</span> <div class="col-md-12 certification-date"> <div class="col-md-5 skill-date-start"> <input type="text" placeholder="شروع"> </div> <div class="col-md-5 skill-date-end"> <input type="text" placeholder="پایان"> </div> </div> </div> <div class="col-md-5"> <span>عنوان موسسه</span> <input type="text"> </div> </div> </div>`;
+    var certification = `<div class="move-btns"> <span><button class="btn" onclick="moveupelement(this, 'certification-items','certification-item','certificate')"><i class="fa-solid fa-angle-up"></i></button></span> <span><button class="btn" onclick="movedownelement(this, 'certification-items','certification-item','certificate')"><i class="fa-solid fa-angle-down"></i></button></span> <span><button class="btn" onclick="removeitem(this,'certificate')"><i class="fa-solid fa-xmark"></i></button></span> </div> <div class="item-inputs col-md-12 d-flex flex-column align-items-center justify-content-around mt-5 mb-5 "> <div class="col-md-10"> <span>عنوان گواهی نامه</span> <input type="text"> </div> <div class="col-md-10 item-data-inputs"> <div class="col-md-6 d-flex flex-column justify-content-between"> <span>تاریخ شروع و پایان</span> <div class="col-md-12 certification-date"> <div class="col-md-5 skill-date-start"> <input type="text" placeholder="شروع"> </div> <div class="col-md-5 skill-date-end"> <input type="text" placeholder="پایان"> </div> </div> </div> <div class="col-md-5"> <span>عنوان موسسه</span> <input type="text"> </div> </div> </div>`;
     var elem = document.createElement('div');
-    elem.id = `certification_${index}`;
-    elem.setAttribute('name', `certification_${index}`);
+    elem.id = `certificate_${index}`;
+    elem.setAttribute('name', `certificate_${index}`);
     elem.className = `certification-item col-md-11 m-auto border rounded-2 mb-3`;
     elem.innerHTML = certification;
     var element = document.getElementsByClassName('certification-items')[0];
@@ -176,14 +176,10 @@ function movedownelement(id, parr, list, sec) {
 }
 
 function moveupelement(id, parr, list, sec) {
-    console.log(parr);
-    console.log(list);
-    console.log(sec);
     var arr = document.getElementsByClassName(list);
     var parrent = document.getElementsByClassName(parr)[0];
     id = id.parentElement.parentElement.parentElement.id;
     var arrlen = arr.length;
-    console.log(arrlen);
     for (var i = 0; i < arr.length; i++) {
         if (arr[i].id == id) {
             var old_index = i;
@@ -394,7 +390,6 @@ function skills_page_ajax(){
         var end_date = certificate_item.getElementsByTagName('input')[2].value;
         var certificate_id = i;
 
-        console.log(certificate_title, organization_title, start_date, end_date);
 
         if(certificate_title != ""){
             $.ajax({
@@ -416,7 +411,37 @@ function skills_page_ajax(){
 }
 
 function education_page_ajax(){
+    education_items = document.getElementsByClassName('education-item').length;
 
+    for(var i=0; i<education_items; i++){
+        education_item = document.getElementById('education_'+i);
+
+        education_title = education_item.getElementsByTagName('input')[1].value;
+        education_grade = education_item.getElementsByTagName('input')[0].value;
+        university_name = education_item.getElementsByTagName('input')[2].value;
+        start_date = education_item.getElementsByTagName('input')[3].value;
+        end_date = education_item.getElementsByTagName('input')[4].value;
+        text = education_item.getElementsByTagName('textarea')[0].value;
+        education_id = i;
+
+
+        if(education_title != ""){
+            $.ajax({
+            method:'POST',
+            url:'/create-resume/savedata/user_education/',
+            data:{
+                'education_title': education_title,
+                'education_grade': education_grade,
+                'university_name': university_name,
+                'start_date': start_date,
+                'end_date': end_date,
+                'text': text,
+                'education_id': education_id,
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            }
+        });
+        }
+    }
 }
 
 function job_page_ajax(){
