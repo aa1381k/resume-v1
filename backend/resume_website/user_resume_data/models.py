@@ -148,3 +148,17 @@ class user_education_model(models.Model):
 
     def __str__(self):
         return self.education_title
+
+class user_job_model(models.Model):
+    job_title = models.CharField(max_length=200, null=True, blank=True)
+    company_name = models.CharField(max_length=200, null=True, blank=True)
+    city = models.CharField(max_length=200, null=True, blank=True)
+    start_date = models.CharField(max_length=200, null=True, blank=True)
+    end_date = models.CharField(max_length=200, null=True, blank=True)
+    text = models.TextField(default='', null=True, blank=True)
+    job_id = models.CharField(max_length=200, null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    user = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
+
+    def __str__(self):
+        return self.job_title

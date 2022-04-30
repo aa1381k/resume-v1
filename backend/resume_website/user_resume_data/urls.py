@@ -9,6 +9,7 @@ urlpatterns = [
     path('savedata/user_skill/', views.user_skills_ajax, name='skills'),
     path('savedata/user_certificate/', views.user_certificate, name='certificate'),
     path('savedata/user_education/', views.user_education_ajax, name='education'),
+    path('savedata/user_job/', views.user_job_ajax, name='job'),
 ]
 
 

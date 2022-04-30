@@ -744,7 +744,7 @@
                                                 <div class="move-btns">
                                                     <span><button class="btn" onclick="moveupelement(this, 'lang-items','lang-item','lang')"><i class="fa-solid fa-angle-up"></i></button></span>
                                                     <span><button class="btn" onclick="movedownelement(this, 'lang-items','lang-item','lang')"><i class="fa-solid fa-angle-down"></i></button></span>
-                                                    <span><button class="btn" onclick="removeitem(this)"><i class="fa-solid fa-xmark"></i></button></span>
+                                                    <span><button class="btn" onclick="removeitem(this,'lang')"><i class="fa-solid fa-xmark"></i></button></span>
                                                 </div>
 
                                                 <div class="item-inputs">
@@ -779,7 +779,7 @@
                                         <div class="move-btns">
                                             <span><button class="btn" onclick="moveupelement(this, 'lang-items','lang-item','lang')"><i class="fa-solid fa-angle-up"></i></button></span>
                                             <span><button class="btn" onclick="movedownelement(this, 'lang-items','lang-item','lang')"><i class="fa-solid fa-angle-down"></i></button></span>
-                                            <span><button class="btn" onclick="removeitem(this)"><i class="fa-solid fa-xmark"></i></button></span>
+                                            <span><button class="btn" onclick="removeitem(this,'lang')"><i class="fa-solid fa-xmark"></i></button></span>
                                         </div>
 
                                         <div class="item-inputs">
@@ -820,6 +820,7 @@
 
                                     {% if user_skills %}
                                         {% for user_skill in user_skills %}
+
                                             <div id="skill_{{ user_skill.skill_id }}" name="skill_{{ user_skill.skill_id }}" class="skill-item col-md-12 border rounded-3 p-3">
                                                 <div class="move-btns">
                                                     <span><button class="btn" onclick="moveupelement(this, 'skill-items', 'skill-item', 'skill')"><i class="fa-solid fa-angle-up"></i></button></span>
@@ -849,9 +850,11 @@
                                                 </div>
 
                                             </div>
+
                                         {% endfor %}
 
                                     {% else %}
+
                                         <div id="skill_0" name="skill_0" class="skill-item col-md-12 border rounded-3 p-3">
                                             <div class="move-btns">
                                                 <span><button class="btn" onclick="moveupelement(this, 'skill-items', 'skill-item', 'skill')"><i class="fa-solid fa-angle-up"></i></button></span>
@@ -881,7 +884,6 @@
                                             </div>
 
                                         </div>
-
 
                                     {% endif %}
 
@@ -1012,7 +1014,8 @@
                                     {% if user_educations %}
                                         {% for user_education in user_educations %}
 
-                                            <div class="education-item col-md-11 m-auto border rounded-2 mb-3" id="education_{{ user_education.education_id }}" name="education_{{ user_education.education_id }}">
+                                            <div class="education-item col-md-11 m-auto border rounded-2 mb-3"
+                                                 id="education_{{ user_education.education_id }}" name="education_{{ user_education.education_id }}">
 
                                                 <div class="move-btns">
                                                     <span><button class="btn" onclick="moveupelement(this, 'education-items','education-item','education')"><i class="fa-solid fa-angle-up"></i></button></span>
@@ -1061,6 +1064,7 @@
                                         {% endfor %}
 
                                     {% else %}
+
                                         <div class="education-item col-md-11 m-auto border rounded-2 mb-3" id="education_0" name="education_0">
 
                                         <div class="move-btns">
@@ -1106,7 +1110,6 @@
                                         </div>
 
                                     </div>
-
                                     
                                     {% endif %} 
 
@@ -1128,7 +1131,61 @@
                         <div class="tab-body col-md-12">
                             <div class="row">
                                 <div class="job-items col-md-12">
-                                    <div class="job-item col-md-11 m-auto border rounded-2 mb-3">
+
+
+                                    {% if user_jobs %}
+                                        {% for user_job in user_jobs %}
+
+                                            <div class="job-item col-md-11 m-auto border rounded-2 mb-3" id="job_{{ user_job.job_id }}" name="job_{{ user_job.job_id }}">
+
+                                        <div class="move-btns">
+                                            <span><button class="btn" onclick="moveupelement(this, 'job-items','job-item','job')"><i class="fa-solid fa-angle-up"></i></button></span>
+                                            <span><button class="btn" onclick="movedownelement(this, 'job-items','job-item','job')"><i class="fa-solid fa-angle-down"></i></button></span>
+                                            <span><button class="btn" onclick="removeitem(this,'job')"><i class="fa-solid fa-xmark"></i></button></span>
+                                        </div>
+
+                                        <div class="item-inputs">
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>نام شرکت / سازمان</span>
+                                                <input type="text" value="{{ user_job.company_name }}">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>سمت شغلی</span>
+                                                <input type="text" value="{{ user_job.job_title }}">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>شهر</span>
+                                                <input type="text" value="{{ user_job.city }}">
+                                            </div>
+
+                                            <div class="col-md-3 flex-item">
+                                                <span>تاریخ شروع و پایان</span>
+                                                <div class="col-md-12 job-date">
+                                                    <div class="col-md-5 job-date-start">
+                                                        <input type="text" placeholder="شروع" value="{{ user_job.start_date }}">
+                                                    </div>
+                                                    <div class="col-md-5 job-date-end">
+                                                        <input type="text" placeholder="پایان" value="{{ user_job.end_date }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-11 job-desc-textarea">
+                                                <span>توضیحات</span>
+                                                <textarea name="" id="" cols="30" rows="10">{{ user_job.text }}</textarea>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                        {% endfor %}
+
+                                    {% else %}
+                                        <div class="job-item col-md-11 m-auto border rounded-2 mb-3" id="job_0" name="job_0">
 
                                         <div class="move-btns">
                                             <span><button class="btn" onclick="moveupelement(this, 'job-items','job-item','job')"><i class="fa-solid fa-angle-up"></i></button></span>
@@ -1173,6 +1230,9 @@
                                         </div>
 
                                     </div>
+                                    {% endif %}
+
+
                                 </div>
 
                                 <button class="btn btn-outline-primary col-md-3 m-auto mt-3" onclick="addjob()">سابقه

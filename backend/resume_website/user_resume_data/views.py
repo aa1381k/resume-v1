@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from . models import basic_info, user_socialmedia, user_langurage, user_skill, user_certificate_model, user_education_model
+from . models import basic_info, user_socialmedia, user_langurage, user_skill, user_certificate_model,\
+    user_education_model, user_job_model
+
 # Create your views here.
 from django.views import View
 
@@ -17,6 +19,7 @@ class create_resume(View):
             user_socials = user_socialmedia.objects.filter(user_id=user.id).order_by('social_id')
             user_certificates = user_certificate_model.objects.filter(user_id=user.id).order_by('certificate_id')
             user_educations = user_education_model.objects.filter(user_id=user.id).order_by('education_id')
+            user_jobs = user_job_model.objects.filter(user_id=user.id).order_by('job_id')
             if resume.first() == None or resume.first() == '':
 
                 context = {
@@ -27,6 +30,7 @@ class create_resume(View):
                     'user_socialmedias' : user_socials,
                     'user_certificates' : user_certificates,
                     'user_educations' : user_educations,
+                    'user_jobs' : user_jobs,
                 }
 
             else:
@@ -39,6 +43,7 @@ class create_resume(View):
                     'user_socialmedias': user_socials,
                     'user_certificates': user_certificates,
                     'user_educations': user_educations,
+                    'user_jobs': user_jobs,
 
                 }
 
@@ -123,7 +128,7 @@ def user_socialmedia_ajax(request):
             print(social_media_number)
 
             if social_media_name != '' and social_media_id != '':
-                social_media = user_socialmedia.objects.filter(social_media=social_media_name, user_id=user.id).first()
+                social_media = user_socialmedia.objects.filter(social_media_id=social_media_id, user_id=user.id).first()
 
                 if social_media == None or social_media == '':
                     new_user_socialmedia = user_socialmedia(social_media=social_media_name, username=social_media_id, user_id=user.id, social_id=social_media_number)
@@ -144,7 +149,7 @@ def user_langurages_ajax(request):
         lang_id = request.POST.get('lang_id')
         user = request.user
         if lang_name != '' or lang_name != None:
-            User_langurage = user_langurage.objects.filter(langurage=lang_name, user_id=user.id).first()
+            User_langurage = user_langurage.objects.filter(lang_id=lang_id, user_id=user.id).first()
             if User_langurage == None:
                 new_langurage = user_langurage(langurage=lang_name, grade=lang_grade, user_id=user.id, lang_id=lang_id)
                 new_langurage.save()
@@ -164,7 +169,7 @@ def user_skills_ajax(request):
         user = request.user
 
         if skill_name != '' or skill_name != None:
-            skill = user_skill.objects.filter(skill=skill_name, user_id=user.id).first()
+            skill = user_skill.objects.filter(skill_id=skill_id, user_id=user.id).first()
             if skill == None:
                 new_user_skill = user_skill(skill=skill_name, grade=skill_grade, user_id=user.id, skill_id=skill_id)
                 new_user_skill.save()
@@ -187,7 +192,7 @@ def user_certificate(request):
         user = request.user
 
         if certificate_title != '' or certificate_title != None:
-            certificate = user_certificate_model.objects.filter(certificate_title=certificate_title, user_id=user.id).first()
+            certificate = user_certificate_model.objects.filter(certificate_id=certificate_id, user_id=user.id).first()
             if certificate == None:
                 new_certificate = user_certificate_model(certificate_title=certificate_title,
                                                    organization_title=organization_title, start_date=start_date,
@@ -216,7 +221,7 @@ def user_education_ajax(request):
         user = request.user
 
         if education_title != '' or education_title != None:
-            education = user_education_model.objects.filter(education_title=education_title, user_id=user.id).first()
+            education = user_education_model.objects.filter(education_id=education_id, user_id=user.id).first()
 
             if education == None:
                 new_education = user_education_model(education_title=education_title, education_grade=education_grade,
@@ -236,3 +241,36 @@ def user_education_ajax(request):
                 education.save()
 
         return HttpResponse('ok education')
+
+def user_job_ajax(request):
+    if request.POST:
+        job_title = request.POST.get('job_title')
+        company_name = request.POST.get('company_name')
+        city = request.POST.get('city')
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        text = request.POST.get('text')
+        job_id = request.POST.get('job_id')
+        user = request.user
+
+        if job_title != '' or job_title != None:
+            job = user_job_model.objects.filter(job_id=job_id, user_id=user.id).first()
+
+            if job == None:
+                new_job = user_job_model(job_title=job_title, company_name=company_name, city=city,
+                                         start_date=start_date, end_date=end_date, text=text,
+                                         job_id=job_id, user_id=user.id)
+
+                new_job.save()
+
+            else:
+                job.job_title = job_title
+                job.company_name = company_name
+                job.city = city
+                job.start_date = start_date
+                job.end_date = end_date
+                job.text = text
+                job.job_id = job_id
+                job.save()
+
+        return HttpResponse('ok')

@@ -141,6 +141,8 @@ function removeitem(id, itemname) {
     var index = document.getElementsByClassName(`${itemname}-item`);
     id = id.parentElement.parentElement.parentElement.id;
     index = index.length;
+    console.log(index)
+    console.log(id)
     if (index > 1) {
         var elem = document.getElementById(id);
         elem.remove()
@@ -445,5 +447,35 @@ function education_page_ajax(){
 }
 
 function job_page_ajax(){
+    job_items = document.getElementsByClassName('job-item').length;
 
+    for(var i=0; i<job_items; i++){
+        job_item = document.getElementById('job_'+i);
+
+        job_title = job_item.getElementsByTagName('input')[1].value;
+        company_name = job_item.getElementsByTagName('input')[0].value;
+        city = job_item.getElementsByTagName('input')[2].value;
+        start_date = job_item.getElementsByTagName('input')[3].value;
+        end_date = job_item.getElementsByTagName('input')[4].value;
+        text = job_item.getElementsByTagName('textarea')[0].value;
+        job_id = i;
+
+        if(job_title != ""){
+            $.ajax({
+            method:'POST',
+            url:'/create-resume/savedata/user_job/',
+            data:{
+                'job_title': job_title,
+                'company_name': company_name,
+                'city': city,
+                'start_date': start_date,
+                'end_date': end_date,
+                'text': text,
+                'job_id': job_id,
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            }
+        });
+        }
+
+    }
 }
