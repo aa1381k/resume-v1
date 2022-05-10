@@ -162,3 +162,52 @@ class user_job_model(models.Model):
 
     def __str__(self):
         return self.job_title
+
+
+class user_projects_model(models.Model):
+    title = models.CharField(max_length=200, null=True, blank=True)
+    employer = models.CharField(max_length=200, null=True, blank=True)
+    start_date = models.CharField(max_length=200, null=True, blank=True)
+    end_date = models.CharField(max_length=200, null=True, blank=True)
+    link = models.CharField(max_length=200, null=True, blank=True)
+    project_id = models.CharField(max_length=200, null=True, blank=True)
+    text = models.TextField(null=True, blank=True)
+    user = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
+
+    def __str__(self):
+        return self.title
+
+
+class user_internship_model(models.Model):
+    title = models.CharField(max_length=200, null=True, blank=True)
+    employer = models.CharField(max_length=200, null=True, blank=True)
+    start_date = models.CharField(max_length=200, null=True, blank=True)
+    end_date = models.CharField(max_length=200, null=True, blank=True)
+    city = models.CharField(max_length=200, null=True, blank=True)
+    internship_id = models.CharField(max_length=200, null=True, blank=True)
+    text = models.TextField(null=True, blank=True)
+    user = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
+
+    def __str__(self):
+        return self.title
+
+
+class user_introduced_model(models.Model):
+    name = models.CharField(max_length=200, null=True, blank=True)
+    company_name = models.CharField(max_length=200, null=True, blank=True)
+    phone = models.CharField(max_length=200, null=True, blank=True)
+    email = models.CharField(max_length=200, null=True, blank=True)
+    introduced_id = models.CharField(max_length=200, null=True, blank=True)
+    user = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
+
+    def __str__(self):
+        return self.name
+
+
+class user_entertainment_model(models.Model):
+    name = models.CharField(max_length=200, null=True, blank=True)
+    entertainment_id = models.CharField(max_length=200, null=True, blank=True)
+    user = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
+
+    def __str__(self):
+        return self.name

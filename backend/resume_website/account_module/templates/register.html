@@ -28,13 +28,16 @@ register
                             <label for="">تکرار کلمه عبور</label>
                             {{ forms.confirm_password }}
                             <button type="submit" class="btn btn-primary rounded">ثبت نام</button>
+                            <p class="text-end p-4">حساب کاربری دارید؟ <a href="{% url 'login-page' %}" class="text-primary text-end d-inline">ورود</a></p>
                         </form>
+
                         <button onclick="showpass('confirm-password')" class="show-confirm-password">
                             <i class="fa-solid fa-eye-slash" id="confirm-password-icon"></i>
                         </button>
                         <button onclick="showpass('password')" class="show-password">
                             <i class="fa-solid fa-eye-slash" id="password-icon"></i>
                         </button>
+
                     </div>
                 </div>
                 

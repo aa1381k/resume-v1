@@ -27,33 +27,36 @@ contact us
                     <img src="/static/images/Contact us-pana.png" alt="">
                 </div>
             </div>
-
             <div class="form col-md-6 shadow-lg">
-                <form action="" class="col-md-12">
-                    <div class="inputs">
-                        <div class="subject">
-                            <span>موضوع</span>
-                            <input type="text">
+                {% if user.is_authenticated %}
+                    <form action="{% url 'contact-page' %}" method="post" class="col-md-12">
+                        {% csrf_token %}
+                        <div class="inputs">
+                            <div class="subject">
+                                <span>موضوع</span>
+                                {{ form.subject }}
+                            </div>
+                            <div class="name">
+                                <span>نام</span>
+                                {{ form.name }}
+                            </div>
+                            <div class="email">
+                                <span>ایمیل</span>
+                                {{ form.email }}
+                            </div>
+                            <div class="phone">
+                                <span>شماره تماس</span>
+                                {{ form.phone }}
+                            </div>
                         </div>
-                        <div class="name">
-                            <span>نام</span>
-                            <input type="text">
+                        <div class="texterea">
+                            <span>متن پیام</span>
+                            {{ form.text }}
                         </div>
-                        <div class="email">
-                            <span>ایمیل</span>
-                            <input type="text">
-                        </div>
-                        <div class="phone">
-                            <span>شماره تماس</span>
-                            <input type="text">
-                        </div>
-                    </div>
-                    <div class="texterea">
-                        <span>متن پیام</span>
-                        <textarea name="" id="" cols="50" rows="9"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary submit-button">ارسال پیام</button>
-                </form>
+                        <button type="submit" class="btn btn-primary submit-button">ارسال پیام</button>
+                    </form>
+                {% endif %}
+
             </div>
         </div>
     </main>

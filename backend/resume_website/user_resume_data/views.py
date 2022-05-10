@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from . models import basic_info, user_socialmedia, user_langurage, user_skill, user_certificate_model,\
-    user_education_model, user_job_model
-
+    user_education_model, user_job_model, user_projects_model, user_internship_model, user_introduced_model,\
+    user_entertainment_model
+from django.core.files.storage import FileSystemStorage
 # Create your views here.
 from django.views import View
 
@@ -20,6 +21,11 @@ class create_resume(View):
             user_certificates = user_certificate_model.objects.filter(user_id=user.id).order_by('certificate_id')
             user_educations = user_education_model.objects.filter(user_id=user.id).order_by('education_id')
             user_jobs = user_job_model.objects.filter(user_id=user.id).order_by('job_id')
+            user_projects = user_projects_model.objects.filter(user_id=user.id).order_by('project_id')
+            user_internships = user_internship_model.objects.filter(user_id=user.id).order_by('internship_id')
+            user_introduced = user_introduced_model.objects.filter(user_id=user.id).order_by('introduced_id')
+            user_entertainments = user_entertainment_model.objects.filter(user_id=user.id).order_by('entertainment_id')
+
             if resume.first() == None or resume.first() == '':
 
                 context = {
@@ -31,6 +37,10 @@ class create_resume(View):
                     'user_certificates' : user_certificates,
                     'user_educations' : user_educations,
                     'user_jobs' : user_jobs,
+                    'user_projects' : user_projects,
+                    'user_internships' : user_internships,
+                    'user_introduced' : user_introduced,
+                    'user_entertainments' : user_entertainments,
                 }
 
             else:
@@ -44,6 +54,10 @@ class create_resume(View):
                     'user_certificates': user_certificates,
                     'user_educations': user_educations,
                     'user_jobs': user_jobs,
+                    'user_projects': user_projects,
+                    'user_internships': user_internships,
+                    'user_introduced': user_introduced,
+                    'user_entertainments': user_entertainments,
 
                 }
 
@@ -51,6 +65,24 @@ class create_resume(View):
 
         else:
             return redirect('login-page')
+
+    def post(self, request):
+        upload = request.FILES['avatar']
+        fss = FileSystemStorage(location='upload/images/user-profile/', base_url='/medias/')
+        file = fss.save(upload.name, upload)
+        file_url = fss.url(file)
+        user = request.user
+
+        file_url = file_url.replace('/medias/','images/user-profile/')
+
+        base_info = basic_info.objects.filter(user_base_info_id=user.id).first()
+
+        if base_info != None or base_info != '':
+            base_info.avatar = file_url
+            base_info.save()
+
+        return redirect('create_resume-page')
+
 
 
 def user_base_info_ajax(request):
@@ -68,13 +100,13 @@ def user_base_info_ajax(request):
             day = request.POST.get('day')
             month = request.POST.get('month')
             year = request.POST.get('year')
-            avatar = request.POST.get('avatar')
             resume_id = request.POST.get('resume_id')
             phone = request.POST.get('phone')
             email = request.POST.get('email')
             website = request.POST.get('website')
             summary = request.POST.get('summary')
             user = request.user
+
 
 
             if email != '' and first_name != '':
@@ -86,9 +118,8 @@ def user_base_info_ajax(request):
                                           country=country,
                                           state=state, city=city, military=military, married=relationship, sex=sex,
                                           birth_day=day,
-                                          birth_month=month, birth_year=year, user_base_info=user, avatar=avatar,
-                                          resume_id=resume_id,
-                                          phone=phone, email=email, website=website, summary=summary,
+                                          birth_month=month, birth_year=year, user_base_info=user,
+                                          resume_id=resume_id,phone=phone, email=email, website=website, summary=summary,
                                           )
                     new_info.save()
 
@@ -106,12 +137,12 @@ def user_base_info_ajax(request):
                     resume.birth_day = day
                     resume.birth_month = month
                     resume.birth_year = year
-                    resume.avatar = avatar
                     resume.summary = summary
                     resume.website = website
                     resume.phone = phone
                     resume.email = email
                     resume.save()
+
 
             else:
                 return HttpResponse('error')
@@ -125,12 +156,11 @@ def user_socialmedia_ajax(request):
             social_media_name = request.POST.get('social_media_name')
             social_media_id = request.POST.get('social_media_id')
             social_media_number = request.POST.get('social_media_number')
-            print(social_media_number)
 
-            if social_media_name != '' and social_media_id != '':
-                social_media = user_socialmedia.objects.filter(social_media_id=social_media_id, user_id=user.id).first()
+            if social_media_name != None or social_media_name != '':
+                social_media = user_socialmedia.objects.filter(social_media=social_media_name, user_id=user.id).first()
 
-                if social_media == None or social_media == '':
+                if social_media == None:
                     new_user_socialmedia = user_socialmedia(social_media=social_media_name, username=social_media_id, user_id=user.id, social_id=social_media_number)
                     new_user_socialmedia.save()
 
@@ -274,3 +304,123 @@ def user_job_ajax(request):
                 job.save()
 
         return HttpResponse('ok')
+
+def user_projects_ajax(request):
+    if request.POST:
+        title = request.POST.get('project_title')
+        employer = request.POST.get('employer')
+        link = request.POST.get('link')
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        text = request.POST.get('text')
+        project_id = request.POST.get('project_id')
+        user = request.user
+
+        if title != '' or title != None:
+            project = user_projects_model.objects.filter(project_id=project_id, user_id=user.id).first()
+
+            if project == None:
+                new_project = user_projects_model(title=title, employer=employer, start_date=start_date,
+                                                  end_date=end_date, link=link, text=text, project_id=project_id, user_id=user.id)
+                new_project.save()
+            else:
+                project.title = title
+                project.employer = employer
+                project.link = link
+                project.start_date = start_date
+                project.end_date = end_date
+                project.text = text
+                project.project_id = project_id
+                project.save()
+
+    return HttpResponse('ok')
+
+def user_internship_ajax(request):
+    if request.POST:
+        title = request.POST.get('title')
+        employer = request.POST.get('employer')
+        city = request.POST.get('city')
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        text = request.POST.get('text')
+        internship_id = request.POST.get('internship_id')
+        user = request.user
+
+        if title != '' or title != None:
+            internship = user_internship_model.objects.filter(internship_id=internship_id, user_id=user.id).first()
+
+            if internship == None:
+                new_internship = user_internship_model(title=title, employer=employer, city=city, start_date=start_date,
+                                                       end_date=end_date, text=text, internship_id=internship_id, user_id=user.id)
+                new_internship.save()
+
+            else:
+                internship.title = title
+                internship.employer = employer
+                internship.city = city
+                internship.start_date = start_date
+                internship.end_date = end_date
+                internship.text = text
+                internship.internship_id = internship_id
+                internship.save()
+
+    return HttpResponse('ok')
+
+def user_introduced_ajax(request):
+    if request.POST:
+        name = request.POST.get('name')
+        company_name = request.POST.get('company_name')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        introduced_id = request.POST.get('introduced_id')
+        user = request.user
+
+        if name != '' or name != None:
+            introduced = user_introduced_model.objects.filter(introduced_id=introduced_id, user_id=user.id).first()
+
+            if introduced == None:
+                new_introduced = user_introduced_model(name=name, company_name=company_name, phone=phone, email=email,
+                                                       introduced_id=introduced_id, user_id=user.id)
+                new_introduced.save()
+
+            else:
+                introduced.name = name
+                introduced.company_name = company_name
+                introduced.phone = phone
+                introduced.email = email
+                introduced.introduced_id = introduced_id
+                introduced.save()
+
+    return HttpResponse('ok')
+
+def user_entertainment_ajax(request):
+    if request.POST:
+        name = request.POST.get('name')
+        entertainment_id = request.POST.get('entertainment_id')
+        user = request.user
+
+        print('name is: ',name)
+
+        if name != '' or name != None:
+            entertainment = user_entertainment_model.objects.filter(entertainment_id=entertainment_id, user_id=user.id).first()
+
+            if entertainment == None:
+                new_entartaiment = user_entertainment_model(name=name, entertainment_id=entertainment_id, user_id=user.id)
+                new_entartaiment.save()
+
+            else:
+                entertainment.name = name
+                entertainment.entertainment_id = entertainment_id
+                entertainment.save()
+
+    return HttpResponse('ok')
+
+# def upload_avatar(request):
+#     if request.POST:
+#         if request.is_authenticated:
+#             user_id = request.user.id
+#
+#             user_base_info = basic_info.objects.filter(user_id=user_id).first()
+#
+#             if user_base_info != None or user_base_info != '':
+#                 pass

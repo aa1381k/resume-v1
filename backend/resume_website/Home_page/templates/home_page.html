@@ -34,8 +34,13 @@ home page
                     با رزومه ساز علی در کمتر از 10 دقیقه رزومه خود را بسازید
                 </div>
 
+                {% if user.is_authenticated %}
+                    <a href="{% url 'create_resume-page' %}" class="btn btn-primary mt-5 p-2 w-75">ساخت رزومه</a>
 
-                <a href="" class="btn btn-primary mt-5 p-2 w-75">ساخت رزومه</a>
+                {% else %}
+                    <a href="{% url 'login-page' %}" class="btn btn-primary mt-5 p-2 w-75">ساخت رزومه</a>
+                {% endif %}
+
             </div>
 
             <div class="intro-image ">

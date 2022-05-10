@@ -7,6 +7,10 @@ html {
     scroll-behavior: smooth;
 }
 
+button{
+    outline: none !important;
+}
+
 @font-face {
     font-family: lalezar;
     src: url('../fonts/Lalezar-Font/TTF/Lalezar-Regular.ttf');
@@ -40,6 +44,7 @@ header .logo img {
     display: flex;
     justify-content: space-between;
 }
+
 
 .header-btns {
     display: flex;

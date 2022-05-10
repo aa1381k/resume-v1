@@ -1,18 +1,10 @@
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('.profileimage')
-                .attr('src', e.target.result)
-                .width(150)
-                .height(200);
-                document.getElementById('removeimage').style.display = 'inline';
-        };
-
-        reader.readAsDataURL(input.files[0]);
+var uploadfile = function(event) {
+    var output = document.getElementsByClassName('profileimage')[0];
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
     }
-}
+  };
 
 function removeprofileimage() {
     var default_image = 'http://127.0.0.1:8000/static/images/user.png';

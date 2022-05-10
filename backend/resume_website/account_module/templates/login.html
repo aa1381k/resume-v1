@@ -6,6 +6,17 @@ register
 
 {% block refrence %}
     <link rel="stylesheet" href="/static/css/login&register.css">
+    <style>.show-password{
+    border: none;
+    width: 10%;
+    height: 10%;
+    background-color: #f4f5f8;
+    position: relative;
+    bottom: 205px;
+    left: 340px;
+    outline: none;
+}
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -25,13 +36,15 @@ register
                             <label for="">کلمه عبور</label>
                             {{ forms.password }}
                             <button type="submit" class="btn btn-primary rounded">ورود</button>
+                            <div class="pages d-flex justify-content-between flex-row-reverse mt-5">
+                                <span class="text-end">حساب کاربری ندارید؟ <a href="{% url 'register-page' %}" class="text-primary text-end d-inline">ثبت نام</a></span>
+                                <span><a href="{% url 'forgot-page' %}" class="text-primary text-start d-inline">فراموشی رمز عبور</a></span>
+                            </div>
                         </form>
-{#                        <button onclick="showpass('confirm-password')" class="show-confirm-password">#}
-{#                            <i class="fa-solid fa-eye-slash" id="confirm-password-icon"></i>#}
-{#                        </button>#}
-{#                        <button onclick="showpass('password')" class="show-password">#}
-{#                            <i class="fa-solid fa-eye-slash" id="password-icon"></i>#}
-{#                        </button>#}
+
+                        <button onclick="showpass('password')" class="show-password">
+                            <i class="fa-solid fa-eye-slash" id="password-icon"></i>
+                        </button>
                     </div>
                 </div>
                 

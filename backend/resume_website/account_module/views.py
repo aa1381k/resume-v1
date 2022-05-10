@@ -147,6 +147,7 @@ class Resetpassword(View):
         if user:
             context = {
                 'forms' : form,
+                'user' : user,
             }
             return render(request, 'resetpass.html', context)
         else:

@@ -254,6 +254,13 @@ function savedata(obj){
     if (recentpage == 'job-page'){
         job_page_ajax();
     }
+    if (recentpage == 'project-page'){
+        project_page_ajax();
+    }
+    if (recentpage == 'other-page'){
+        other_page_ajax();
+
+    }
     recentpage = obj;
 }
 
@@ -270,7 +277,7 @@ function personal_info_page_ajax(){
     var day = document.getElementsByName('day')[0].value;
     var month = document.getElementsByName('month')[0].value;
     var year = document.getElementsByName('year')[0].value;
-    var avatar = document.getElementsByClassName('profileimage')[0].value;
+    // var avatar = document.getElementsByClassName('upload-avatar')[0];
     var phone = document.getElementsByName('phone')[0].value;
     var email = document.getElementsByName('email')[0].value;
     var website = document.getElementsByName('website')[0].value;
@@ -278,6 +285,8 @@ function personal_info_page_ajax(){
     var resume_id = document.getElementById('resume_id').value;
 
     var social_media_count = document.getElementsByClassName('user-social-media-item').length;
+    
+
 
     for (var i=0; i<social_media_count; i++){
         var social_media_item = document.getElementById('social_'+i);
@@ -316,7 +325,6 @@ function personal_info_page_ajax(){
             day,
             month,
             year,
-            avatar,
             resume_id,
             phone,
             email,
@@ -325,9 +333,7 @@ function personal_info_page_ajax(){
             'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
         }
     }).then(res=> {
-        if (res == 'datasaved') {
-            alert('اطلاعات شما با موفقیت ثبت شد.');
-        } else {
+        if (res != 'datasaved') {
             alert('لطفا فیلد ها را پر کنید');
         }
     });
@@ -413,18 +419,18 @@ function skills_page_ajax(){
 }
 
 function education_page_ajax(){
-    education_items = document.getElementsByClassName('education-item').length;
+    var education_items = document.getElementsByClassName('education-item').length;
 
     for(var i=0; i<education_items; i++){
-        education_item = document.getElementById('education_'+i);
+        var education_item = document.getElementById('education_'+i);
 
-        education_title = education_item.getElementsByTagName('input')[1].value;
-        education_grade = education_item.getElementsByTagName('input')[0].value;
-        university_name = education_item.getElementsByTagName('input')[2].value;
-        start_date = education_item.getElementsByTagName('input')[3].value;
-        end_date = education_item.getElementsByTagName('input')[4].value;
-        text = education_item.getElementsByTagName('textarea')[0].value;
-        education_id = i;
+        var education_title = education_item.getElementsByTagName('input')[1].value;
+        var education_grade = education_item.getElementsByTagName('input')[0].value;
+        var university_name = education_item.getElementsByTagName('input')[2].value;
+        var start_date = education_item.getElementsByTagName('input')[3].value;
+        var end_date = education_item.getElementsByTagName('input')[4].value;
+        var text = education_item.getElementsByTagName('textarea')[0].value;
+        var education_id = i;
 
 
         if(education_title != ""){
@@ -447,18 +453,18 @@ function education_page_ajax(){
 }
 
 function job_page_ajax(){
-    job_items = document.getElementsByClassName('job-item').length;
+    var job_items = document.getElementsByClassName('job-item').length;
 
     for(var i=0; i<job_items; i++){
-        job_item = document.getElementById('job_'+i);
+        var job_item = document.getElementById('job_'+i);
 
-        job_title = job_item.getElementsByTagName('input')[1].value;
-        company_name = job_item.getElementsByTagName('input')[0].value;
-        city = job_item.getElementsByTagName('input')[2].value;
-        start_date = job_item.getElementsByTagName('input')[3].value;
-        end_date = job_item.getElementsByTagName('input')[4].value;
-        text = job_item.getElementsByTagName('textarea')[0].value;
-        job_id = i;
+        var job_title = job_item.getElementsByTagName('input')[1].value;
+        var company_name = job_item.getElementsByTagName('input')[0].value;
+        var city = job_item.getElementsByTagName('input')[2].value;
+        var start_date = job_item.getElementsByTagName('input')[3].value;
+        var end_date = job_item.getElementsByTagName('input')[4].value;
+        var text = job_item.getElementsByTagName('textarea')[0].value;
+        var job_id = i;
 
         if(job_title != ""){
             $.ajax({
@@ -478,4 +484,125 @@ function job_page_ajax(){
         }
 
     }
+}
+
+function project_page_ajax(){
+    var project_items = document.getElementsByClassName('project-item').length;
+
+    for(var i=0; i<project_items; i++){
+        var project_item = document.getElementById('project_'+i);
+
+        var project_title = project_item.getElementsByTagName('input')[1].value;
+        var employer = project_item.getElementsByTagName('input')[0].value;
+        var link = project_item.getElementsByTagName('input')[2].value;
+        var start_date = project_item.getElementsByTagName('input')[3].value;
+        var end_date = project_item.getElementsByTagName('input')[4].value;
+        var text = project_item.getElementsByTagName('textarea')[0].value;
+        var project_id = i;
+
+        if(project_title != ""){
+            $.ajax({
+            method:'POST',
+            url:'/create-resume/savedata/user_project/',
+            data:{
+                'project_title': project_title,
+                'employer': employer,
+                'link': link,
+                'start_date': start_date,
+                'end_date': end_date,
+                'text': text,
+                'project_id': project_id,
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            }
+        });
+        }
+
+    }
+}
+
+function other_page_ajax(){
+    var internship_items = document.getElementsByClassName('internship-item').length;
+    var introduced_items = document.getElementsByClassName('introduced-item').length;
+    var entertainment_items = document.getElementsByClassName('entertainment-item').length;
+
+    for(var i=0; i<internship_items; i++){
+        internship_item = document.getElementById('internship_'+i);
+
+        internship_title = internship_item.getElementsByTagName('input')[1].value;
+        employer = internship_item.getElementsByTagName('input')[0].value;
+        city = internship_item.getElementsByTagName('input')[2].value;
+        start_date = internship_item.getElementsByTagName('input')[3].value;
+        end_date = internship_item.getElementsByTagName('input')[4].value;
+        text = internship_item.getElementsByTagName('textarea')[0].value;
+        internship_id = i;
+
+        if(internship_title != ""){
+            $.ajax({
+            method:'POST',
+            url:'/create-resume/savedata/user_internship/',
+            data:{
+                'title': internship_title,
+                'employer': employer,
+                'city': city,
+                'start_date': start_date,
+                'end_date': end_date,
+                'text': text,
+                'internship_id': internship_id,
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            }
+        });
+        }
+
+    }
+
+    for(var i=0; i<introduced_items; i++){
+        var introduced_item = document.getElementById('introduced_'+i);
+
+        var name = introduced_item.getElementsByTagName('input')[1].value;
+        var company_name = introduced_item.getElementsByTagName('input')[0].value;
+        var email = introduced_item.getElementsByTagName('input')[2].value;
+        var phone = introduced_item.getElementsByTagName('input')[3].value;
+        var introduced_id = i;
+
+        if(name != ""){
+            $.ajax({
+            method:'POST',
+            url:'/create-resume/savedata/user_introduced/',
+            data:{
+                'name': name,
+                'company_name': company_name,
+                'email': email,
+                'phone': phone,
+                'introduced_id': introduced_id,
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            }
+        });
+        }
+
+    }
+
+    for(var i=0; i<entertainment_items; i++){
+        var entertainment_item = document.getElementById('entertainment_'+i);
+
+        var name = entertainment_item.getElementsByTagName('input')[0].value;
+        var entertainment_id = i;
+
+        if(name != ""){
+            $.ajax({
+            method:'POST',
+            url:'/create-resume/savedata/user_entertainment/',
+            data:{
+                'name': name,
+                'entertainment_id': entertainment_id,
+                'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            }
+        });
+        }
+
+    }
+}
+
+
+function submit_forms(){
+    document.getElementById('form1').submit();
 }

@@ -6,6 +6,10 @@ main {
     margin-top: 70px;
 }
 
+footer{
+    display: none;
+}
+
 .tab-btn {
     border: none;
     background-color: white;
@@ -252,6 +256,11 @@ select:focus {
     padding: 10px;
     border-radius: 10px;
     color: white;
+}
+
+.tab-body .row .block .btns .upload-avatar,
+.tab-body .row .block .btns .trash-avatar{
+    display: none;
 }
 
 .tab-body .row .block .btns .trash {
@@ -566,6 +575,11 @@ select:focus {
     text-align: center;
     border: 1px solid #dee2e6!important;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.save-data{
+    margin-top: 600px;
+    margin-left: 15px;
 }
 
 @media screen and (max-width:991px) {

@@ -10,6 +10,10 @@ urlpatterns = [
     path('savedata/user_certificate/', views.user_certificate, name='certificate'),
     path('savedata/user_education/', views.user_education_ajax, name='education'),
     path('savedata/user_job/', views.user_job_ajax, name='job'),
+    path('savedata/user_project/', views.user_projects_ajax, name='project'),
+    path('savedata/user_internship/', views.user_internship_ajax, name='internship'),
+    path('savedata/user_introduced/', views.user_introduced_ajax, name='introduced'),
+    path('savedata/user_entertainment/', views.user_entertainment_ajax, name='entertainment'),
 ]
 
 
