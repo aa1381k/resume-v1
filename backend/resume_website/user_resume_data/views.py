@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from . models import basic_info, user_socialmedia, user_langurage, user_skill, user_certificate_model,\
+from . models import basic_info_model, user_socialmedia_model, user_langurage_model, user_skill_model, user_certificate_model,\
     user_education_model, user_job_model, user_projects_model, user_internship_model, user_introduced_model,\
     user_entertainment_model
 from django.core.files.storage import FileSystemStorage
@@ -12,12 +12,12 @@ class create_resume(View):
     def get(self, request):
         if request.user.is_authenticated:
             user = request.user
-            resume = basic_info.objects.filter(user_base_info_id=user.id)
-            resume_data = basic_info.objects.filter(user_base_info_id=user.id, resume_id=0).first()
+            resume = basic_info_model.objects.filter(user_base_info_id=user.id)
+            resume_data = basic_info_model.objects.filter(user_base_info_id=user.id, resume_id=0).first()
             count_resume = resume.count()
-            user_langurages = user_langurage.objects.filter(user_id=user.id).order_by('lang_id')
-            user_skills = user_skill.objects.filter(user_id=user.id).order_by('skill_id')
-            user_socials = user_socialmedia.objects.filter(user_id=user.id).order_by('social_id')
+            user_langurages = user_langurage_model.objects.filter(user_id=user.id).order_by('lang_id')
+            user_skills = user_skill_model.objects.filter(user_id=user.id).order_by('skill_id')
+            user_socials = user_socialmedia_model.objects.filter(user_id=user.id).order_by('social_id')
             user_certificates = user_certificate_model.objects.filter(user_id=user.id).order_by('certificate_id')
             user_educations = user_education_model.objects.filter(user_id=user.id).order_by('education_id')
             user_jobs = user_job_model.objects.filter(user_id=user.id).order_by('job_id')
@@ -67,23 +67,27 @@ class create_resume(View):
             return redirect('login-page')
 
     def post(self, request):
-        upload = request.FILES['avatar']
-        fss = FileSystemStorage(location='upload/images/user-profile/', base_url='/medias/')
-        file = fss.save(upload.name, upload)
-        file_url = fss.url(file)
         user = request.user
+        base_info = basic_info_model.objects.filter(user_base_info_id=user.id).first()
 
-        file_url = file_url.replace('/medias/','images/user-profile/')
+        try:
+            upload = request.FILES['avatar']
+            fss = FileSystemStorage(location='upload/images/user-profile/', base_url='/medias/')
+            file = fss.save(upload.name, upload)
+            file_url = fss.url(file)
 
-        base_info = basic_info.objects.filter(user_base_info_id=user.id).first()
+            file_url = file_url.replace('/medias/','images/user-profile/')
 
-        if base_info != None or base_info != '':
-            base_info.avatar = file_url
+
+            if base_info != None or base_info != '':
+                base_info.avatar = file_url
+                base_info.save()
+
+            return redirect('create_resume-page')
+        except:
+            base_info.avatar.delete()
             base_info.save()
-
-        return redirect('create_resume-page')
-
-
+            return redirect('home-page')
 
 def user_base_info_ajax(request):
     if request.POST:
@@ -110,11 +114,11 @@ def user_base_info_ajax(request):
 
 
             if email != '' and first_name != '':
-                resume = basic_info.objects.filter(user_base_info_id=user.id, resume_id=resume_id).first()
+                resume = basic_info_model.objects.filter(user_base_info_id=user.id, resume_id=resume_id).first()
 
                 if resume == None or resume == '':
 
-                    new_info = basic_info(first_name=first_name, last_name=last_name, job_title=job_title,
+                    new_info = basic_info_model(first_name=first_name, last_name=last_name, job_title=job_title,
                                           country=country,
                                           state=state, city=city, military=military, married=relationship, sex=sex,
                                           birth_day=day,
@@ -157,11 +161,12 @@ def user_socialmedia_ajax(request):
             social_media_id = request.POST.get('social_media_id')
             social_media_number = request.POST.get('social_media_number')
 
-            if social_media_name != None or social_media_name != '':
-                social_media = user_socialmedia.objects.filter(social_media=social_media_name, user_id=user.id).first()
+
+            if social_media_id is not '':
+                social_media = user_socialmedia_model.objects.filter(social_media=social_media_name, user_id=user.id).first()
 
                 if social_media == None:
-                    new_user_socialmedia = user_socialmedia(social_media=social_media_name, username=social_media_id, user_id=user.id, social_id=social_media_number)
+                    new_user_socialmedia = user_socialmedia_model(social_media=social_media_name, username=social_media_id, user_id=user.id, social_id=social_media_number)
                     new_user_socialmedia.save()
 
                 else:
@@ -179,9 +184,9 @@ def user_langurages_ajax(request):
         lang_id = request.POST.get('lang_id')
         user = request.user
         if lang_name != '' or lang_name != None:
-            User_langurage = user_langurage.objects.filter(lang_id=lang_id, user_id=user.id).first()
+            User_langurage = user_langurage_model.objects.filter(lang_id=lang_id, user_id=user.id).first()
             if User_langurage == None:
-                new_langurage = user_langurage(langurage=lang_name, grade=lang_grade, user_id=user.id, lang_id=lang_id)
+                new_langurage = user_langurage_model(langurage=lang_name, grade=lang_grade, user_id=user.id, lang_id=lang_id)
                 new_langurage.save()
             else:
                 User_langurage.langurage = lang_name
@@ -199,9 +204,9 @@ def user_skills_ajax(request):
         user = request.user
 
         if skill_name != '' or skill_name != None:
-            skill = user_skill.objects.filter(skill_id=skill_id, user_id=user.id).first()
+            skill = user_skill_model.objects.filter(skill_id=skill_id, user_id=user.id).first()
             if skill == None:
-                new_user_skill = user_skill(skill=skill_name, grade=skill_grade, user_id=user.id, skill_id=skill_id)
+                new_user_skill = user_skill_model(skill=skill_name, grade=skill_grade, user_id=user.id, skill_id=skill_id)
                 new_user_skill.save()
 
             else:
@@ -415,12 +420,15 @@ def user_entertainment_ajax(request):
 
     return HttpResponse('ok')
 
-# def upload_avatar(request):
-#     if request.POST:
-#         if request.is_authenticated:
-#             user_id = request.user.id
-#
-#             user_base_info = basic_info.objects.filter(user_id=user_id).first()
-#
-#             if user_base_info != None or user_base_info != '':
-#                 pass
+def resume_remove_item(request):
+    if request.POST:
+        item_name = request.POST.get('item_name')
+        item_id = request.POST.get('id')
+
+        if item_name is not '':
+
+            if item_name == 'user-social-media':
+                social_media = user_socialmedia_model.objects.filter(social_id__iexact=item_id).first()
+                social_media.delete()
+
+        return HttpResponse('ok')

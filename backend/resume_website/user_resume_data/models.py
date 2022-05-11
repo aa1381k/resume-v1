@@ -60,7 +60,7 @@ MONTH_CHOICES = (
     ("12", "اسفند"),
 )
 
-class basic_info(models.Model):
+class basic_info_model(models.Model):
     first_name = models.CharField(max_length=50, null=True, blank=True)
     last_name = models.CharField(max_length=50, null=True, blank=True)
     job_title = models.CharField(max_length=50, null=True, blank=True)
@@ -81,15 +81,13 @@ class basic_info(models.Model):
     resume_id = models.CharField(max_length=200, null=True, default='')
     is_active = models.BooleanField(default=False)
     user_base_info = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
-    social_media = models.ForeignKey("user_socialmedia", on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
+    social_media = models.ForeignKey("user_socialmedia_model", on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
     # langurage = models.ForeignKey("user_langurage", on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
 
-
-
-class user_socialmedia(models.Model):
+class user_socialmedia_model(models.Model):
     social_media = models.CharField(max_length=200, null=True, blank=True)
     username = models.CharField(max_length=200, null=True, blank=True)
     is_active = models.BooleanField(default=True)
@@ -100,8 +98,7 @@ class user_socialmedia(models.Model):
     def __str__(self):
         return self.social_media
 
-
-class user_langurage(models.Model):
+class user_langurage_model(models.Model):
     langurage = models.CharField(max_length=200)
     grade = models.CharField(max_length=200, null=True, blank=True)
     is_active = models.BooleanField(default=True)
@@ -111,7 +108,7 @@ class user_langurage(models.Model):
     def __str__(self):
         return self.langurage
 
-class user_skill(models.Model):
+class user_skill_model(models.Model):
     skill = models.CharField(max_length=200, null=True, blank=True)
     grade = models.CharField(max_length=200, null=True, blank=True)
     is_active = models.BooleanField(default=True)
@@ -120,7 +117,6 @@ class user_skill(models.Model):
 
     def __str__(self):
         return self.skill
-
 
 class user_certificate_model(models.Model):
     certificate_title = models.CharField(max_length=200, null=True, blank=True)
@@ -133,7 +129,6 @@ class user_certificate_model(models.Model):
 
     def __str__(self):
         return self.certificate_title
-
 
 class user_education_model(models.Model):
     education_title = models.CharField(max_length=200, null=True, blank=True)
@@ -163,7 +158,6 @@ class user_job_model(models.Model):
     def __str__(self):
         return self.job_title
 
-
 class user_projects_model(models.Model):
     title = models.CharField(max_length=200, null=True, blank=True)
     employer = models.CharField(max_length=200, null=True, blank=True)
@@ -176,7 +170,6 @@ class user_projects_model(models.Model):
 
     def __str__(self):
         return self.title
-
 
 class user_internship_model(models.Model):
     title = models.CharField(max_length=200, null=True, blank=True)
@@ -191,7 +184,6 @@ class user_internship_model(models.Model):
     def __str__(self):
         return self.title
 
-
 class user_introduced_model(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True)
     company_name = models.CharField(max_length=200, null=True, blank=True)
@@ -202,7 +194,6 @@ class user_introduced_model(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class user_entertainment_model(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True)

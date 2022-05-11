@@ -49,8 +49,8 @@
 
                             <div class="user-base-info col-md-7 mb-3 d-flex align-items-center">
                                 <div class="user-image col-md-3">
-                                    {% if user.avatar %}
-                                        <img src="{{ user.avatar.url }}" alt="">
+                                    {% if user_avatar %}
+                                        <img src="{{ user_avatar.url }}" alt="">
                                         
                                     {% else %}
                                         <img src="/static/images/icons8-male-user-96.png" alt="">

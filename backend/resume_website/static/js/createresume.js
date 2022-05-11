@@ -9,6 +9,7 @@ function changeicon(test, index) {
 
 function addsocial() {
     var index = document.getElementsByClassName('user-social-media-item')
+    console.log(index, 'this is index');
     index = index.length;
     var social = `<div class="move-btns"> <span><button class="btn" onclick="moveupelement(this, 'user-social-media','user-social-media-item','social')"><i class="fa-solid fa-angle-up"></i></button></span> <span><button class="btn" onclick="movedownelement(this, 'user-social-media','user-social-media-item','social')"><i class="fa-solid fa-angle-down"></i></button></span> <span><button class="btn" onclick="removeitem(this,'user-social-media')"><i class="fa-solid fa-xmark"></i></button></span> </div> <div class="item-inputs col-md-12"> <span><i class="fa fa-globe"></i></span> <div class="social-media-body col-md-12"> <select name="" id="" onchange="changeicon(this,${index})"> <option value="">نام شبکه اجتماعی</option> <option value="linkedin">لینکداین</option> <option value="twitter">توییتر</option> <option value="facebook">فیسبوک</option> <option value="instagram">اینستاگرام</option> <option value="telegram">تلگرام</option> <option value="github">گیت‌هاب</option> <option value="dribbble">دریبل</option> <option value="whatsapp">واتساپ</option> <option value="skype">اسکایپ</option> <option value="youtube">یوتیوب</option> <option value="stack-overflow">StackOverflow</option> </select> <div class="social-media-id">  <input type="text" name="" id="" placeholder="ID"> </div> </div> </div>`;
     var elem = document.createElement('div');
@@ -141,12 +142,27 @@ function removeitem(id, itemname) {
     var index = document.getElementsByClassName(`${itemname}-item`);
     id = id.parentElement.parentElement.parentElement.id;
     index = index.length;
-    console.log(index)
-    console.log(id)
-    if (index > 1) {
-        var elem = document.getElementById(id);
-        elem.remove()
+    var elem = document.getElementById(id);
+    elem.remove();
+
+    if (index <= 1){
+        if (itemname == 'user-social-media'){
+            addsocial()
+        }
     }
+
+    var item_id = id .match(/(\d+)/)[0];
+
+    $.ajax({
+    method:'POST',
+    url:'/create-resume/savedata/resume_remove_item/',
+    data:{
+        'item_name': itemname,
+        'id': item_id,
+        'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+    }
+});
+
 }
 
 function movedownelement(id, parr, list, sec) {

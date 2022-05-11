@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Slider, home_page_settings, about_us_model
+from user_resume_data.models import basic_info_model
 # Create your views here.
 from django.views import View
 
@@ -26,6 +27,23 @@ class about_page(View):
         return render(request, 'about_page.html', context)
 
 def site_header_component(request):
+
+    if request.user.is_authenticated:
+
+        user = request.user
+        user_info = basic_info_model.objects.filter(user_base_info_id=user.id).first()
+        if user_info != None:
+
+            avatar = user_info.avatar
+
+            context = {
+                'user_avatar' : avatar
+            }
+        else:
+            context = {}
+
+        return render(request, 'shared/header_partial.html', context)
+
     return render(request, 'shared/header_partial.html')
 
 

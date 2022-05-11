@@ -7,14 +7,20 @@ from django.views import View
 from .forms import Register_form, Login_form, Forgotpassword_form, Resetpassword_form
 from .models import User_model
 from utils.send_email import send_email
+from user_resume_data.models import basic_info_model
 
 
 class profile_view(View):
     def get(self, request):
         if request.user.is_authenticated:
+
             user = request.user
+            avatar = basic_info_model.objects.filter(user_base_info_id=user.id).first().avatar
+
             context = {
-                'user': user
+                'user': user,
+                'user_avatar': avatar
+
             }
             return render(request, 'profile.html', context)
         return redirect('home-page')

@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from .forms import contact_us_form
 from .models import contact_us_model
-from user_resume_data.models import basic_info
+from user_resume_data.models import basic_info_model
 
 
 class contact_page(View):
