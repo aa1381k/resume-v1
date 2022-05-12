@@ -9,3 +9,12 @@ $(document).ready(function () {
     });
     $('#total').text(autoplaySlider.getTotalSlideCount());
 });
+
+//
+// $(document).ready(function() {
+//     $("#autoplay").lightSlider({
+//         auto:true,
+//         loop:true,
+//         pauseOnHover: true,
+//     });
+// });

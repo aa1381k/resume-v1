@@ -147,7 +147,43 @@ function removeitem(id, itemname) {
 
     if (index <= 1){
         if (itemname == 'user-social-media'){
-            addsocial()
+            addsocial();
+        }
+
+        if (itemname == 'lang'){
+            addlang();
+        }
+
+        if (itemname == 'skill'){
+            addskill();
+        }
+
+        if (itemname == 'certificate'){
+            addcertification();
+        }
+
+        if (itemname == 'education'){
+            addeducation();
+        }
+
+        if (itemname == 'job'){
+            addjob();
+        }
+
+        if (itemname == 'project'){
+            addproject();
+        }
+
+        if (itemname == 'internship'){
+            addinternship();
+        }
+
+        if (itemname == 'introduced'){
+            addintroduced();
+        }
+
+        if (itemname == 'entertainment'){
+            addentertainment();
         }
     }
 
@@ -617,7 +653,6 @@ function other_page_ajax(){
 
     }
 }
-
 
 function submit_forms(){
     document.getElementById('form1').submit();

@@ -431,4 +431,40 @@ def resume_remove_item(request):
                 social_media = user_socialmedia_model.objects.filter(social_id__iexact=item_id).first()
                 social_media.delete()
 
+            if item_name == 'lang':
+                langurage = user_langurage_model.objects.filter(lang_id__iexact=item_id).first()
+                langurage.delete()
+
+            if item_name == 'skill':
+                skill = user_skill_model.objects.filter(skill_id__iexact=item_id).first()
+                skill.delete()
+
+            if item_name == 'certificate':
+                certificate = user_certificate_model.objects.filter(certificate_id__iexact=item_id).first()
+                certificate.delete()
+
+            if item_name == 'education':
+                education = user_education_model.objects.filter(education_id__iexact=item_id).first()
+                education.delete()
+
+            if item_name == 'job':
+                job = user_job_model.objects.filter(job_id__iexact=item_id).first()
+                job.delete()
+
+            if item_name == 'project':
+                project = user_projects_model.objects.filter(project_id__iexact=item_id).first()
+                project.delete()
+
+            if item_name == 'internship':
+                internship = user_internship_model.objects.filter(internship_id__iexact=item_id).first()
+                internship.delete()
+
+            if item_name == 'introduced':
+                introduced = user_introduced_model.objects.filter(introduced_id__iexact=item_id).first()
+                introduced.delete()
+
+            if item_name == 'entertainment':
+                entertainment = user_entertainment_model.objects.filter(entertainment_id__iexact=item_id).first()
+                entertainment.delete()
+
         return HttpResponse('ok')

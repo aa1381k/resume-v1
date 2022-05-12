@@ -862,6 +862,7 @@ create resume
 
                                 <div id="lang_{{ user_langurage.lang_id }}" name="lang_{{ user_langurage.lang_id }}"
                                     class="col-md-12 lang-item border rounded-2 mb-3">
+
                                     <div class="move-btns">
                                         <span><button class="btn"
                                                 onclick="moveupelement(this, 'lang-items','lang-item','lang')"><i
@@ -902,16 +903,16 @@ create resume
                                 {% else %}
 
                                 <div id="lang_0" name="lang_0" class="col-md-12 lang-item border rounded-2 mb-3">
-                                    <div class="move-btns">
-                                        <span><button class="btn"
-                                                onclick="moveupelement(this, 'lang-items','lang-item','lang')"><i
-                                                    class="fa-solid fa-angle-up"></i></button></span>
-                                        <span><button class="btn"
-                                                onclick="movedownelement(this, 'lang-items','lang-item','lang')"><i
-                                                    class="fa-solid fa-angle-down"></i></button></span>
-                                        <span><button class="btn" onclick="removeitem(this,'lang')"><i
-                                                    class="fa-solid fa-xmark"></i></button></span>
-                                    </div>
+{#                                    <div class="move-btns">#}
+{#                                        <span><button class="btn"#}
+{#                                                onclick="moveupelement(this, 'lang-items','lang-item','lang')"><i#}
+{#                                                    class="fa-solid fa-angle-up"></i></button></span>#}
+{#                                        <span><button class="btn"#}
+{#                                                onclick="movedownelement(this, 'lang-items','lang-item','lang')"><i#}
+{#                                                    class="fa-solid fa-angle-down"></i></button></span>#}
+{#                                        <span><button class="btn" onclick="removeitem(this,'lang')"><i#}
+{#                                                    class="fa-solid fa-xmark"></i></button></span>#}
+{#                                    </div>#}
 
                                     <div class="item-inputs">
 
@@ -961,7 +962,7 @@ create resume
                                         <span><button class="btn"
                                                 onclick="movedownelement(this,'skill-items', 'skill-item', 'skill')"><i
                                                     class="fa-solid fa-angle-down"></i></button></span>
-                                        <span><button class="btn" onclick="removeitem(this)"><i
+                                        <span><button class="btn" onclick="removeitem(this, 'skill')"><i
                                                     class="fa-solid fa-xmark"></i></button></span>
                                     </div>
 
@@ -1005,7 +1006,7 @@ create resume
                                         <span><button class="btn"
                                                 onclick="movedownelement(this,'skill-items', 'skill-item', 'skill')"><i
                                                     class="fa-solid fa-angle-down"></i></button></span>
-                                        <span><button class="btn" onclick="removeitem(this)"><i
+                                        <span><button class="btn" onclick="removeitem(this, 'skill')"><i
                                                     class="fa-solid fa-xmark"></i></button></span>
                                     </div>
 
@@ -1897,7 +1898,7 @@ create resume
     </div>
 
     <div class="save-data fixed-top">
-        <button class="btn btn-outline-primary rounded" onclick="submit_forms()">ذخیره و ادامه</button>
+        <button class="btn btn-outline-primary save-btn " onclick="submit_forms()">ذخیره و ادامه</button>
     </div>
 </main>
 {% endblock %}
