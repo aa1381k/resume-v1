@@ -209,10 +209,19 @@ select:focus {
 
 }
 
+.tab-body .row .row3 .srm .military-service{
+    width: 50% !important;
+}
+
+.tab-body .row .row3 .srm .relationship,
+.tab-body .row .row3 .srm .sex{
+    width: 22% !important;
+}
+
 .tab-body .row .row3 .srm {
     display: flex;
     justify-content: space-around;
-    width: 40%;
+    width: 50%;
     margin-right: 10px;
 }
 
@@ -223,7 +232,7 @@ select:focus {
 
 
 .tab-body .row .row3 .srm .inner-srm {
-    width: 32%;
+    /*width: 32%;*/
     height: 100%;
     display: block;
     margin: auto;
@@ -358,25 +367,6 @@ select:focus {
     display: none;
 }
 
-.skills-page .lang-items {
-    display: grid;
-    grid-template-columns: repeat(2, 49%);
-    direction: rtl;
-    justify-content: space-around;
-}
-
-.skills-page .lang-item {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row-reverse;
-    padding: 20px;
-    direction: ltr;
-}
-
-.skills-page .lang-item select {
-    margin-left: 10px;
-}
-
 .move-btns{
     height: 10px;
     margin-top: -35px;
@@ -401,48 +391,75 @@ select:focus {
     color: #0d6efd;
 }
 
-.lang-item .item-inputs {
+.skills-page .lang-items,
+.skills-page .skill-items{
+    display: grid;
+    grid-template-columns: repeat(1, 70%);
+    direction: rtl;
+    justify-content: space-around;
+}
+
+.skills-page .lang-item,
+.skills-page .skill-items .skill-item{
     display: flex;
     justify-content: space-between;
-    flex-direction: row-reverse;
-}
-
-.lang-item .item-inputs input,
-.lang-item .item-inputs select {
-    width: 90%;
-}
-
-.skills-page .skill-items .skill-item {
-    margin-bottom: 20px;
-    display: flex;
     flex-direction: column;
+    padding: 20px;
     direction: ltr;
 }
 
-.skill-item .item-inputs {
+.skills-page .lang-item select {
+    margin-left: 10px;
+}
+
+.lang-item .item-inputs,
+.skill-item .item-inputs{
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between !important;
     flex-direction: row-reverse;
-    width: 80%;
-    /* direction: rtl; */
+    margin-top: 20px;
 }
 
+.lang-item .item-inputs input,
+.lang-item .item-inputs select,
 .skill-item .item-inputs input,
-.skill-item .item-inputs select {
-    width: 80%;
+.skill-item .item-inputs select{
+    width: 95%;
 }
 
-.skills-page .skill-items {
-    display: grid;
-    grid-template-columns: repeat(2, 49%);
-    justify-content: space-around;
-    direction: rtl;
-}
+/*.skills-page .skill-items .skill-item {*/
+/*    margin-bottom: 20px;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    direction: ltr;*/
+/*}*/
 
-.skills-page .skill-item .move-btns{
+.skills-page .skill-item .move-btns, .lang-item .move-btns{
     justify-content: end;
     margin-bottom: 20px;
 }
+
+
+/*.skill-item .item-inputs {*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    flex-direction: row-reverse;*/
+/*    width: 80%;*/
+/*}*/
+
+/*.skill-item .item-inputs input,*/
+/*.skill-item .item-inputs select {*/
+/*    width: 80%;*/
+/*}*/
+
+/*.skills-page .skill-items {*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(2, 49%);*/
+/*    justify-content: space-around;*/
+/*    direction: rtl;*/
+/*}*/
+
 
 .certification-item .item-inputs .item-data-inputs{
     display: flex;
@@ -579,8 +596,13 @@ select:focus {
 }
 
 .save-data{
+    width: 200px;
     margin-top: 600px;
     margin-left: 15px;
+}
+
+.save-btn{
+    border-radius: 20%;
 }
 
 @media screen and (max-width:991px) {

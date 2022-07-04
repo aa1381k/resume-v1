@@ -1,5 +1,6 @@
 from django.db import models
 from account_module.models import User_model
+from account_module.models import user_work_samples
 # Create your models here.
 
 MILITARY_CHOICES = (
@@ -82,6 +83,7 @@ class basic_info_model(models.Model):
     is_active = models.BooleanField(default=False)
     user_base_info = models.ForeignKey(User_model, on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
     social_media = models.ForeignKey("user_socialmedia_model", on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
+    # user_worksamples = models.ForeignKey("user_work_samples", on_delete=models.CASCADE, default='', blank=True, null=True)
     # langurage = models.ForeignKey("user_langurage", on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
 
     def __str__(self):

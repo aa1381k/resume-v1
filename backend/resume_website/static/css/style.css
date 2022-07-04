@@ -448,6 +448,29 @@ footer {
     width: 100px;
 }
 
+.demo {
+    width: 450px;
+}
+
+.demo ul {
+    list-style: none outside none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.demo li {
+    display: block;
+    float: left;
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+.demo img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
 @media screen and (max-width:991px) {
     .intro {
         flex-direction: column-reverse;

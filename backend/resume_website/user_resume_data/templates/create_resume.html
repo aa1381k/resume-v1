@@ -182,14 +182,14 @@ create resume
 
                                                 <i class="fa-solid fa-upload upload"></i>
 
-                                                    <input type="file" name="avatar" class="upload-avatar" onchange="readURL(this)" id="">
+                                                    <input type="file" name="avatar" class="upload-avatar" onchange="readURL(this,'profileimage')" id="">
 
                                             </form>
                                         </label>
 
                                         <label class="btn btn-default btn-file" id="removeimage"
                                             style="display: inline;">
-                                            <i class="fa-solid fa-trash trash"></i> <input type="button" class="trash-avatar" onclick="removeprofileimage()" required="">
+                                            <i class="fa-solid fa-trash trash"></i> <input type="button" class="trash-avatar" onclick="removeprofileimage('profileimage')" required="">
                                         </label>
 
                                     </div>

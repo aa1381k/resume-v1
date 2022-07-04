@@ -1,3 +1,4 @@
+from Scripts.bottle import post
 from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 
@@ -7,7 +8,11 @@ from django.views import View
 from .forms import Register_form, Login_form, Forgotpassword_form, Resetpassword_form
 from .models import User_model
 from utils.send_email import send_email
-from user_resume_data.models import basic_info_model
+from user_resume_data.models import basic_info_model, user_skill_model, user_job_model, user_education_model,\
+user_projects_model
+from django.core.files.storage import FileSystemStorage
+from account_module.models import user_work_samples, work_samples_image
+
 
 
 class profile_view(View):
@@ -15,15 +20,66 @@ class profile_view(View):
         if request.user.is_authenticated:
 
             user = request.user
-            avatar = basic_info_model.objects.filter(user_base_info_id=user.id).first().avatar
+            user_account = basic_info_model.objects.filter(user_base_info_id=user.id).first()
+            user_full_name = user_account.first_name + " " + user_account.last_name
+            user_skills = user_skill_model.objects.filter(user_id=user.id)
+            user_jobs = user_job_model.objects.filter(user_id=user.id)
+            user_education = user_education_model.objects.filter(user_id=user.id)
+            user_project = user_projects_model.objects.filter(user_id=user.id)
+            # theme_color = User_model.objects.filter(basic_info_model__resume_id=user.id).first()
+            # print(theme_color)
+
 
             context = {
-                'user': user,
-                'user_avatar': avatar
-
+                'user': user_account,
+                'user_full_name': user_full_name,
+                'user_skills': user_skills,
+                'user_jobs': user_jobs,
+                'user_education': user_education,
+                'user_projects': user_project,
             }
             return render(request, 'profile.html', context)
         return redirect('home-page')
+
+class add_work_samples(View):
+    def post(self, request):
+        user = request.user
+        post_title = request.POST.get('post_title')
+        post_id = request.POST.get('post_id')
+        post_description = request.POST.get('post_description')
+        post_link = request.POST.get('post_link')
+
+        work_samples = user_work_samples.objects.filter(post_id=post_id, user_id=user.id).first()
+        user_work_samples_lenght = len(user_work_samples.objects.filter(user_id=user.id))
+
+        if work_samples == None:
+            if user_work_samples_lenght == 0:
+                user_work_samples_lenght = 0
+            else:
+                user_work_samples_lenght += 1
+            new_work_samples_post = user_work_samples(user_id=user.id, post_id=user_work_samples_lenght,
+                                                      post_title=post_title, post_description=post_description,
+                                                      post_link=post_link)
+            new_work_samples_post.save()
+
+            uploads = request.FILES.getlist('post_image')
+
+            for upload in uploads:
+                fss = FileSystemStorage(location='upload/images/work-samples/', base_url='/medias/')
+                file = fss.save(upload.name, upload)
+                file_url = fss.url(file)
+
+                file_url = file_url.replace('/medias/', 'images/work-samples/')
+
+                new_work_samples_post_image = work_samples_image(user_id=user.id, post_id=user_work_samples_lenght,
+                                                                 post_image=file_url)
+                new_work_samples_post_image.save()
+
+
+            return redirect("profile-page")
+
+
+
 
 
 

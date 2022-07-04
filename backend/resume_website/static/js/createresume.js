@@ -506,10 +506,10 @@ function education_page_ajax(){
 
 function job_page_ajax(){
     var job_items = document.getElementsByClassName('job-item').length;
-
+    console.log(job_items);
     for(var i=0; i<job_items; i++){
         var job_item = document.getElementById('job_'+i);
-
+        console.log(job_item);
         var job_title = job_item.getElementsByTagName('input')[1].value;
         var company_name = job_item.getElementsByTagName('input')[0].value;
         var city = job_item.getElementsByTagName('input')[2].value;

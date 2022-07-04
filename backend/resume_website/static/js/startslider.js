@@ -1,20 +1,7 @@
-$(document).ready(function () {
-    var autoplaySlider = $('#autoplay').lightSlider({
-        auto: true,
-        loop: true,
-        pauseOnHover: true,
-        onBeforeSlide: function (el) {
-            $('#current').text(el.getCurrentSlideCount());
-        }
-    });
-    $('#total').text(autoplaySlider.getTotalSlideCount());
+$('#lightSlider').lightSlider({
+    item: 2,
+    loop: true,
+    slideMargin: 0,
+    thumbItem: 9,
+    auto: true,
 });
-
-//
-// $(document).ready(function() {
-//     $("#autoplay").lightSlider({
-//         auto:true,
-//         loop:true,
-//         pauseOnHover: true,
-//     });
-// });

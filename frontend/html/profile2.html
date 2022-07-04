@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/profile2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>profile</title>
@@ -90,117 +92,208 @@
     </header>
 
     <main>
-        <div class="container">
+        <div class="container col-md-12">
 
             <div class="main-profile col-md-12 d-flex flex-column align-items-center">
 
-                <div class="main-profile-header d-flex flex-column align-items-center col-md-12">
+                <div class="main-profile-header w-100 d-flex flex-column align-items-center col-md-12">
 
-                    <div class="bg-image col-md-12"></div>
+                    <div class="bg-image col-md-12">
+                    </div>
 
                     <div class="user-info-bg col-md-11">
-                        <div class="gradiant-bg col-md-12">
+
+                        <div class="gradiant-bg d-flex justify-content-center col-md-12">
 
                             <div class="user-base-info col-md-7 mb-3 d-flex align-items-center">
                                 <div class="user-image col-md-3">
-                                    <img src="../images/user1.jpg" alt="">
+
+                                    <img src="../images/profile-pic1.png" alt="">
+
                                 </div>
 
-                                <div class="user-name col-md-5">
-                                    <h2>Ali Abdoli Kasmaei</h2>
-                                    <span class="text-muted">co founder apple</span>
+                                <div class="user-name col-md-7">
+                                    <h2>ALI ABDOLI</h2>
+                                    <span class="text-muted">python programmer</span>
+                                    <br>
                                 </div>
+
                             </div>
 
-                            <div class="profile-tabs col-md-5">
-                                <ul class="d-flex justify-content-between">
-                                    <li><button class="btn active">درباره من</button></li>
-                                    <li><button class="btn">نمونه کار ها</button></li>
-                                    <li><button class="btn">ارتباط با من</button></li>
+
+                            <div class="user-social col-md-12">
+                                <ul class="d-flex justify-content-end">
+                                    <li class="ms-4"><a href="#"><i class="fa-brands fa-telegram"></i></a></li>
+                                    <li><a href="#" class="ms-4"><i class="fa-brands fa-instagram"></i></a></li>
+                                    <li><a href="#" class="ms-4"><i class="fa-brands fa-youtube"></i></a></li>
                                 </ul>
                             </div>
 
+                            <div class="profile-tabs col-md-12">
+                                <ul class="d-flex justify-content-between col-md-7">
+                                    <li><button class="btn active" id="about-me" onclick="changetab(this)">رزومه
+                                            من</button></li>
+                                    <li><button class="btn" id="work-samples" onclick="changetab(this)">نمونه کار
+                                            ها</button></li>
+                                    <li><button class="btn" id="contact-me" onclick="changetab(this)">ارتباط با
+                                            من</button></li>
+                                </ul>
+                            </div>
+
+
+
+
                         </div>
+
                     </div>
 
 
                 </div>
 
-                <div class="main-profile-body col-md-11 mt-4">
+                <div class="main-profile-body col-md-11 mt-1">
 
-                    <div class="about-me col-md-12 border p-4 bg-white">
-                        <p class="sectionname">درباره من</p>
-                        <p class="col-md-11 m-4">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
-                            از طراحان گرافیک
-                            است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
-                            فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای
-                            زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با
-                            نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو
-                            در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه
-                            راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و
-                            جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                        </p>
-                    </div>
+                    <div class="about-me col-md-12 p-1">
 
-                    <div class="skills col-md-12 border p-4 bg-white mt-4">
-                        <p class="sectionname">مهارت ها</p>
 
-                        <div class="skill-items col-md-12">
+                        <div class="section col-md-12 p-1 mb-3">
+                            <p class="sectionname col-md-12 p-4 bg-white radius shadow">درباره من</p>
+                        </div>
 
-                            <div class="skill-item">
-                                <span>Lorem</span>
-                                <div class="percentage" role="progressbar" aria-valuenow="65" aria-valuemin="0"
-                                    aria-valuemax="100" style="--value:65"></div>
-                            </div>
+                        <div class="col-md-12 d-flex justify-content-center p-1">
 
-                            <div class="skill-item">
-                                <span>Lorem</span>
-                                <div class="percentage" role="progressbar" aria-valuenow="65" aria-valuemin="0"
-                                    aria-valuemax="100" style="--value:65"></div>
-                            </div>
+                            <div class="about-me-body shadow radius bg-white col-md-10">
+                                <div class="about-header col-md-12 p-1">
 
-                            <div class="skill-item">
-                                <span>Lorem</span>
-                                <div class="percentage" role="progressbar" aria-valuenow="65" aria-valuemin="0"
-                                    aria-valuemax="100" style="--value:65"></div>
-                            </div>
 
-                            <div class="skill-item">
-                                <span>Lorem</span>
-                                <div class="percentage" role="progressbar" aria-valuenow="65" aria-valuemin="0"
-                                    aria-valuemax="100" style="--value:65"></div>
-                            </div>
+                                    <ul class="info-items col-md-12">
 
-                            <div class="skill-item">
-                                <span>Lorem</span>
-                                <div class="percentage" role="progressbar" aria-valuenow="65" aria-valuemin="0"
-                                    aria-valuemax="100" style="--value:90"></div>
-                            </div>
+                                        <li class="info-item col-md-12">
+                                            <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+                                            <div class="text"><a
+                                                    href="mailto:a.abdoli.k81@gmail.com">a.abdoli.k81@gmail.com</a>
+                                            </div>
+                                        </li>
 
-                            <div class="skill-item">
-                                <span>Lorem</span>
-                                <div class="percentage" role="progressbar" aria-valuenow="65" aria-valuemin="0"
-                                    aria-valuemax="100" style="--value:65"></div>
-                            </div>
+                                        <li class="info-item col-md-12">
+                                            <div class="icon"><i class="fa-solid fa-globe"></i></div>
+                                            <div class="text"><a href="">www.aliabdoli.com</a></div>
+                                        </li>
 
-                            <div class="skill-item">
-                                <span>Lorem</span>
-                                <div class="percentage" role="progressbar" aria-valuenow="65" aria-valuemin="0"
-                                    aria-valuemax="100" style="--value:65"></div>
+                                        <li class="info-item col-md-12">
+                                            <div class="icon"><i class="fa-solid fa-baby-carriage"></i></div>
+                                            <div class="text">19</div>
+                                        </li>
+
+                                    </ul>
+
+
+                                </div>
+                                <div class="text">
+                                    <div class="sectionheader col-md-12">
+                                        <p class="col-md-12"><i class="fa-solid fa-circle-info"
+                                                style="color: var(--theme); margin-top: 13px;"></i> درباره من</p>
+                                    </div>
+                                    <p class="col-md-12 p-5 desc">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
+                                        چاپ و با استفاده
+                                        از طراحان گرافیک
+                                        است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای
+                                        شرایط
+                                        فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                                    </p>
+                                </div>
                             </div>
 
                         </div>
 
                     </div>
 
-                    <div class="job-exp col-md-12 border p-4 bg-white mt-4">
-                        <div class="sectionname">سوابق شغلی</div>
+                    <div class="skills col-md-12 p-1 mt-4">
 
-                        <div class="job-exp-items">
+                        <div class="section col-md-12 p-1">
+                            <p class="sectionname border col-md-12 p-4 bg-white">مهارت ها</p>
+                        </div>
 
-                            <div class="job-exp-item">
+                        <div class="skill-items col-md-12 p-2">
 
-                                <div class="job-position">
+                            <div class="skill-item shadow">
+                                <span>Python</span>
+                                <div class="progress col-md-10">
+                                    <div class="progress-bar progress-bar-animated progress-bar-striped"
+                                        style="width: 80%;"> 25%
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skill-item shadow">
+                                <span>C#</span>
+                                <div class="progress col-md-10">
+                                    <div class="progress-bar progress-bar-animated progress-bar-striped"
+                                        style="width: 40%;"> 25%
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skill-item shadow">
+                                <span>Java Script</span>
+                                <div class="progress col-md-10">
+                                    <div class="progress-bar progress-bar-animated progress-bar-striped"
+                                        style="width: 30%;"> 25%
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skill-item shadow">
+                                <span>Html</span>
+                                <div class="progress col-md-10">
+                                    <div class="progress-bar progress-bar-animated progress-bar-striped"
+                                        style="width: 90%;"> 25%
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skill-item shadow">
+                                <span>CSS</span>
+                                <div class="progress col-md-10">
+                                    <div class="progress-bar progress-bar-animated progress-bar-striped"
+                                        style="width: 60%;"> 25%
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skill-item shadow">
+                                <span>Bootstrap</span>
+                                <div class="progress col-md-10">
+                                    <div class="progress-bar progress-bar-animated progress-bar-striped"
+                                        style="width: 40%;"> 25%
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skill-item shadow">
+                                <span>React</span>
+                                <div class="progress col-md-10">
+                                    <div class="progress-bar progress-bar-animated progress-bar-striped"
+                                        style="width: 50%;"> 25%
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="job-exp col-md-12 p-1 mt-4">
+
+                        <div class="section col-md-12 p-1">
+                            <div class="sectionname col-md-12 border bg-white p-4">سوابق شغلی</div>
+                        </div>
+
+                        <div class="job-exp-items p-5">
+
+                            <div class="job-exp-item shadow">
+
+                                <div class="job-position text-center mb-4 ">
                                     <h6>لورم ایپسوم</h6>
                                 </div>
 
@@ -214,7 +307,57 @@
                                     <span class="date-end">2020</span>
                                 </div>
 
-                                <div class="job-desc w-50">
+                                <div class="job-desc mt-3 w-100">
+                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                                        طراحان گرافیک است.
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                                        طراحان گرافیک است.
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div class="job-exp-item shadow">
+
+                                <div class="job-position text-center mb-4">
+                                    <h6>لورم ایپسوم</h6>
+                                </div>
+
+                                <div class="company-name">
+                                    <span>لورم ایپسوم</span>
+                                </div>
+
+                                <div class="job-date">
+                                    <span class="date-start">2018</span>
+                                    -
+                                    <span class="date-end">2020</span>
+                                </div>
+
+                                <div class="job-desc mt-3 w-100">
+                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                                        طراحان گرافیک است.
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                                        طراحان گرافیک است.
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div class="job-exp-item shadow">
+
+                                <div class="job-position text-center mb-4">
+                                    <h6>لورم ایپسوم</h6>
+                                </div>
+
+                                <div class="company-name">
+                                    <span>لورم ایپسوم</span>
+                                </div>
+
+                                <div class="job-date">
+                                    <span class="date-start">2018</span>
+                                    -
+                                    <span class="date-end">2020</span>
+                                </div>
+
+                                <div class="job-desc mt-3 w-100">
                                     <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
                                         طراحان گرافیک است.
                                         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
@@ -224,55 +367,68 @@
 
                             </div>
 
-                            <div class="job-exp-item">
 
-                                <div class="job-position">
+
+                        </div>
+
+                    </div>
+
+                    <div class="education col-md-12 p-1 mt-4">
+
+                        <div class="section col-md-12 p-1">
+                            <p class="sectionname bg-white border p-4 col-md-12">سوابق تحصیلی</p>
+                        </div>
+
+                        <div class="education-items p-5">
+
+                            <div class="education-item shadow">
+
+                                <div class="education-name text-center mb-4">
                                     <h6>لورم ایپسوم</h6>
                                 </div>
 
-                                <div class="company-name">
-                                    <span>لورم ایپسوم</span>
+                                <div class="education-grade">
+                                    <p>لورم ایپسوم لورم ایپسوم</p>
                                 </div>
 
-                                <div class="job-date">
+                                <div class="education-date">
                                     <span class="date-start">2018</span>
                                     -
-                                    <span class="date-end">2020</span>
-                                </div>
-
-                                <div class="job-desc w-50">
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                        طراحان گرافیک است.
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                        طراحان گرافیک است.
-                                    </p>
+                                    <span class="date-end">2021</span>
                                 </div>
 
                             </div>
+                            <div class="education-item shadow">
 
-
-                            <div class="job-exp-item">
-
-                                <div class="job-position">
+                                <div class="education-name text-center mb-4">
                                     <h6>لورم ایپسوم</h6>
                                 </div>
 
-                                <div class="company-name">
-                                    <span>لورم ایپسوم</span>
+                                <div class="education-grade">
+                                    <p>لورم ایپسوم لورم ایپسوم</p>
                                 </div>
 
-                                <div class="job-date">
+                                <div class="education-date">
                                     <span class="date-start">2018</span>
                                     -
-                                    <span class="date-end">2020</span>
+                                    <span class="date-end">2021</span>
                                 </div>
 
-                                <div class="job-desc w-50">
-                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                        طراحان گرافیک است.
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                        طراحان گرافیک است.
-                                    </p>
+                            </div>
+                            <div class="education-item shadow">
+
+                                <div class="education-name text-center mb-4">
+                                    <h6>لورم ایپسوم</h6>
+                                </div>
+
+                                <div class="education-grade">
+                                    <p>لورم ایپسوم لورم ایپسوم</p>
+                                </div>
+
+                                <div class="education-date">
+                                    <span class="date-start">2018</span>
+                                    -
+                                    <span class="date-end">2021</span>
                                 </div>
 
                             </div>
@@ -281,74 +437,305 @@
 
                     </div>
 
-                    <div class="education col-md-12 border p-4 bg-white mt-4">
-                        <p class="sectionname">سوابق تحصیلی</p>
+                    <div class="projects col-md-12 p-1 mt-4">
+                        <div class="section col-md-12 p-1">
+                            <p class="sectionname bg-white border p-4 col-md-12">پروژه ها</p>
+                        </div>
 
-                        <div class="education-items">
+                        <div class="projects-items p-5">
 
-                            <div class="education-item">
+                            <div class="project-item shadow">
 
-                                <div class="education-name">
+                                <div class="project-name text-center mb-4">
                                     <h6>لورم ایپسوم</h6>
                                 </div>
 
-                                <div class="education-grade">
-                                    <p>لورم ایپسوم لورم ایپسوم</p>
-                                </div>
-
-                                <div class="education-date">
+                                <div class="project-date mt-3">
                                     <span class="date-start">2018</span>
                                     -
                                     <span class="date-end">2021</span>
                                 </div>
 
+                                <div class="project-desc mt-4">
+
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab non corrupti, nobis
+                                        reiciendis, illo excepturi voluptatibus deserunt quo praesentium tempore
+                                        voluptatum deleniti pariatur doloribus, dolorem sed distinctio doloremque
+                                        officia eligendi.</p>
+
+                                </div>
+
                             </div>
 
-                            <div class="education-item">
 
-                                <div class="education-name">
+                            <div class="project-item shadow">
+
+                                <div class="project-name text-center mb-4">
                                     <h6>لورم ایپسوم</h6>
                                 </div>
 
-                                <div class="education-grade">
-                                    <p>لورم ایپسوم لورم ایپسوم</p>
-                                </div>
-
-                                <div class="education-date">
+                                <div class="project-date mt-3">
                                     <span class="date-start">2018</span>
                                     -
                                     <span class="date-end">2021</span>
                                 </div>
 
+                                <div class="project-desc mt-4">
+
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab non corrupti, nobis
+                                        reiciendis, illo excepturi voluptatibus deserunt quo praesentium tempore
+                                        voluptatum deleniti pariatur doloribus, dolorem sed distinctio doloremque
+                                        officia eligendi.</p>
+
+                                </div>
+
                             </div>
 
-                            <div class="education-item">
 
-                                <div class="education-name">
+                            <div class="project-item shadow">
+
+                                <div class="project-name text-center mb-4">
                                     <h6>لورم ایپسوم</h6>
                                 </div>
 
-                                <div class="education-grade">
-                                    <p>لورم ایپسوم لورم ایپسوم</p>
-                                </div>
-
-                                <div class="education-date">
+                                <div class="project-date mt-3">
                                     <span class="date-start">2018</span>
                                     -
                                     <span class="date-end">2021</span>
                                 </div>
 
+                                <div class="project-desc mt-4">
+
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab non corrupti, nobis
+                                        reiciendis, illo excepturi voluptatibus deserunt quo praesentium tempore
+                                        voluptatum deleniti pariatur doloribus, dolorem sed distinctio doloremque
+                                        officia eligendi.</p>
+
+                                </div>
+
                             </div>
+
+
+                            <div class="project-item shadow">
+
+                                <div class="project-name text-center mb-4">
+                                    <h6>لورم ایپسوم</h6>
+                                </div>
+
+                                <div class="project-date mt-3">
+                                    <span class="date-start">2018</span>
+                                    -
+                                    <span class="date-end">2021</span>
+                                </div>
+
+                                <div class="project-desc mt-4">
+
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab non corrupti, nobis
+                                        reiciendis, illo excepturi voluptatibus deserunt quo praesentium tempore
+                                        voluptatum deleniti pariatur doloribus, dolorem sed distinctio doloremque
+                                        officia eligendi.</p>
+
+                                </div>
+
+                            </div>
+
 
                         </div>
 
                     </div>
 
                 </div>
+
+                <div class="work-samples-body col-md-11">
+
+                    <div class="section col-md-12 p-1">
+                        <p class="sectionname bg-white border radius shadow p-4 col-md-12">نمونه کارها</p>
+                    </div>
+
+                    <div class="work-samples-items p-5">
+
+                        <button class="work-samples-item border-0" onclick="showpost(this)">
+
+                            <div class="work-samples-item-img">
+                                <img src="../images/about-us-bg.jpg" alt="">
+                            </div>
+
+                            <div class="work-samples-item-desc hidden">
+                                <div class="work-samples-item-desc-title">
+                                    <h6>پروژه1</h6>
+                                </div>
+
+                                <div class="desc">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, magni?
+                                    </p>
+                                </div>
+
+                                <div class="links">
+
+                                    <a href="">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        <span>لینک پروژه</span>
+                                    </a>
+
+                                    <a href="">
+                                        <i class="fa-solid fa-share-nodes"></i>
+                                        <span>اشتراک گذاری</span>
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </button>
+
+                        <button class="work-samples-item border-0" onclick="showpost(this)">
+
+                            <div class="work-samples-item-img">
+                                <img src="../images/352ccb6e685b4dd5324168d6cfe21bd4.jpg" alt="">
+                            </div>
+
+                            <div class="work-samples-item-desc hidden">
+                                <div class="work-samples-item-desc-title">
+                                    <h6>پروژه 2</h6>
+                                </div>
+
+                                <div class="desc">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, magni?
+                                    </p>
+                                </div>
+
+                                <div class="links">
+
+                                    <a href="">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        <span>لینک پروژه</span>
+                                    </a>
+
+                                    <a href="">
+                                        <i class="fa-solid fa-share-nodes"></i>
+                                        <span>اشتراک گذاری</span>
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </button>
+
+                        <button class="work-samples-item border-0" onclick="showpost(this)">
+
+                            <div class="work-samples-item-img">
+                                <img src="../images/resume.png" alt="">
+                            </div>
+
+                            <div class="work-samples-item-desc hidden">
+                                <div class="work-samples-item-desc-title">
+                                    <h6>لورم ایپسوم</h6>
+                                </div>
+
+                                <div class="desc">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, magni?
+                                    </p>
+                                </div>
+
+                                <div class="links">
+
+                                    <a href="https://instagram.com/">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        <span>لینک پروژه</span>
+                                    </a>
+
+                                    <a href="">
+                                        <i class="fa-solid fa-share-nodes"></i>
+                                        <span>اشتراک گذاری</span>
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </button>
+
+                        <button class="work-samples-item border-0" onclick="showpost(this)">
+
+                            <div class="work-samples-item-img">
+                                <img src="../images/Premium Resume Template Free PSD.jpg" alt="">
+                            </div>
+
+                            <div class="work-samples-item-desc hidden">
+                                <div class="work-samples-item-desc-title">
+                                    <h6>پروژه 3</h6>
+                                </div>
+
+                                <div class="desc">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, magni?
+                                    </p>
+                                </div>
+
+                                <div class="links">
+
+                                    <a href="https://google.com/">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        <span>لینک پروژه</span>
+                                    </a>
+
+                                    <a href="">
+                                        <i class="fa-solid fa-share-nodes"></i>
+                                        <span>اشتراک گذاری</span>
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </button>
+
+
+                    </div>
+
+                    <div class="show-samples-post col-md-12">
+                        <div class="modal col-md-12" id="myModal">
+                            <div class="modal-dialog col-md-12">
+                                <div class="modal-content col-md-12">
+
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body d-flex col-md-12">
+                                        <img src="../images/blog1.jpeg" class="col-md-6 radius " id="modal-image" alt=""
+                                            srcset="">
+                                        <div class="samples-post-info d-flex flex-column justify-content-around p-4 col-md-6">
+                                            <h6 class="text-center col-md-12" id="modal-title">لورم ایپسوم</h6>
+                                            <p class="modal-desc shadow radius col-md-12"></p>
+                                            <div
+                                                class="samples-post-info-links border col-md-12 bg-white radius shadow p-5 justify-content-between d-flex">
+                                                <a href="" id="modal-project-link">
+                                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                                    <span>لینک پروژه</span>
+                                                </a>
+                                                <a href="">
+                                                    <i class="fa-solid fa-share-nodes"></i>
+                                                    <span>اشتراک گذاری</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="contact-body col-md-11">
+                    <div class="section col-md-12 p-1">
+                        <p class="sectionname bg-white border radius shadow p-4 col-md-12">تماس با من</p>
+                    </div>
+                </div>
+
 
             </div>
-
-        </div>
     </main>
 
 
@@ -418,6 +805,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+    <script src="../js/profile2.js"></script>
 </body>
 
 </html>
