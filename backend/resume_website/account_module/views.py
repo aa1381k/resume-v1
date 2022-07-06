@@ -26,6 +26,8 @@ class profile_view(View):
             user_jobs = user_job_model.objects.filter(user_id=user.id)
             user_education = user_education_model.objects.filter(user_id=user.id)
             user_project = user_projects_model.objects.filter(user_id=user.id)
+            user_work_sample = user_work_samples.objects.filter(user_id=user.id)
+            user_work_sample_image = work_samples_image.objects.filter(user_id=user.id)
             # theme_color = User_model.objects.filter(basic_info_model__resume_id=user.id).first()
             # print(theme_color)
 
@@ -37,6 +39,8 @@ class profile_view(View):
                 'user_jobs': user_jobs,
                 'user_education': user_education,
                 'user_projects': user_project,
+                'user_work_samples': user_work_sample,
+                'user_work_sample_images': user_work_sample_image,
             }
             return render(request, 'profile.html', context)
         return redirect('home-page')

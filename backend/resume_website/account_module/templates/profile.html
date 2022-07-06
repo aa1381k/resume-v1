@@ -68,18 +68,6 @@
             }
         {% endif %}
 
-{#        {% if user.theme_color %}#}
-{#            :root{#}
-{#               /* --theme: #0d6efd; */#}
-{#                --theme: {{ user.theme_color }} !important;#}
-{#            }#}
-{#        {% else %}#}
-{#            :root{#}
-{#               --theme: #0d6efd;#}
-{#            }#}
-{#        {% endif %}#}
-
-    /*jssor slider loading skin spin css*/
         .jssorl-009-spin img {
             animation-name: jssorl-009-spin;
             animation-duration: 1.6s;
@@ -234,7 +222,7 @@
                             <p class="sectionname border shadow col-md-12 p-4 bg-white">مهارت ها</p>
                         </div>
 
-                        <div class="skill-items col-md-12 p-2">
+                        <div class="skill-items p-2 col-md-12">
 
                             {% if user_skills %}
                                 {% for skill in user_skills %}
@@ -260,7 +248,7 @@
                             <div class="sectionname col-md-12 border shadow bg-white p-4">سوابق شغلی</div>
                         </div>
 
-                        <div class="job-exp-items p-5">
+                        <div class="job-exp-items">
 
                             {% if user_jobs %}
                                 {% for user_job in user_jobs %}
@@ -301,7 +289,7 @@
                             <p class="sectionname bg-white shadow border p-4 col-md-12">سوابق تحصیلی</p>
                         </div>
 
-                        <div class="education-items p-5">
+                        <div class="education-items">
 
                             {% if user_education %}
                                 {% for education in user_education %}
@@ -337,7 +325,7 @@
                             <p class="sectionname bg-white shadow border p-4 col-md-12">پروژه ها</p>
                         </div>
 
-                        <div class="projects-items p-5">
+                        <div class="projects-items">
 
                             {% if user_projects %}
                                 {% for user_project in user_projects %}
@@ -376,40 +364,45 @@
                         <p class="sectionname bg-white border radius shadow p-4 col-md-12">نمونه کارها</p>
                     </div>
 
-                    <div class="work-samples-items p-5">
+                    <div class="work-samples-items p-1">
 
-                        <button class="work-samples-item border-0" onclick="showpost(this)">
+                        {% for user_work_sample in  user_work_samples %}
 
-                            <div class="work-samples-item-img">
-                                <img src="../images/about-us-bg.jpg" alt="">
-                            </div>
 
+                        <div class="work-samples-item-img">
+                            <img src="/medias/{{ user_work_sample_images|thumbnail_image:user_work_sample.post_id }}" alt="">
                             <div class="work-samples-item-desc hidden">
-                                <div class="work-samples-item-desc-title">
-                                    <h6>پروژه1</h6>
-                                </div>
+                            <div class="work-samples-item-desc-title">
+                                <h6>{{ user_work_sample.post_title }}</h6>
+                            </div>
 
-                                <div class="desc">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, magni?</p>
-                                </div>
+                            <div class="desc">
+                                <p>{{ user_work_sample.post_description }}</p>
+                            </div>
 
-                                <div class="links">
+                            <div class="links">
 
-                                    <a href="">
-                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                        <span>لینک پروژه</span>
-                                    </a>
+                                <a href="{{ user_work_sample.post_link }}">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    <span>لینک پروژه</span>
+                                </a>
 
-                                    <a href="">
-                                        <i class="fa-solid fa-share-nodes"></i>
-                                        <span>اشتراک گذاری</span>
-                                    </a>
-
-                                </div>
+                                <a href="">
+                                    <i class="fa-solid fa-share-nodes"></i>
+                                    <span>اشتراک گذاری</span>
+                                </a>
 
                             </div>
 
-                        </button>
+                            </div>
+                        </div>
+
+
+
+
+
+                        {% endfor %}
+
 
                         <button class="add_worksample" onclick="addpost()">
                             <i class="fa fa-plus mx-2"></i>
@@ -464,25 +457,33 @@
                                         <div class="add-samples-post-info p-4 col-md-12">
 
                                             <div class="post-image col-md-6">
-                                                <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:500px;height:450px;overflow:hidden;visibility:hidden;">
 
-                                                    <div data-u="slides" class="images-section" style="cursor:default;position:relative;top:0px;left:0px;width:500px;height:450px;overflow:hidden;">
+                                                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                                      <div class="carousel-inner">
+                                                            <div class="carousel-item active">
+                                                              <img class="d-block w-100" src="/static/images/new-post.gif" alt="First slide">
+                                                            </div>
 
-                                                        <div class="images col-md-3">
-                                                            <img class="post-image-show" src="/static/images/new-post.gif">
-                                                        </div>
+                                                      </div>
 
+                                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                            <span class="sr-only">Previous</span>
+                                                        </a>
+                                                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                            <span class="sr-only">Next</span>
+                                                        </a>
                                                     </div>
 
-                                                </div>
 
                                                 <div class="image-btns col-md-12">
                                                     <button class="btn btn-danger col-md-4 custom-file-remove" style="display: none" onclick="removeimage('post-image-show')">
-                                                        <i class="fa-solid fa-trash"></i>  Remove Image
+                                                        <i class="fa-solid fa-trash"></i>  Remove
                                                     </button>
 
                                                     <label for="upload_image" class="custom-file-upload btn btn-primary col-md-4">
-                                                        <i class="fa fa-cloud-upload"></i>  Upload Image
+                                                        <i class="fa fa-cloud-upload"></i>  Upload
                                                     </label>
                                                 </div>
 

@@ -65,28 +65,58 @@ function removeimage(loc) {
 
 function readURL(input,loc) {
     console.log(input.files);
-    if (input.files && input.files[0]) {
+   for (var i=0; i<input.files.length; i++) {
         var reader = new FileReader();
-        var image_tag_count = document.getElementsByClassName('images')[0];
-        image_tag_count = image_tag_count.getElementsByTagName('img').length;
+    // var image_tag_count = document.getElementsByClassName('images')[0];
+    // image_tag_count = image_tag_count.getElementsByTagName('img').length;
 
         reader.onload = function (e) {
 
+            var new_image = document.createElement('img');
+            new_image.src = e.target.result;
+            new_image.className = 'd-block w-100';
+            var image = document.createElement('div');
+            image.className = 'carousel-item';
+            image.appendChild(new_image);
+            var image_section = document.getElementsByClassName("carousel-inner")[0];
+            image_section.appendChild(image);
 
-            if (image_tag_count==1){
-                var new_image = document.createElement('img');
-                new_image.src = e.target.result;
-                new_image.attributes()
-                document.getElementsByClassName('images')[0].appendChild(new_image);
-            }
 
             document.getElementsByClassName('custom-file-remove')[0].style.display = 'block';
 
         };
 
-        for (var i=0;i<image_tag_count;i++)
-        {
-            reader.readAsDataURL(input.files[i]);
-        }
-    }
+
+        reader.readAsDataURL(input.files[i]);
+   }
+
+
 }
+
+
+// function readURL(input,loc) {
+//     console.log(input.files);
+//     var reader = new FileReader();
+//     // var image_tag_count = document.getElementsByClassName('images')[0];
+//     // image_tag_count = image_tag_count.getElementsByTagName('img').length;
+//
+//     for (var i = 0; i < input.files.length; i++) {
+//
+//
+//         var new_image = document.createElement('img');
+//         console.log(input.files[i]);
+//         new_image.src = input.files[i].name;
+//         new_image.className = 'd-block w-100';
+//         var image = document.createElement('div');
+//         image.className = 'carousel-item';
+//         image.appendChild(new_image);
+//         var image_section = document.getElementsByClassName("carousel-inner")[0];
+//         image_section.appendChild(image);
+//
+//
+//         document.getElementsByClassName('custom-file-remove')[0].style.display = 'block';
+//
+//     }
+//
+//
+// }
