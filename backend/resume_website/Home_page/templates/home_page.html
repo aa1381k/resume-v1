@@ -1,12 +1,19 @@
 {% extends 'shared/base.html' %}
-
+{% load jalali_tags %}
 {% block title %}
 home page
 {% endblock %}
 
 {% block refrence %}
-    <link rel="stylesheet" href="/static/css/homepage.css">
-    <script src="/static/js/jssor.slider-28.1.0.min.js" type="text/javascript"></script>
+    <meta charset="utf-8">   <title>لندریک  - قالب چندمنظوره ای مدرن html</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Bootstrap 5 Landing Page Template">
+    <meta name="keywords" content="Saas, Software, multi-uses, HTML, Clean, Modern">
+    <meta name="author" content="JafarAbbasi">
+    <meta name="email" content="jabasi26@gmail.com">
+    <meta name="website" content="https://www.rtl-theme.com/author/tn_plugin/">
+    <meta name="Version" content="v3.2.1">
+
     <script type="text/javascript">
         window.jssor_1_slider_init = function() {
 
@@ -79,209 +86,451 @@ home page
         .jssora051:hover {opacity:.8;}
         .jssora051.jssora051dn {opacity:.5;}
         .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
+        main{
+            direction: rtl;
+        }
+        .bg-half-170{
+            margin-top: 180px;
+            margin-right: 18px;
+        }
     </style>
 {% endblock %}
 
 
 {% block content %}
-<main class="home-page">
+{#<main class="home-page">#}
+{##}
+{#<div class="container">#}
+{##}
+{#    <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1290 320">#}
+{#        <path fill="#0099ff" fill-opacity=".6"#}
+{#            d="M0,32L80,37.3C160,43,320,53,480,101.3C640,149,800,235,960,277.3C1120,320,1280,320,1360,320L1440,320L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z">#}
+{#        </path>#}
+{#    </svg> -->#}
+{##}
+{#    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-200 -10 1440 320">#}
+{#        <path fill="#0099ff" fill-opacity=".7"#}
+{#            d="M0,288L48,256C96,224,192,160,288,133.3C384,107,480,117,576,149.3C672,181,768,235,864,224C960,213,1056,139,1152,106.7C1248,75,1344,85,1392,90.7L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">#}
+{#        </path>#}
+{#    </svg>#}
+{##}
+{#    <div class="row">#}
+{#        <div class="intro">#}
+{##}
+{#            <div class="intro-content">#}
+{#                <div class="title">#}
+{#                    رزومه ساز علی#}
+{#                </div>#}
+{##}
+{#                <div class="desc mt-3">#}
+{#                    با رزومه ساز علی در کمتر از 10 دقیقه رزومه خود را بسازید#}
+{#                </div>#}
+{##}
+{#                {% if user.is_authenticated %}#}
+{#                    <a href="{% url 'create_resume-page' %}" class="btn btn-primary mt-5 p-2 w-75">ساخت رزومه</a>#}
+{##}
+{#                {% else %}#}
+{#                    <a href="{% url 'login-page' %}" class="btn btn-primary mt-5 p-2 w-75">ساخت رزومه</a>#}
+{#                {% endif %}#}
+{##}
+{#            </div>#}
+{##}
+{#            <div class="intro-image ">#}
+{#                <img src="{{ home_settings.home_page_image.url }}" alt="">#}
+{#            </div>#}
+{##}
+{##}
+{#        </div>#}
+{##}
+{#        <div class="status {% if not home_settings.show_counter  %} deactive {% endif %}">#}
+{#            <p>1000 تعداد رزومه های ساخته شده امروز <i class="spinner-grow spinner-grow-sm text-primary"></i>#}
+{#            </p>#}
+{#        </div>#}
+{##}
+{#        <div class="scroll-down">#}
+{#            <a href="#resume-sec"><img src="/static/images/scroll-down-1-2.gif" alt=""></a>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div class="row resume-row row-title" id="resume-sec">#}
+{##}
+{#        <h2>قالب های رزومه</h2>#}
+{##}
+{#        <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:1200px;height:550px;overflow:hidden;visibility:hidden;">#}
+{#        <!-- Loading Screen -->#}
+{#        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:500px;text-align:center;background-color:rgba(0,0,0,0.7);">#}
+{#            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/spin.svg" />#}
+{#        </div>#}
+{#        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:1200px;height:550px;overflow:hidden;">#}
+{##}
+{#            <div class="resume-samples">#}
+{#                <img data-u="image" src="/static/images/resume1.png" />#}
+{#            </div>#}
+{#            <div class="resume-samples">#}
+{#                <img data-u="image" src="/static/images/resume2.png" />#}
+{#            </div>#}
+{#            <div class="resume-samples">#}
+{#                <img data-u="image" src="/static/images/resume3.jpg" />#}
+{#            </div>#}
+{#            <div class="resume-samples">#}
+{#                <img class="shadow" data-u="image" src="/static/images/resume4.jpg" />#}
+{#            </div><div class="resume-samples">#}
+{#                <img class="shadow" data-u="image" src="/static/images/resume4.jpg" />#}
+{#            </div><div class="resume-samples">#}
+{#                <img class="shadow" data-u="image" src="/static/images/resume4.jpg" />#}
+{#            </div>#}
+{##}
+{#        </div>#}
+{#        </div>#}
+{##}
+{##}
+{#        <div class="more-resume-btn">#}
+{#            <a href="" class="btn btn-outline-primary col-md-3">نمایش همه رزومه ها</a>#}
+{#        </div>#}
+{##}
+{#    </div>#}
+{##}
+{#    <div class="row mb-5">#}
+{#        <p class="row-title">چرا باید از رزومه ساز علی استفاده کنم؟</p>#}
+{#        <div class="cards">#}
+{##}
+{#            <div class="card-item border">#}
+{#                <div class="card-item-icon">#}
+{#                    <i class="fa fa-qrcode" aria-hidden="true"></i>#}
+{#                </div>#}
+{#                <h5>QR تعریف</h5>#}
+{#                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, in!</p>#}
+{#            </div>#}
+{##}
+{#            <div class="card-item border">#}
+{#                <div class="card-item-icon">#}
+{#                    <i class="fa-solid fa-language"></i>#}
+{#                </div>#}
+{#                <h5>قابلیت چند زبانه</h5>#}
+{#                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, in!</p>#}
+{#            </div>#}
+{##}
+{#            <div class="card-item border">#}
+{#                <div class="card-item-icon">#}
+{#                    <i class="fa-solid fa-share-nodes"></i>#}
+{#                </div>#}
+{#                <h5>اشتراک گذاری آنلاین</h5>#}
+{#                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, in!</p>#}
+{#            </div>#}
+{##}
+{#            <div class="card-item border">#}
+{#                <div class="card-item-icon">#}
+{#                    <i class="fa-solid fa-briefcase"></i>#}
+{#                </div>#}
+{#                <h5>اشتراک گذاری نمونه کار</h5>#}
+{#                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, in!</p>#}
+{#            </div>#}
+{##}
+{##}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div class="row create-resume">#}
+{#        <p>!همین الان قالب دلخواهتو انتخاب کن و تو کمتر از 10 دقیقه رزومتو بساز</p>#}
+{#        <a href="" class="btn btn-primary">ساخت رزومه</a>#}
+{#    </div>#}
+{##}
+{#    <div class="row blog-row row-title">#}
+{#        <h2>بلاگ ها</h2>#}
+{#        <div class="blogs-list">#}
+{##}
+{#            <a href="" class="blog-item border border-1 shadow">#}
+{##}
+{#                <div class="blog-image">#}
+{#                    <img src="/static/images/blog1.jpeg" alt="">#}
+{#                </div>#}
+{##}
+{#                <div class="blog-body">#}
+{#                    <h5>لورم ایپسوم متن</h5>#}
+{#                </div>#}
+{##}
+{#            </a>#}
+{#            <a href="" class="blog-item border border-1 shadow">#}
+{##}
+{#                <div class="blog-image">#}
+{#                    <img src="/static/images/blog2.jpeg" alt="">#}
+{#                </div>#}
+{##}
+{#                <div class="blog-body">#}
+{#                    <h5>لورم ایپسوم متن</h5>#}
+{#                </div>#}
+{##}
+{#            </a>#}
+{##}
+{#            <a href="" class="blog-item border border-1 shadow">#}
+{##}
+{#                <div class="blog-image">#}
+{#                    <img src="/static/images/blog1.jpeg" alt="">#}
+{#                </div>#}
+{##}
+{#                <div class="blog-body">#}
+{#                    <h5>لورم ایپسوم متن</h5>#}
+{#                </div>#}
+{##}
+{#            </a>#}
+{#            <a href="" class="blog-item border border-1 shadow">#}
+{##}
+{#                <div class="blog-image">#}
+{#                    <img src="/static/images/blog2.jpeg" alt="">#}
+{#                </div>#}
+{##}
+{#                <div class="blog-body">#}
+{#                    <h5>لورم ایپسوم متن</h5>#}
+{#                </div>#}
+{##}
+{#            </a>#}
+{##}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#</div>#}
+{##}
+{##}
+{#</main>#}
+    <main>
 
-<div class="container">
+   <section class="bg-half-170 pb-0 bg-light d-table w-100 overflow-hidden" style="background: url('/static/images/shape2.png') top; z-index: 0;">
+        <div class="container">
+            <div class="row align-items-center mt-5 mt-sm-0">
+                <div class="col-md-6">
+                    <div class="title-heading text-center text-md-start">
+                        <h4 class="heading mb-3 mt-2">مستقل خود را رشد دهید <span class="fw-bold"> کسب و کار برای شماست </span></h4>
 
-    <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1290 320">
-        <path fill="#0099ff" fill-opacity=".6"
-            d="M0,32L80,37.3C160,43,320,53,480,101.3C640,149,800,235,960,277.3C1120,320,1280,320,1360,320L1440,320L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z">
-        </path>
-    </svg> -->
+                        <div class="mt-4">
+                            <a href="javascript:void(0)" class="btn btn-primary">ثبت نام کنید و رشد را شروع کنید</a>
+                        </div>
+                    </div>
+                </div><!--end col-->
 
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-200 -10 1440 320">
-        <path fill="#0099ff" fill-opacity=".7"
-            d="M0,288L48,256C96,224,192,160,288,133.3C384,107,480,117,576,149.3C672,181,768,235,864,224C960,213,1056,139,1152,106.7C1248,75,1344,85,1392,90.7L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
-        </path>
-    </svg>
-
-    <div class="row">
-        <div class="intro">
-
-            <div class="intro-content">
-                <div class="title">
-                    رزومه ساز علی
+                <div class="col-md-6 mt-4 pt-2 mt-sm-0 pt-sm-0">
+                    <div class="freelance-hero position-relative">
+                        <div class="bg-shape position-relative">
+                            <img src="/static/images/resume3.jpg" style="width:500px ; scale:.9; margin-top: -30px;" class="img-fluid mover mx-auto d-block " alt="">
+                        </div>
+                    </div>
                 </div>
+            </div><!--end row-->
+        </div><!--end container-->
+    </section>
 
-                <div class="desc mt-3">
-                    با رزومه ساز علی در کمتر از 10 دقیقه رزومه خود را بسازید
-                </div>
+    <section class="section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-12 order-1 order-lg-2">
+                    <div class="section-title text-center text-lg-start mb-4 mb-lg-0 pb-2 pb-lg-0">
+                        <span class="badge rounded-pill bg-soft-primary">خدمات </span>
+                        <h4 class="title mt-3 mb-4">بیشتر بساز ، کمتر مدیریت کن</h4>
+                        <p class="text-muted para-desc mx-auto ms-lg-auto mb-0">شروع به کار با <span class="text-primary fw-bold">لنـدریـک </span> که می تواند هر آنچه را که شما برای ایجاد آگاهی ، ایجاد ترافیک ، اتصال به آن نیاز دارید فراهم کند.</p>
+                        <div class="mt-4 d-lg-block d-none">
+                            <a href="javascript:void(0)" class="btn btn-primary">نمایش بیشتر</a>
+                        </div>
+                    </div>
+                </div><!--end col-->
 
-                {% if user.is_authenticated %}
-                    <a href="{% url 'create_resume-page' %}" class="btn btn-primary mt-5 p-2 w-75">ساخت رزومه</a>
+                <div class="col-lg-7 col-12 order-2 order-lg-1">
+                    <div class="row me-lg-5">
+                        <div class="col-md-6 col-12">
+                            <div class="row">
+                                <div class="col-12 mt-4 mt-lg-0 pt-2 pt-lg-0">
+                                    <div class="card border-0 text-center features feature-clean course-feature p-4 overflow-hidden shadow">
+                                        <div class="icons text-primary text-center mx-auto">
+                                            <i class="uil uil-rocket d-block rounded-pill h3 mb-0"></i>
+                                        </div>
+                                        <div class="card-body p-0 mt-4">
+                                            <a href="javascript:void(0)" class="title h5 text-dark">هدفمند <br> با سرنخ های با کیفیت بالا </a>
+                                            <p class="text-muted mt-2 mb-0">این یک واقعیت ثابت شده طولانی است که یک خواننده در طرح آن.</p>
+                                            <i class="uil uil-rocket text-primary full-img"></i>
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
 
-                {% else %}
-                    <a href="{% url 'login-page' %}" class="btn btn-primary mt-5 p-2 w-75">ساخت رزومه</a>
-                {% endif %}
+                                <div class="col-12 mt-4 pt-2">
+                                    <div class="card border-0 text-center features feature-clean course-feature p-4 overflow-hidden shadow">
+                                        <div class="icons text-primary text-center mx-auto">
+                                            <i class="uil uil-airplay d-block rounded-pill h3 mb-0"></i>
+                                        </div>
+                                        <div class="card-body p-0 mt-4">
+                                            <a href="javascript:void(0)" class="title h5 text-dark">ارسال ، برنامه ریزی و تعویق ایمیل ها</a>
+                                            <p class="text-muted mt-2 mb-0">این یک واقعیت ثابت شده طولانی است که یک خواننده در طرح آن.</p>
+                                            <i class="uil uil-airplay text-primary full-img"></i>
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end Row-->
+                        </div><!--end col-->
 
-            </div>
+                        <div class="col-md-6 col-12">
+                            <div class="row pt-lg-4 mt-lg-4">
+                                <div class="col-12 mt-4 pt-2">
+                                    <div class="card border-0 text-center features feature-clean course-feature p-4 overflow-hidden shadow">
+                                        <div class="icons text-primary text-center mx-auto">
+                                            <i class="uil uil-envelope d-block rounded-pill h3 mb-0"></i>
+                                        </div>
+                                        <div class="card-body p-0 mt-4">
+                                            <a href="javascript:void(0)" class="title h5 text-dark">کتابخانه بهترین الگوهای ایمیل</a>
+                                            <p class="text-muted mt-2 mb-0">این یک واقعیت ثابت شده طولانی است که یک خواننده در طرح آن.</p>
+                                            <i class="uil uil-envelope text-primary full-img"></i>
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
 
-            <div class="intro-image ">
-                <img src="{{ home_settings.home_page_image.url }}" alt="">
-            </div>
+                                <div class="col-12 mt-4 pt-2">
+                                    <div class="card border-0 text-center features feature-clean course-feature p-4 overflow-hidden shadow">
+                                        <div class="icons text-primary text-center mx-auto">
+                                            <i class="uil uil-bell d-block rounded-pill h3 mb-0"></i>
+                                        </div>
+                                        <div class="card-body p-0 mt-4">
+                                            <a href="javascript:void(0)" class="title h5 text-dark">یادآوری های پیگیری خودکار</a>
+                                            <p class="text-muted mt-2 mb-0">این یک واقعیت ثابت شده طولانی است که یک خواننده در طرح آن.</p>
+                                            <i class="uil uil-bell text-primary full-img"></i>
+                                        </div>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end Row-->
+                        </div><!--end col-->
+                    </div><!--end Row-->
+
+                    <div class="mt-4 d-lg-none d-block text-center">
+                        <a href="javascript:void(0)" class="btn btn-primary">نمایش بیشتر</a>
+                    </div>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
+    </section>
+
+    <section class="section overflow-hidden">
+
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-5">
+                    <div class="app-feature-shape-left position-relative">
+                        <div class="text-center text-md-start">
+                            <img src="/static/images/app/classic02.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div><!--end col-->
+
+                <div class="col-lg-6 col-md-7 mt-5 mt-sm-0">
+                    <div class="section-title">
+                        <h1 class="title mb-3">ما با عملکرد بالا کار می کنیم <br> در ساخت اپلیکیشن </h1>
+                        <p class="para-desc text-muted">کمپین خود را راه اندازی کنید و از تخصص ما در زمینه طراحی و مدیریت صفحه بوت استرپ v5 html تبدیل محور بهره مند شوید.</p>
+                        <ul class="list-unstyled text-muted">
+                            <li class="mb-0"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>راه حل های بازاریابی دیجیتال برای فردا</li>
+                            <li class="mb-0"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>آژانس بازاریابی با استعداد و با تجربه ما</li>
+                            <li class="mb-0"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>پوست خود را متناسب با نام تجاری خود ایجاد کنید</li>
+                        </ul>
+                        <div class="mt-4">
+                            <a href="javascript:void(0)" class="mt-3 h6 text-primary">اطلاعات بیشتر <i class="uil uil-angle-left-b"></i></a>
+                        </div>
+                    </div>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
+
+        <div class="container mt-100 mt-60">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-7 order-2 order-md-1 mt-5 mt-sm-0">
+                    <div class="section-title">
+                        <h1 class="title mb-3">آسان و بهترین راه حل <br> برای اپ سایت شما در دسترس است </h1>
+                        <p class="para-desc text-muted">لورم اپیسوم  درد شما را آغاز می کند ، تخفیف های هویج را افزایش می دهد. اما ما می توانیم چمدان را همراه با پرهیز از حقیقتی که او می خواهد انتخاب کنیم. اما از روی نفرت ، و از. چگونه انتخاب شده است ، لذت واقعیت این جهان برای هیچ چیز کمتر است. کمپین کنید و از تخصص ما در زمینه طراحی و مدیریت بهره مند شوید صفحه بوت استرپ HTML V5 با محوریت تبدیل.</p>
+                        <div class="mt-4">
+                            <a href="javascript:void(0)" class="btn btn-primary">ادامه مطلب  <i class="uil uil-angle-left-b"></i></a>
+                        </div>
+                    </div>
+                </div><!--end col-->
+
+                <div class="col-lg-6 col-md-5 order-1 order-md-2">
+                    <div class="app-feature-shape-right position-relative">
+                        <div class="text-center text-md-end">
+                            <img src="/static/images/app/classic03.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
+
+        <div class="container mt-100 mt-60">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-5">
+                    <div class="app-feature-shape-left position-relative">
+                        <div class="text-center text-md-start">
+                            <img src="/static/images/app/classic04.png" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div><!--end col-->
+
+                <div class="col-lg-6 col-md-7 mt-5 mt-sm-0">
+                    <div class="section-title">
+                        <h1 class="title mb-3">زیبا و آسان برای و <br> استفاده آسان</h1>
+                        <p class="para-desc text-muted">کمپین خود را راه اندازی کنید و از تخصص ما در زمینه طراحی و مدیریت صفحه بوت استرپ v5 html تبدیل محور بهره مند شوید.</p>
+                        <ul class="list-unstyled text-muted">
+                            <li class="mb-0"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>راه حل های بازاریابی دیجیتال برای فردا</li>
+                            <li class="mb-0"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>آژانس بازاریابی با استعداد و با تجربه ما</li>
+                            <li class="mb-0"><span class="text-primary h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>پوست خود را متناسب با نام تجاری خود ایجاد کنید</li>
+                        </ul>
+                        <div class="mt-4">
+                            <a href="javascript:void(0)" class="btn btn-primary">ادامه مطلب  <i class="uil uil-angle-left-b"></i></a>
+                        </div>
+                    </div>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
 
 
+    </section>
+
+    <section class="section overflow-hidden">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    <div class="section-title mb-4 pb-2">
+                        <h4 class="title mb-4">بلاگ ها </h4>
+                    </div>
+                </div><!--end col-->
+            </div><!--end row-->
+
+            <div class="row">
+                {% for blog in blogs %}
+
+                    <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                    <div class="card blog rounded border-0 shadow">
+                        <div class="position-relative">
+                            <img src="{{ blog.image.url }}" class="card-img-top rounded-top" alt="...">
+                        <div class="overlay rounded-top bg-dark"></div>
+                        </div>
+                        <div class="card-body content">
+                            <h5><a href="{% url 'blog-detail-page' blog.id %}" class="card-title title text-dark">{{ blog.title }}</a></h5>
+                            <div class="post-meta d-flex justify-content-between mt-3">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="list-inline-item me-2 mb-0"><a href="javascript:void(0)" class="text-muted like"><i class="uil uil-heart me-1"></i>33</a></li>
+                                    <li class="list-inline-item"><a href="javascript:void(0)" class="text-muted comments"><i class="uil uil-comment me-1"></i>08</a></li>
+                                </ul>
+                                <a href="{% url 'blog-detail-page' blog.id %}" class="text-muted readmore">ادامه مطلب  <i class="uil uil-angle-left-b align-middle"></i></a>
+                            </div>
+                        </div>
+                        <div class="author">
+                            <small class="text-light user d-block"><i class="uil uil-user"></i> {{ blog.author }}</small>
+                            <small class="text-light date"><i class="uil uil-calendar-alt"></i> {{ blog.create_date.date|to_jalali }} </small>
+                        </div>
+                    </div>
+                </div><!--end col-->
+
+                {% endfor %}
+
+
+            </div><!--end row-->
         </div>
-
-        <div class="status {% if not home_settings.show_counter  %} deactive {% endif %}">
-            <p>1000 تعداد رزومه های ساخته شده امروز <i class="spinner-grow spinner-grow-sm text-primary"></i>
-            </p>
-        </div>
-
-        <div class="scroll-down">
-            <a href="#resume-sec"><img src="/static/images/scroll-down-1-2.gif" alt=""></a>
-        </div>
-    </div>
-
-    <div class="row resume-row row-title" id="resume-sec">
-
-        <h2>قالب های رزومه</h2>
-
-        <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:1200px;height:550px;overflow:hidden;visibility:hidden;">
-        <!-- Loading Screen -->
-        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:500px;text-align:center;background-color:rgba(0,0,0,0.7);">
-            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/spin.svg" />
-        </div>
-        <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:1200px;height:550px;overflow:hidden;">
-
-            <div class="resume-samples">
-                <img data-u="image" src="/static/images/resume1.png" />
-            </div>
-            <div class="resume-samples">
-                <img data-u="image" src="/static/images/resume2.png" />
-            </div>
-            <div class="resume-samples">
-                <img data-u="image" src="/static/images/resume3.jpg" />
-            </div>
-            <div class="resume-samples">
-                <img class="shadow" data-u="image" src="/static/images/resume4.jpg" />
-            </div><div class="resume-samples">
-                <img class="shadow" data-u="image" src="/static/images/resume4.jpg" />
-            </div><div class="resume-samples">
-                <img class="shadow" data-u="image" src="/static/images/resume4.jpg" />
-            </div>
-
-        </div>
-        </div>
-
-
-        <div class="more-resume-btn">
-            <a href="" class="btn btn-outline-primary col-md-3">نمایش همه رزومه ها</a>
-        </div>
-
-    </div>
-
-    <div class="row mb-5">
-        <p class="row-title">چرا باید از رزومه ساز علی استفاده کنم؟</p>
-        <div class="cards">
-
-            <div class="card-item border">
-                <div class="card-item-icon">
-                    <i class="fa fa-qrcode" aria-hidden="true"></i>
-                </div>
-                <h5>QR تعریف</h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, in!</p>
-            </div>
-
-            <div class="card-item border">
-                <div class="card-item-icon">
-                    <i class="fa-solid fa-language"></i>
-                </div>
-                <h5>قابلیت چند زبانه</h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, in!</p>
-            </div>
-
-            <div class="card-item border">
-                <div class="card-item-icon">
-                    <i class="fa-solid fa-share-nodes"></i>
-                </div>
-                <h5>اشتراک گذاری آنلاین</h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, in!</p>
-            </div>
-
-            <div class="card-item border">
-                <div class="card-item-icon">
-                    <i class="fa-solid fa-briefcase"></i>
-                </div>
-                <h5>اشتراک گذاری نمونه کار</h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, in!</p>
-            </div>
-
-
-        </div>
-    </div>
-
-    <div class="row create-resume">
-        <p>!همین الان قالب دلخواهتو انتخاب کن و تو کمتر از 10 دقیقه رزومتو بساز</p>
-        <a href="" class="btn btn-primary">ساخت رزومه</a>
-    </div>
-
-    <div class="row blog-row row-title">
-        <h2>بلاگ ها</h2>
-        <div class="blogs-list">
-
-            <a href="" class="blog-item border border-1 shadow">
-
-                <div class="blog-image">
-                    <img src="/static/images/blog1.jpeg" alt="">
-                </div>
-
-                <div class="blog-body">
-                    <h5>لورم ایپسوم متن</h5>
-                </div>
-
-            </a>
-            <a href="" class="blog-item border border-1 shadow">
-
-                <div class="blog-image">
-                    <img src="/static/images/blog2.jpeg" alt="">
-                </div>
-
-                <div class="blog-body">
-                    <h5>لورم ایپسوم متن</h5>
-                </div>
-
-            </a>
-
-            <a href="" class="blog-item border border-1 shadow">
-
-                <div class="blog-image">
-                    <img src="/static/images/blog1.jpeg" alt="">
-                </div>
-
-                <div class="blog-body">
-                    <h5>لورم ایپسوم متن</h5>
-                </div>
-
-            </a>
-            <a href="" class="blog-item border border-1 shadow">
-
-                <div class="blog-image">
-                    <img src="/static/images/blog2.jpeg" alt="">
-                </div>
-
-                <div class="blog-body">
-                    <h5>لورم ایپسوم متن</h5>
-                </div>
-
-            </a>
-
-        </div>
-    </div>
-
-</div>
-
-
-</main>
-
+    </section>
+    </main>
 {% endblock %}
 
 {% block footer-refrence %}
         <script type="text/javascript">jssor_1_slider_init();
     </script>
+
 {% endblock %}

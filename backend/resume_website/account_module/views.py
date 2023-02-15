@@ -1,6 +1,8 @@
-from Scripts.bottle import post
+# from Scripts.bottle import post
 from django.contrib.auth import login, logout
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
+import json
 
 # Create your views here.
 from django.utils.crypto import get_random_string
@@ -12,7 +14,6 @@ from user_resume_data.models import basic_info_model, user_skill_model, user_job
 user_projects_model
 from django.core.files.storage import FileSystemStorage
 from account_module.models import user_work_samples, work_samples_image
-
 
 
 class profile_view(View):
@@ -28,8 +29,7 @@ class profile_view(View):
             user_project = user_projects_model.objects.filter(user_id=user.id)
             user_work_sample = user_work_samples.objects.filter(user_id=user.id)
             user_work_sample_image = work_samples_image.objects.filter(user_id=user.id)
-            # theme_color = User_model.objects.filter(basic_info_model__resume_id=user.id).first()
-            # print(theme_color)
+
 
 
             context = {
@@ -82,11 +82,6 @@ class add_work_samples(View):
 
             return redirect("profile-page")
 
-
-
-
-
-
 class register_view(View):
     def get(self, request):
         if request.user.is_authenticated:
@@ -125,8 +120,6 @@ class register_view(View):
         }
         return render(request, 'register.html', context)
 
-
-
 class Login(View):
     def get(self, request):
         if not request.user.is_authenticated:
@@ -161,12 +154,10 @@ class Login(View):
         }
         return render(request, 'login.html', context)
 
-
 class Loguot(View):
     def get(self, request):
         logout(request)
         return redirect('home-page')
-
 
 class activate_account(View):
     def get(self, request, active_code):
@@ -179,7 +170,6 @@ class activate_account(View):
                 return redirect('home-page')
         except:
             pass
-
 
 class Forgotpassword(View):
     def get(self, request):
@@ -203,7 +193,6 @@ class Forgotpassword(View):
             'forms' : form
         }
         return render(request, 'forgotpass.html', context)
-
 
 class Resetpassword(View):
     def get(self, request, active_code):
@@ -235,3 +224,49 @@ class Resetpassword(View):
             'forms': form,
         }
         return render(request, 'resetpass.html', context)
+
+class users_profile(View):
+    def get(self, request, username):
+        if request.user.is_authenticated:
+            print(request.user.username)
+
+            user_base_info = basic_info_model.objects.filter(user_base_info__username=username).first()
+            user_id = user_base_info.id
+            user_full_name = user_base_info.user_base_info.get_full_name()
+            user_education_info = user_education_model.objects.filter(user_id=user_id)
+            user_skills_info = user_skill_model.objects.filter(user_id=user_id)
+            user_jobs_info = user_job_model.objects.filter(user_id=user_id)
+            user_project_info = user_projects_model.objects.filter(user_id=user_id)
+            user_work_sample = user_work_samples.objects.filter(user_id=user_id)
+            user_work_sample_image = work_samples_image.objects.filter(user_id=user_id)
+
+            context = {
+                'user': user_base_info,
+                'user_full_name': user_full_name,
+                'user_skills': user_skills_info,
+                'user_jobs': user_jobs_info,
+                'user_education': user_education_info,
+                'user_projects': user_project_info,
+                'user_work_samples': user_work_sample,
+                'user_work_sample_images': user_work_sample_image,
+            }
+            return render(request, 'profile.html', context)
+
+class edit_profile(View):
+    def post(self, request):
+        pass
+
+def work_samples_images(request):
+    if request.method == "POST":
+        post_id = request.POST.get('post_id')
+        images = work_samples_image.objects.filter(post_id=post_id)
+        response = "{"
+        for image in images:
+            response += "{}".format(image.post_image)
+            if image != images[len(images)-1]:
+                response += ","
+        response += "}"
+        return HttpResponse(response)
+
+
+

@@ -1,3 +1,33 @@
+// function readURL(input,loc) {
+//     console.log(input.files);
+//    for (var i=0; i<input.files.length; i++) {
+//         var reader = new FileReader();
+//     // var image_tag_count = document.getElementsByClassName('images')[0];
+//     // image_tag_count = image_tag_count.getElementsByTagName('img').length;
+//
+//         reader.onload = function (e) {
+//
+//             var new_image = document.createElement('img');
+//             new_image.src = e.target.result;
+//             new_image.className = 'd-block w-100';
+//             var image = document.createElement('div');
+//             image.className = 'carousel-item';
+//             image.appendChild(new_image);
+//             var image_section = document.getElementsByClassName("carousel-inner")[0];
+//             image_section.appendChild(image);
+//
+//
+//             document.getElementsByClassName('custom-file-remove')[0].style.display = 'block';
+//
+//         };
+//
+//
+//         reader.readAsDataURL(input.files[i]);
+//    }
+//
+//
+// }
+
 function changeicon(test, index) {
     var selected_value = test.options[test.selectedIndex].value;
     var icon = document.getElementsByClassName('user-social-media-item')[index].getElementsByClassName('item-inputs')[0].getElementsByTagName('i')[0];
@@ -282,6 +312,27 @@ function pages(id) {
         document.getElementById(lower_id).className = 'tab-btn active-tab';
         document.getElementById(upper_id).className = 'btn tab-item active-tab';
 
+        if (lower_id == "other")
+        {
+            $('.nex-btn')[0].style.display = 'none';
+            $('.down-btn')[0].style.bottom = '120px';
+            $('.pre-btn')[0].style.display = 'block';
+        }
+
+        else if (lower_id == "personal-info"){
+            $('.pre-btn')[0].style.display = 'none';
+            $('.down-btn')[0].style.bottom = '160px';
+            $('.nex-btn')[0].style.display = 'block';
+        }
+
+        else{
+            $('.pre-btn')[0].style.display = 'block';
+            $('.down-btn')[0].style.bottom = '160px';
+            $('.nex-btn')[0].style.display = 'block';
+        }
+
+
+
         $("#myModal").modal("hide");
 
         tb1 = lower_id + '-' + 'page';
@@ -506,10 +557,8 @@ function education_page_ajax(){
 
 function job_page_ajax(){
     var job_items = document.getElementsByClassName('job-item').length;
-    console.log(job_items);
     for(var i=0; i<job_items; i++){
         var job_item = document.getElementById('job_'+i);
-        console.log(job_item);
         var job_title = job_item.getElementsByTagName('input')[1].value;
         var company_name = job_item.getElementsByTagName('input')[0].value;
         var city = job_item.getElementsByTagName('input')[2].value;
@@ -656,4 +705,81 @@ function other_page_ajax(){
 
 function submit_forms(){
     document.getElementById('form1').submit();
+}
+
+function switch_page(direction){
+    var Pages = ["personal-info","skills","education","job","project","other"];
+    var current_page = $('.active-tab')[1].id;
+    if (direction == 'nex'){
+
+        if (Pages.indexOf(current_page) < Pages.length - 1){
+            var next_page = Pages[Pages.indexOf(current_page) + 1];
+            $('.pre-btn')[0].style.display = 'block';
+            pages(next_page);
+            if (next_page == "other")
+            {
+            $('.nex-btn')[0].style.display = 'none';
+            $('.down-btn')[0].style.bottom = '120px';
+            $('.pre-btn')[0].style.display = 'block';
+            }
+
+        else if (next_page == "personal-info"){
+            $('.pre-btn')[0].style.display = 'none';
+            $('.down-btn')[0].style.bottom = '160px';
+            $('.nex-btn')[0].style.display = 'block';
+            }
+
+        else{
+            $('.pre-btn')[0].style.display = 'block';
+            $('.down-btn')[0].style.bottom = '160px';
+            $('.nex-btn')[0].style.display = 'block';
+            }
+        }
+    }
+
+    if (direction == 'pre'){
+        if (Pages.indexOf(current_page) > 0){
+            var pre_page = Pages[Pages.indexOf(current_page) - 1];
+            pages(pre_page);
+            if(pre_page == 'project'){
+                $('.nex-btn')[0].style.display = 'block';
+                $('.down-btn')[0].style.bottom = '160px';
+            }
+            if (pre_page == 'personal-info'){
+                $('.pre-btn')[0].style.display = 'none';
+            }
+        }
+    }
+}
+
+var resume_template_id = 0;
+function resume_id(rid) {
+    rid = rid.replace('resume_','');
+    resume_template_id = rid;
+    // $('.resume-template')[0].className = "resume-template invisible";
+    var test = document.getElementsByClassName('resume-template')[0];
+    test.className = "resume-template invisible";
+    // var nextab = $('.resume-info')[0];
+    var nextab = document.getElementsByClassName('resume-info')[0];
+    nextab.className = "resume-info";
+    window.scrollTo(0,0);
+}
+
+// Generate the PDF.
+function topdf() {
+    var element = document.getElementById('Resume');
+    var watermark = document.getElementsByClassName('watermark')[0];
+    if (watermark) {
+        watermark.style.display = 'block';
+    }
+    html2pdf().from(element).set({
+        margin: [0, -0.218, 0, 0],
+        filename: 'samplepdf.pdf',
+        image: { type: 'jpeg', quality: 4 },
+        html2canvas: {
+            quality: 4,
+            scale: 5,
+        },
+        jsPDF: { orientation: 'p', unit: 'cm', format: [30, 21] }
+    }).save();
 }

@@ -2,7 +2,11 @@
     padding: 0;
 }
 
-main {
+body {
+    background-color: #f8f8fa;
+}
+
+main{
     margin-top: 70px;
 }
 
@@ -461,6 +465,10 @@ select:focus {
 /*}*/
 
 
+.education-enddate-status input{
+    width: 10px;
+}
+
 .certification-item .item-inputs .item-data-inputs{
     display: flex;
     justify-content: space-between;
@@ -605,11 +613,90 @@ select:focus {
     border-radius: 20%;
 }
 
+.nex-btn{
+    position: fixed !important;
+    bottom: 120px;
+    left: 7px;
+    font-family: dirooz;
+    border-radius: 20px;
+    width: 120px;
+}
+
+.pre-btn{
+    position: fixed;
+    bottom: 120px;
+    right: 7px;
+    font-family: dirooz;
+    border-radius: 20px;
+    display: none;
+    width: 120px;
+}
+
+.down-btn{
+    position: fixed;
+    bottom: 160px;
+    left: 7px;
+    font-family: dirooz;
+    border-radius: 20px;
+    width: 120px;
+}
+
+.selected-tab{
+    border-color: #3498db;
+}
+
+.resume-list{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.resume-item{
+    position: relative;
+    border-radius: 10px;
+}
+
+.resume-item img{
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.overlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    color: white;
+    z-index: 20;
+    border-radius: 10px;
+}
+
+.resume-item:hover .overlay {
+    visibility: visible;
+    animation: fade 0.5s;
+}
+
+
+.resume-template{
+    margin-top: -70px !important;
+}
+
+
 @media screen and (max-width:991px) {
     .personal-info-page .base-info {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
     }
 
     .personal-info-page .base-info .row1,
@@ -702,7 +789,7 @@ select:focus {
     .skills-page .skill-items {
         grid-template-columns: repeat(1, 100%);
     }
-    
+
     .move-btns{
         visibility: visible;
     }
@@ -878,6 +965,15 @@ select:focus {
 
     .certification-item .item-inputs input{
         margin: 0;
+    }
+
+    .nex-btn,
+    .pre-btn {
+        display: none !important;
+    }
+
+    #resumeinfo{
+        margin-bottom: 70px !important;
     }
 
 }

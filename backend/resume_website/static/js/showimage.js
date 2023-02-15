@@ -6,6 +6,7 @@ function readURL(input,loc) {
         reader.onload = function (e) {
             $('.'+loc)
                 .attr('src', e.target.result)
+                $('input[name="avatar_name"]').val("image");
                 // .width(150)
                 // .height(200);
                 if(loc == "post-image-show"){
@@ -16,18 +17,22 @@ function readURL(input,loc) {
                 }
         };
 
-        reader.readAsDataURL(input.files[i]);
+        reader.readAsDataURL(input.files[0]);
     }
 }
+
+
 
 function removeprofileimage(loc) {
     var default_image = 'http://127.0.0.1:8000/static/images/user.png';
     var image = document.getElementsByClassName(loc)[0].src;
+    $('input[name="avatar_name"]').val("deleteimage");
 
     if (image != default_image) {
         document.getElementsByClassName(loc)[0].src = default_image;
-        document.getElementById(loc).style.display = 'none';
+        document.getElementById("removeimage").style.display = 'none';
     }
+
 }
 
 

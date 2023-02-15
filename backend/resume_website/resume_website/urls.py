@@ -23,8 +23,9 @@ urlpatterns = [
     path('', include('Home_page.urls')),
     path('contact-us/', include('contact_module.urls')),
     path('blogs/', include('blog_module.urls')),
-    path('', include('account_module.urls')),
+    path('account/', include('account_module.urls')),
     path('create-resume/', include('user_resume_data.urls')),
+    path('dy/', include('dynamics365_module.urls')),
 ]
 
 if settings.DEBUG:

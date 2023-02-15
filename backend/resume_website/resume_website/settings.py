@@ -35,13 +35,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #internal apps
     'Home_page',
     'contact_module',
     'account_module',
     'blog_module',
     'user_resume_data',
-    'django_render_partial',
+    'site_module',
     'django_cleanup.apps.CleanupConfig',
+    #external apps
+    'django_render_partial',
+    'jalali_date',
+    'sorl.thumbnail',
+    'dynamics365_module',
 
 ]
 

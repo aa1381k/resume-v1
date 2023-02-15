@@ -10,6 +10,8 @@ urlpatterns = [
     path('resetpass/<active_code>', views.Resetpassword.as_view(), name='resetpass-page'),
     path('active-account/<active_code>', views.activate_account.as_view(), name='active-account-page'),
     path('add_work_samples/', views.add_work_samples.as_view(), name='add_work_samples_post'),
+    path('user_work_samples/work_samples_images/', views.work_samples_images, name='work_samples_images'),
+    path('<username>', views.users_profile.as_view(), name='users_profile'),
 ]
 
 

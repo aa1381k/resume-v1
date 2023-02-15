@@ -87,7 +87,7 @@ class basic_info_model(models.Model):
     # langurage = models.ForeignKey("user_langurage", on_delete=models.CASCADE, default='', blank=True, null=True, editable=False)
 
     def __str__(self):
-        return self.first_name + " " + self.last_name
+        return self.user_base_info.username
 
 class user_socialmedia_model(models.Model):
     social_media = models.CharField(max_length=200, null=True, blank=True)
@@ -204,3 +204,15 @@ class user_entertainment_model(models.Model):
 
     def __str__(self):
         return self.name
+
+class resume_list_model(models.Model):
+    title = models.CharField(max_length=200, null=True, blank=True)
+    resume_id = models.CharField(max_length=200, null=True, blank=True)
+    template = models.FileField(upload_to='resume_template/', null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = "Resume Template List"
+        verbose_name = "Resume Template"

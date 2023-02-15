@@ -1,3 +1,7 @@
+section{
+    direction: rtl !important;
+}
+
 .about-us{
     margin-top: 0px;
 }

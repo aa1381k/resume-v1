@@ -26,15 +26,19 @@ function changetab(tab) {
         recent_page = "contact-body";
     }
 
+    if (tab.id == "profile-settings") {
+        tab.className = "btn active";
+        document.getElementsByClassName("setting-body")[0].style.display = "block";
+        recent_tab = tab.id;
+        recent_page = "setting-body";
+    }
+
+
 }
 
 
-function showpost(post) {
-    var image = $(post).find("img")[0];
-    var image_src = image.src;
-    var modal = document.getElementById("myModal");
-    var modal_image = document.getElementById("modal-image");
-    modal_image.src = image_src;
+function showpost(post,post_id) {
+    work_samples_images(post_id);
     var post_title = $(post).find(".work-samples-item-desc-title").find("h6")[0];
     var modal_title = document.getElementById("modal-title");
     modal_title.innerHTML = post_title.innerHTML;
@@ -94,29 +98,49 @@ function readURL(input,loc) {
 }
 
 
-// function readURL(input,loc) {
-//     console.log(input.files);
-//     var reader = new FileReader();
-//     // var image_tag_count = document.getElementsByClassName('images')[0];
-//     // image_tag_count = image_tag_count.getElementsByTagName('img').length;
-//
-//     for (var i = 0; i < input.files.length; i++) {
-//
-//
-//         var new_image = document.createElement('img');
-//         console.log(input.files[i]);
-//         new_image.src = input.files[i].name;
-//         new_image.className = 'd-block w-100';
-//         var image = document.createElement('div');
-//         image.className = 'carousel-item';
-//         image.appendChild(new_image);
-//         var image_section = document.getElementsByClassName("carousel-inner")[0];
-//         image_section.appendChild(image);
-//
-//
-//         document.getElementsByClassName('custom-file-remove')[0].style.display = 'block';
-//
-//     }
-//
-//
-// }
+function work_samples_images(post_id){
+    $.ajax({
+        url: '/account/user_work_samples/work_samples_images/',
+        method: 'POST',
+        data: {
+            "post_id": post_id,
+            'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+        },
+        success: function (data) {
+            data = data.replace("{","");
+            data = data.replace("}","");
+            data = data.split(",");
+            var node =document.getElementById("show_post_modal");
+            while(node.lastChild){
+                node.lastChild.remove();
+            }
+            for (var i = 0; i < data.length; i++) {
+                var parent = document.createElement("div");
+                if (i == 0) {
+                    parent.className = "carousel-item active";
+                }
+                else {
+                    parent.className = "carousel-item";
+                }
+                var new_image = document.createElement('img');
+                new_image.src = "/medias/" + data[i];
+                new_image.className = 'col-md-12';
+                parent.appendChild(new_image);
+                document.getElementById("show_post_modal").appendChild(parent);
+            }
+
+            if (data.length < 2) {
+                document.getElementsByClassName('carousel-control-prev')[0].style.display = 'none';
+                document.getElementsByClassName('carousel-control-next')[0].style.display = 'none';
+            }
+            else {
+                document.getElementsByClassName('carousel-control-prev')[0].style.display = 'flex';
+                document.getElementsByClassName('carousel-control-next')[0].style.display = 'flex';
+            }
+        }
+    });
+
+}
+
+
+$('.carousel').attr('data-interval', '1');

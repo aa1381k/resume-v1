@@ -1,0 +1,460 @@
+{% extends 'shared/base.html' %}
+{% load poll_extras %}
+
+{% block title %}
+رزومه ها
+{% endblock %}
+
+{% block refrence %}
+    <link rel="stylesheet" href="/static/css/download_resume.css">
+    <style>
+        .clearfix {
+            clear: both;
+        }
+
+        .resume {
+            /* width: 793.7066666666666px; */
+            width: 100%;
+            height: 100%;
+            margin-top: 0px;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume:after{
+            position: absolute;
+            content: 'JOBLAX';
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            margin-top: 250px;
+            margin-left: 200px;
+            transform: rotate(-50deg);
+            -webkit-transform: rotate(-50deg);
+            text-align: center;
+            z-index: 100;
+            display: block;
+            font-size: 150px;
+            font-weight: 700;
+            color: gray;
+            opacity: .4;
+        }
+
+        .head {
+            background-color: rgb(84, 138, 199);
+            height: 15%;
+            position: relative;
+        }
+
+        .name {
+            float: right;
+            margin-right: 100px;
+            margin-top: 40px;
+            font-size: 25px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .position {
+            float: right;
+            margin-top: 100px;
+            margin-right: -140px;
+            font-size: 20px;
+            color: white;
+        }
+
+        .image {
+            margin-left: 80px;
+            float: left;
+            margin-top: 60px;
+        }
+
+        .user_image {
+            width: 150px;
+            height: 150px;
+            background-image: url({{ resume.avatar.url }});
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            border-radius: 100%;
+            margin-left: 50px;
+            position: absolute;
+            margin-top: 87px;
+        }
+
+        .line {
+            width: 100%;
+            height: 1%;
+            background-color: rgb(192, 192, 192);
+        }
+
+        .main {
+            width: 60%;
+            height: 75%;
+            float: right;
+            margin: 30px;
+            margin-top: -40px;
+            font-weight: 600;
+        }
+
+        h2 {
+            color: rgb(84, 138, 199);
+            /* -webkit-text-fill-color: rgb(84, 138, 199); */
+            font-weight: 750;
+        }
+
+        .about_me p {
+            width: 450px;
+            text-align: justify;
+        }
+
+        .education {
+            margin-top: 30px;
+        }
+
+        .article {
+            margin-top: 15px;
+        }
+
+        .education .article .education_head ul {
+            list-style: none;
+        }
+
+        .education .article .education_head ul li {
+            display: inline-block;
+            padding: 0 10px;
+        }
+
+        .education .article .education_head .dot {
+            padding: 0;
+            color: rgb(84, 138, 199);
+        }
+
+        .education .article .education_head .date,
+        .education .article .education_head .grade {
+            font-weight: 600;
+            color: silver;
+        }
+
+        .education .article .education_text {
+            width: 350px;
+            margin: 20px 0px 5px 90px;
+        }
+
+        .work_experience {
+            margin-top: 30px;
+        }
+
+        .work_experience .article .date {
+            background-color: rgb(84, 138, 199);
+            color: white;
+            text-indent: 10px;
+            width: 100px;
+            position: relative;
+        }
+
+        .work_experience .article .work_tittle {
+            color: silver;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+
+        .work_experience .article p {
+            width: 450px;
+            text-align: justify;
+        }
+
+        .aside {
+            float: left;
+            width: 200px;
+            position: absolute;
+            left: 40px;
+            top: 300px;
+        }
+
+        .contact i {
+            color: rgb(84, 138, 199);
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .watermark {
+            width: 100%;
+            float: left;
+            margin-top: -500px;
+            transform: rotate(-50deg);
+            -webkit-transform: rotate(-50deg);
+            text-align: center;
+            z-index: 100;
+            display: block;
+            font-size: 150px;
+            font-weight: 700;
+            color: gray;
+            opacity: .4;
+        }
+
+        .skills {
+            margin-top: 30px;
+        }
+
+        .skills ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .skills ul li {
+            margin: 10px 0;
+            height: 30px;
+        }
+
+        .skills ul li span:first-child {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .skills ul li span:last-child {
+            float: right;
+            width: 40px;
+            height: 100%;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+            background-color: rgb(84, 138, 199);
+        }
+
+        .footer {
+            display: block;
+            position: relative;
+            height: 5%;
+            width: 100%;
+            background-color: rgb(84, 138, 199);
+            margin-top: 60px;
+        }
+
+
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+    <main>
+        <div class="container">
+
+            <div class="row-title">
+                <h1 class="text-center">دانلود رزومه</h1>
+            </div>
+
+            <div class="body-section col-md-12">
+
+
+                <div class="resume-preview border shadow-lg">
+                    <div class="resume" id="Resume">
+                        <div class="head">
+                            <div class="name">
+                                <h1>{{ user_full_name }}</h1>
+                            </div>
+                            <div class="position">
+                                <h3>{{ resume.job_title }}</h3>
+                            </div>
+                            <div class="user_image">
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="line"></div>
+
+                        <div class="main">
+
+                            <div class="about_me mt-5">
+                                <h2>ABOUT ME</h2>
+                                <p>{{ resume.summary }}</p>
+                            </div>
+
+                            {% if user_educations %}
+                                <div class="education">
+                                <h2>EDUCATION</h2>
+
+                                {% for user_education in user_educations %}
+                                    <div class="article">
+                                        <div class="education_head">
+                                            <ul>
+                                                <li class="font dot"><i class="fa fa-circle"></i></li>
+                                                <li class="date">{{ user_education.start_date }}-{{ user_education.end_date }}</li>
+                                                <li class="grade">{{ user_education.education_grade }}</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="education_text">
+                                            <p>{{ user_education.text }}</p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+
+                            </div>
+                            {% endif %}
+
+
+                            {% if user_jobs %}
+                                <div class="work_experience">
+                                    <h2>WORK EXPERIENCE</h2>
+
+                                    {% for user_job in user_jobs %}
+                                        <div class="article">
+                                            <h4 class="work_tittle">{{ user_job.job_title }}</h4>
+                                            <div class="bg date">{{ user_job.start_date }}-{{ user_job.end_date }}</div>
+                                            <p>{{ user_job.text }}</p>
+                                        </div>
+                                    {% endfor %}
+
+                                </div>
+                            {% endif %}
+
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="aside">
+
+                            <div class="contact">
+                                <h2>CONTACT</h2>
+
+                                {% if resume.country and resume.city %}
+                                    <div class="location">
+                                        <i class="font fas fa-map-marker-alt"></i>
+                                        <span>{{ resume.country }} , {{ resume.city }}</span>
+                                    </div>
+                                {% endif %}
+
+                                {% if resume.phone %}
+                                    <div class="phone">
+                                        <i class="font fas fa-phone"></i>
+                                        <span>{{ resume.phone }}</span>
+                                    </div>
+                                {% endif %}
+
+                                {% if resume.email %}
+                                    <div class="email">
+                                        <i class="font fas fa-envelope"></i>
+                                        <a href="">{{ resume.email }}</a>
+                                    </div>
+                                {% endif %}
+
+                                {% if resume.website %}
+                                    <div class="website">
+                                        <i class="font fas fa-globe"></i>
+                                        <span class="test">{{ resume.website }}</span>
+                                    </div>
+                                {% endif %}
+
+
+                            </div>
+
+                            {% if user_skills %}
+                                <div class="skills">
+                                    <h2>SKILLS</h2>
+
+                                    <ul>
+                                        {% for user_skill in user_skills %}
+                                            <li>
+                                                <span>{{ user_skill.skill }}</span>
+                                                <span class="bg">{{ user_skill.grade|mul }}%</span>
+                                            </li>
+                                        {% endfor %}
+
+                                    </ul>
+
+                                </div>
+                            {% endif %}
+
+
+                        </div>
+
+{#                        <div class="watermark">#}
+{#                            JOBLAX#}
+{#                        </div>#}
+
+                        <div class="footer">
+                            <div class="redline"></div>
+                        </div>
+                    </div>
+                    <!-- <div class="resume-image"></div> -->
+                </div>
+
+                <div class="facture  border shadow">
+                    <div class="options col-md-12">
+                        <div class="color col-md-12 d-flex justify-content-around">
+                            <div class="col-md-12">
+                                <p>رنگ رزومه</p>
+                                <div class="color-select col-md-12">
+                                    <button class="resume-color" onclick="changecolor('#ff0000', 'textcolor')"></button>
+                                    <button class="resume-color" onclick="changecolor('#9acd32', 'textcolor')"></button>
+                                    <button class="resume-color" onclick="changecolor('#663399', 'textcolor')"></button>
+                                    <button class="resume-color" onclick="changecolor('#0000ff', 'textcolor')"></button>
+                                    <button class="resume-color" onclick="changecolor('#ff7f50', 'textcolor')"></button>
+                                    <div>
+
+                                        <button class="changecolor-btn" onclick="showcolor()"><i
+                                                class="fa-solid fa-plus"></i></button>
+                                        <input type="color" class="resume-color-m d-none" value="#80e619"
+                                            onchange="changecolor(this.value, 'textcolor')">
+                                    </div>
+                                </div>
+                                <!-- <input type="color" name="" id="Textcolor" value=""
+                                    onchange="changecolor(this.value, 'textcolor')"> -->
+                            </div>
+                        </div>
+                        <div class="font col-md-12">
+                            <p>فونت رزومه</p>
+                            <select name="" id="" onchange="changefont(this.value)">
+                                <option value="dirooz">دیروز</option>
+                                <option value="lalezar">لاله زار</option>
+                                <option value="iransans">ایران سنس</option>
+                                <option value="anjoman">انجمن</option>
+                                <option value="aviny">آوینی</option>
+                                <option value="dastnevis">دست نویس</option>
+                                <option value="iranekan">ایران یکان</option>
+                            </select>
+                        </div>
+
+                        <div class="out-btns">
+                            <button type="button" onclick="topdf()"
+                                class="mt-5 btn btn-outline-primary col-md-12">دانلود رایگان رزومه</button>
+
+                            <button type="button" id="testimage" class="mt-4 btn btn-success col-md-12">دانلود نسخه
+                                بدون تبلیغ</button>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+{% endblock %}
+
+{% block footer-refrence %}
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+    <script src="/static/js/download-resume.js"></script>
+    <script src="Scripts/jquer_latest_2.11_.min.js" type="text/javascript"></script>
+<script src="Scripts/html2canvas.js" type="text/javascript"></script>
+{% endblock %}

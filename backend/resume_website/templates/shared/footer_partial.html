@@ -2,7 +2,11 @@
     <div class="footer-list">
 
         <div class="footer-info">
-            <img src="/static/images/BMW_logo_(gray).jpg" alt="">
+            <div class="logo">
+                <a href="">
+                    <span>j<span>oblax</span></span>
+                </a>
+            </div>
             <ul class="social-medias">
                 <li>
                     <a href="">
@@ -35,27 +39,29 @@
 
         <div class="footer-guide">
 
-            <div class="footer-item">
-                <h6>lorem</h6>
-                <ul>
-                    <li><a href="">Lorem ipsum</a></li>
-                    <li><a href="">Lorem ipsum</a></li>
-                    <li><a href="">Lorem ipsum</a></li>
-                    <li><a href="">Lorem ipsum</a></li>
-                    <li><a href="">Lorem ipsum</a></li>
-                </ul>
-            </div>
+            {% for footer_link_box in footer_link_boxes %}
+                <div class="footer-item">
+                    <h6>{{ footer_link_box.title }}</h6>
+                    <ul>
+                        {% for footer_link in footer_links %}
+                            {% if footer_link.footer_link_box.title == footer_link_box.title %}
+                                <li>
+                                    <a href="{{ footer_link.url }}">
+                                        {{ footer_link.title }}
+                                    </a>
+                                </li>
+                            {% endif %}
 
-            <div class="footer-item">
-                <h6>lorem</h6>
-                <ul>
-                    <li><a href="">Lorem ipsum</a></li>
-                    <li><a href="">Lorem ipsum</a></li>
-                    <li><a href="">Lorem ipsum</a></li>
-                    <li><a href="">Lorem ipsum</a></li>
-                    <li><a href="">Lorem ipsum</a></li>
-                </ul>
-            </div>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            {% endfor %}
+
+
+
+
+
         </div>
 
     </div>

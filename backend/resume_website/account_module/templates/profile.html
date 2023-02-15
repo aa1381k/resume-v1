@@ -10,89 +10,22 @@
     <link rel="stylesheet" href="/static/css/profile2.css">
         <script src="/static/js/jssor.slider-28.1.0.min.js" type="text/javascript"></script>
         <script src="/static/js/profile.js"></script>
-    <script type="text/javascript">
-        window.jssor_1_slider_init = function() {
-
-            var jssor_1_options = {
-              $AutoPlay: 0,
-              $SlideWidth: 400,
-              $ArrowNavigatorOptions: {
-                $Class: $JssorArrowNavigator$
-              },
-              $BulletNavigatorOptions: {
-                $Class: $JssorBulletNavigator$,
-                $SpacingX: 16,
-                $SpacingY: 16
-              }
-            };
-
-            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
-
-            /*#region responsive code begin*/
-
-            var MAX_WIDTH = 980;
-
-            function ScaleSlider() {
-                var containerElement = jssor_1_slider.$Elmt.parentNode;
-                var containerWidth = containerElement.clientWidth;
-
-                if (containerWidth) {
-
-                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
-
-                    jssor_1_slider.$ScaleWidth(expectedWidth);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-
-            ScaleSlider();
-
-            $Jssor$.$AddEvent(window, "load", ScaleSlider);
-            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
-            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-            /*#endregion responsive code end*/
-        };
-    </script>
 
     <style>
 
-        {% if  user.bg_image %}
+        {% if  user.user_base_info.bg_image %}
             .main-profile-header .bg-image {
-                background-image: url("{{ user.bg_image.url }}") !important;
+                background-image: url("{{ user.user_base_info.bg_image.url }}") !important;
             }
         {% else %}
             .main-profile-header .bg-image {
                 background-image: url("/static/images/curved0.jpg") !important;
             }
         {% endif %}
-
-        .jssorl-009-spin img {
-            animation-name: jssorl-009-spin;
-            animation-duration: 1.6s;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-        }
-
-        @keyframes jssorl-009-spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /*jssor slider bullet skin 051 css*/
-        .jssorb051 .i {position:absolute;cursor:pointer;}
-        .jssorb051 .i .b {fill:#fff;fill-opacity:0.3;}
-        .jssorb051 .i:hover .b {fill-opacity:.7;}
-        .jssorb051 .iav .b {fill-opacity: 1;}
-        .jssorb051 .i.idn {opacity:.3;}
-
-        /*jssor slider arrow skin 051 css*/
-        .jssora051 {display:block;position:absolute;cursor:pointer;}
-        .jssora051 .a {fill:none;stroke:#fff;stroke-width:360;stroke-miterlimit:10;}
-        .jssora051:hover {opacity:.8;}
-        .jssora051.jssora051dn {opacity:.5;}
-        .jssora051.jssora051ds {opacity:.3;pointer-events:none;}
+        :root{
+            /* --theme: #0d6efd; */
+            --theme: {{ user.user_base_info.theme_color }};
+         }
 
     </style>
 
@@ -101,8 +34,8 @@
 {% block content %}
 
 
-    <main>
-        <div class="container col-md-12">
+    <main class="">
+        <div class="container-fullied col-md-12">
 
             <div class="main-profile col-md-12 d-flex flex-column align-items-center">
 
@@ -152,6 +85,7 @@
                                             ها</button></li>
                                     <li><button class="btn" id="contact-me" onclick="changetab(this)">ارتباط با
                                             من</button></li>
+
                                 </ul>
                             </div>
 
@@ -162,389 +96,28 @@
 
                     </div>
 
-
                 </div>
-
-                <div class="main-profile-body col-md-11 mt-1">
-
-                    <div class="about-me col-md-12 p-1">
-
-
-                        <div class="section col-md-12 p-1 mb-3">
-                            <p class="sectionname col-md-12 p-4 bg-white radius shadow">درباره من</p>
-                        </div>
-
-                        <div class="col-md-12 d-flex justify-content-center p-1">
-
-                            <div class="about-me-body shadow radius bg-white col-md-10">
-                                <div class="about-header col-md-12 p-1">
-
-
-                                    <ul class="info-items col-md-12">
-
-                                        <li class="info-item col-md-12">
-                                            <div class="icon"><i class="fa-solid fa-envelope"></i></div>
-                                            <div class="text"><a
-                                                    href="mailto:{{ user.email }}">{{ user.email }}</a>
-                                            </div>
-                                        </li>
-
-                                        <li class="info-item col-md-12">
-                                            <div class="icon"><i class="fa-solid fa-globe"></i></div>
-                                            <div class="text"><a href="{{ user.website }}">{{ user.website }}</a></div>
-                                        </li>
-
-                                        <li class="info-item col-md-12">
-                                            <div class="icon"><i class="fa-solid fa-baby-carriage"></i></div>
-                                            <div class="text">19</div>
-                                        </li>
-
-                                    </ul>
-
-
-                                </div>
-                                <div class="text">
-                                    <div class="sectionheader col-md-12">
-                                        <p class="col-md-12"><i class="fa-solid fa-circle-info"
-                                                style="color: var(--theme); margin-top: 13px;"></i> درباره من</p>
-                                    </div>
-                                    <p class="col-md-12 p-5 desc">{{ user.summary }}</p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="skills col-md-12 p-1 mt-4">
-
-                        <div class="section col-md-12 p-1">
-                            <p class="sectionname border shadow col-md-12 p-4 bg-white">مهارت ها</p>
-                        </div>
-
-                        <div class="skill-items p-2 col-md-12">
-
-                            {% if user_skills %}
-                                {% for skill in user_skills %}
-                                    <div class="skill-item shadow">
-                                        <span>{{ skill.skill }}</span>
-                                        <div class="progress col-md-10">
-                                            <div class="progress-bar progress-bar-animated progress-bar-striped"
-                                                style="width: {{ skill.grade|mul }}%;">{{ skill.grade|mul }}%
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-
-                            {% endif %}
-
-                        </div>
-
-                    </div>
-
-                    <div class="job-exp col-md-12 p-1 mt-4">
-
-                        <div class="section col-md-12 p-1">
-                            <div class="sectionname col-md-12 border shadow bg-white p-4">سوابق شغلی</div>
-                        </div>
-
-                        <div class="job-exp-items">
-
-                            {% if user_jobs %}
-                                {% for user_job in user_jobs %}
-                                    <div class="job-exp-item shadow">
-
-                                        <div class="job-position text-center mb-4 ">
-                                            <h6>{{ user_job.job_title }}</h6>
-                                        </div>
-
-                                        <div class="company-name">
-                                            <span>{{ user_job.company_name }}</span>
-                                        </div>
-
-                                        <div class="job-date">
-                                            <span class="date-start">{{ user_job.start_date }}</span>
-                                            -
-                                            <span class="date-end">{{ user_job.end_date }}</span>
-                                        </div>
-
-                                        <div class="job-desc mt-3 w-100">
-                                            <p>{{ user_job.text }}</p>
-                                        </div>
-
-                                    </div>
-
-                                {% endfor %}
-
-                            {% endif %}     
-                            
-                            
-                        </div>
-
-                    </div>
-
-                    <div class="education col-md-12 p-1 mt-4">
-
-                        <div class="section col-md-12 p-1">
-                            <p class="sectionname bg-white shadow border p-4 col-md-12">سوابق تحصیلی</p>
-                        </div>
-
-                        <div class="education-items">
-
-                            {% if user_education %}
-                                {% for education in user_education %}
-                                    <div class="education-item shadow">
-
-                                        <div class="education-name text-center mb-4">
-                                            <h6>{{ education.education_title }}</h6>
-                                        </div>
-
-                                        <div class="education-grade">
-                                            <p>{{ education.education_grade }}</p>
-                                        </div>
-
-                                        <div class="education-date">
-                                            <span class="date-start">{{ education.start_date }}</span>
-                                            -
-                                            <span class="date-end">{{ education.end_date }}</span>
-                                        </div>
-
-                                    </div>
-                                {% endfor %}
-
-                            {% endif %}
-
-
-
-                        </div>
-
-                    </div>
-
-                    <div class="projects col-md-12 p-1 mt-4">
-                        <div class="section col-md-12 p-1">
-                            <p class="sectionname bg-white shadow border p-4 col-md-12">پروژه ها</p>
-                        </div>
-
-                        <div class="projects-items">
-
-                            {% if user_projects %}
-                                {% for user_project in user_projects %}
-                                    <div class="project-item shadow">
-
-                                        <div class="project-name text-center mb-4">
-                                            <h6>{{ user_project.title }}</h6>
-                                        </div>
-
-                                        <div class="project-date mt-3">
-                                            <span class="date-start">{{ user_project.start_date }}</span>
-                                            -
-                                            <span class="date-end">{{ user_project.end_date }}</span>
-                                        </div>
-
-                                        <div class="project-desc mt-4">
-
-                                            <p>{{ user_project.text }}</p>
-
-                                        </div>
-
-                                    </div>
-                                {% endfor %}
-                            {% endif %}
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="work-samples-body col-md-11">
-
-                    <div class="section col-md-12 p-1">
-                        <p class="sectionname bg-white border radius shadow p-4 col-md-12">نمونه کارها</p>
-                    </div>
-
-                    <div class="work-samples-items p-1">
-
-                        {% for user_work_sample in  user_work_samples %}
-
-
-                        <div class="work-samples-item-img">
-                            <img src="/medias/{{ user_work_sample_images|thumbnail_image:user_work_sample.post_id }}" alt="">
-                            <div class="work-samples-item-desc hidden">
-                            <div class="work-samples-item-desc-title">
-                                <h6>{{ user_work_sample.post_title }}</h6>
-                            </div>
-
-                            <div class="desc">
-                                <p>{{ user_work_sample.post_description }}</p>
-                            </div>
-
-                            <div class="links">
-
-                                <a href="{{ user_work_sample.post_link }}">
-                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                    <span>لینک پروژه</span>
-                                </a>
-
-                                <a href="">
-                                    <i class="fa-solid fa-share-nodes"></i>
-                                    <span>اشتراک گذاری</span>
-                                </a>
-
-                            </div>
-
-                            </div>
-                        </div>
-
-
-
-
-
-                        {% endfor %}
-
-
-                        <button class="add_worksample" onclick="addpost()">
-                            <i class="fa fa-plus mx-2"></i>
-                            <span>اضافه کردن نمونه کار</span>
-                        </button>
-
-                    </div>
-
-                    <div class="show-samples-post col-md-12">
-                        <div class="modal col-md-12" id="myModal">
-                            <div class="modal-dialog col-md-12">
-                                <div class="modal-content col-md-12">
-
-
-                                    <!-- Modal body -->
-                                    <div class="modal-body d-flex col-md-12">
-                                        <img src="../images/blog1.jpeg" class="col-md-6 radius " id="modal-image" alt=""
-                                            srcset="">
-                                        <div class="samples-post-info d-flex flex-column justify-content-around p-4 col-md-6">
-                                            <h6 class="text-center col-md-12" id="modal-title">لورم ایپسوم</h6>
-                                            <p class="modal-desc shadow radius col-md-12"></p>
-                                            <div
-                                                class="samples-post-info-links border col-md-12 bg-white radius shadow p-5 justify-content-between d-flex">
-                                                <a href="" id="modal-project-link">
-                                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                                    <span>لینک پروژه</span>
-                                                </a>
-                                                <a href="">
-                                                    <i class="fa-solid fa-share-nodes"></i>
-                                                    <span>اشتراک گذاری</span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="add-samples-post col-md-12">
-                        <div class="modal col-md-12" id="add-post">
-                            <div class="modal-dialog col-md-12">
-                                <div class="modal-content col-md-12">
-
-
-                                    <!-- Modal body -->
-                                    <div class="modal-body d-flex col-md-12">
-
-                                        <div class="add-samples-post-info p-4 col-md-12">
-
-                                            <div class="post-image col-md-6">
-
-                                                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                                      <div class="carousel-inner">
-                                                            <div class="carousel-item active">
-                                                              <img class="d-block w-100" src="/static/images/new-post.gif" alt="First slide">
-                                                            </div>
-
-                                                      </div>
-
-                                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                            <span class="sr-only">Previous</span>
-                                                        </a>
-                                                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                            <span class="sr-only">Next</span>
-                                                        </a>
-                                                    </div>
-
-
-                                                <div class="image-btns col-md-12">
-                                                    <button class="btn btn-danger col-md-4 custom-file-remove" style="display: none" onclick="removeimage('post-image-show')">
-                                                        <i class="fa-solid fa-trash"></i>  Remove
-                                                    </button>
-
-                                                    <label for="upload_image" class="custom-file-upload btn btn-primary col-md-4">
-                                                        <i class="fa fa-cloud-upload"></i>  Upload
-                                                    </label>
-                                                </div>
-
-
-                                            </div>
-
-                                            <form class="col-md-6" action="{% url 'add_work_samples_post' %}" method="post" enctype="multipart/form-data">
-                                                {% csrf_token %}
-
-
-                                                <input id="upload_image" type="file" name="post_image" multiple onchange="readURL(this, 'post-image-show')">
-
-                                                <div class="info col-md-12">
-
-                                                <div class="project-title col-md-12">
-                                                    <span>نام پروژه</span>
-                                                    <input type="text" name="post_title" class="col-md-12">
-                                                </div>
-
-                                                <div class="project-link col-md-12">
-                                                    <span>لینک پروژه</span>
-                                                    <input type="text" name="post_link" class="col-md-12">
-                                                </div>
-
-                                                <div class="desc col-md-12">
-                                                    <span>نوضیحات</span>
-                                                    <textarea name="post_description" id="" cols="30" rows="10" class="col-md-12"></textarea>
-                                                </div>
-
-                                                <button type="submit" class="btn btn-success mt-2 col-md-12"> اضافه کردن نمونه کار</button>
-                                                
-                                            </div>
-
-                                            </form>
-
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="contact-body col-md-11">
-                    <div class="section col-md-12 p-1">
-                        <p class="sectionname bg-white border radius shadow p-4 col-md-12">تماس با من</p>
-                    </div>
-                </div>
-
+{#            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Enable body scrolling</button>#}
+{##}
+{##}
+{#            <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">#}
+{#              <div class="offcanvas-header">#}
+{#                <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>#}
+{#                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>#}
+{#              </div>#}
+{#              <div class="offcanvas-body">#}
+{#                <p>Try scrolling the rest of the page to see this option in action.</p>#}
+{#              </div>#}
+{#            </div>#}
 
             </div>
-    </main>
+        </div>
+
+     </main>
 
 
 {% endblock %}
 
 {% block footer-refrence %}
-        <script type="text/javascript">jssor_1_slider_init();
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 {% endblock %}

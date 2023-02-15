@@ -1,0 +1,78 @@
+{% load jalali_tags %}
+
+<h2>نظرات <i class="fa fa-comment"></i></h2>
+<div class="blog-comment-input shadow col-md-12">
+    {% csrf_token %}
+    <input type="hidden" value="" id="parentid">
+    <textarea class="col-md-10 comment-textarea" placeholder="نظر خود را وارد کنید" name="" id="" cols="30"
+        rows="10"></textarea>
+    <button class="btn btn-primary col-md-2" onclick="sendcommect({{ object.id }})">ارسال</button>
+</div>
+
+<div class="blog-comment-items col-md-12">
+
+    {% for comment in comments %}
+
+        <div class="blog-comment-item shadow">
+        <div class="comment-item-image">
+            <img src="{{ comment.author.avatar.url }}" alt="">
+        </div>
+
+        <div class="comment-item-body">
+
+            <div class="comment-header col-md-12">
+
+                <h5>{{ comment.author.get_full_name }}</h5>
+                <span class="tag-item">
+                    {{ comment.create_date.date|to_jalali }}
+                </span>
+
+            </div>
+            <p class="comment-text">
+                {{ comment.text }}
+            </p>
+            <div class="comment-item-footer d-flex justify-content-end">
+
+                <button class="btn btn-outline-primary comment-item-reply" onclick="anwsercomment({{ comment.id }})">
+                        <i class="fa fa-reply"></i>
+                        <span>پاسخ</span>
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+
+        {% for sub_comment in comment.blog_comments_set.all %}
+
+            <div class="blog-comment-item sub-comment col-md-11 shadow">
+                <div class="comment-item-image">
+                    <img src="{{ sub_comment.author.avatar.url }}" alt="">
+                </div>
+
+                <div class="comment-item-body">
+
+                    <div class="comment-header col-md-12">
+
+                        <h5>{{ sub_comment.author.get_full_name }}</h5>
+                        <span class="tag-item">
+                            {{ sub_comment.create_date.date|to_jalali }}
+                        </span>
+
+                    </div>
+                    <p class="comment-text">
+                        {{ sub_comment.text }}
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        {% endfor %}
+
+
+
+    {% endfor %}
+
+</div>

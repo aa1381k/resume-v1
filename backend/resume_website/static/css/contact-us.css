@@ -1,5 +1,12 @@
+@font-face {
+    font-family: iransansdn;
+    src: url('fonts/iransansdn/woff/iransansdn.woff') format('woff');
+}
+
+
 main{
     margin-top: 0px;
+    font-family: iransansdn !important;
 }
 
 main .container {
@@ -8,6 +15,10 @@ main .container {
     display: flex;
     justify-content: space-between;
     margin-bottom: 90px;
+}
+
+body{
+    direction: rtl !important;
 }
 
 .form {

@@ -1,4 +1,5 @@
 {% extends 'shared/base.html' %}
+{% load thumbnail %}
 
 {% block title %}
 blogs
@@ -18,44 +19,42 @@ blogs
                         <div id="carouselExampleIndicators" data-interval="100" class="carousel slide" data-bs-ride="carousel">
 
                             <div class="carousel-inner">
-                                <div class="carousel-item" data-bs-interval="2000">
-                                    <img src="/static/images/blog1.jpeg" class="d-block" alt="...">
-                                    <a href="">
-                                        <span class="carousel-caption text-white">بهترین برنامه نویس های جهان</span>
-                                    </a>
-                                </div>
-                                <div class="carousel-item active" data-bs-interval="2000">
-                                    <img src="/static/images/blog2.jpeg" class="d-block" alt="...">
-                                    <a href="">
-                                        <span class="carousel-caption text-white">برسی بهترین لپتاپ برای برنامه
-                                            نویسان</span>
-                                    </a>
-                                </div>
+
+                                {% for slider_blog in slider_blogs %}
+
+                                    <div class="carousel-item {% if slider_blogs.0 == slider_blog %} active{% endif %}" data-bs-interval="1000">
+                                        {% thumbnail slider_blog.image "1272x400" quality=75 crop=center as im %}
+                                        <img src="{{ im.url }}" class="d-block" alt="...">
+                                        {% endthumbnail %}
+                                        <a href="{% url 'blog-detail-page' slider_blog.id %}">
+                                            <span class="carousel-caption text-white">{{ slider_blog.title }}</span>
+                                        </a>
+                                    </div>
+
+                                {% endfor %}
+
                             </div>
                         </div>
                     </div>
 
 
                     <div class="side-blogs col-md-4">
-                        <div class="items col-md-4">
-                            <img src="/static/images/blog2.jpeg" class="w-100" alt="">
-                            <a href="">
-                                <p>لورم ایپسوم متن</p>
-                            </a>
-                        </div>
-                        <div class="items col-md-4">
-                            <img src="/static/images/blog2.jpeg" class="w-100" alt="">
-                            <a href="">
-                                <p>لورم ایپسوم متن</p>
-                            </a>
-                        </div>
-                        <div class="items col-md-4">
-                            <img src="/static/images/blog2.jpeg" class="w-100" alt="">
-                            <a href="">
-                                <p>لورم ایپسوم متن</p>
-                            </a>
-                        </div>
+
+                        {% for random_blog in random_blogs %}
+
+                            <div class="items col-md-4">
+                            {% thumbnail random_blog.image "424x200" quality=75 crop=center as im %}
+                                <img src="{{ im.url }}" class="w-100" alt="">
+                            {% endthumbnail %}
+                                <a href="{% url 'blog-detail-page' random_blog.id %}">
+                                    <p>{{ random_blog.title }}</p>
+                                </a>
+                            </div>
+
+                        {% endfor %}
+
                     </div>
+
                 </div>
             </div>
             <div class="row-title">
@@ -64,53 +63,38 @@ blogs
             <div class="row col-md-12 blog-main">
                 <div class="blogs-list col-md-10">
 
-                    <div class="blog-item shadow">
-                        <img src="/static/images/blog1.jpeg" alt="">
-                        <h5>لورم ایپسوم متن</h5>
 
-                        <div class="blog-item-footer col-md-12">
-                            <div class="user">
-                                <a href="">
-                                    <img src="/static/images/user1.jpg" alt="">
-                                    <span>علی عبدلی</span>
-                                </a>
-                            </div>
+                    {% for object in object_list %}
+                        <div class="blog-item shadow">
+                            {% thumbnail object.image "262x175" quality=75 crop=center as im %}
+                                <a href="{% url 'blog-detail-page' object.id %}"><img class="blog-item-image" src="{{ im.url }}" alt=""></a>
+                            {% endthumbnail %}
+                            <h5><a href="{% url 'blog-detail-page' object.id %}">{{ object.title }}</a></h5>
 
-                            <div class="tag">
-                                <a href="">
-                                    <p>آموزشی</p>
-                                </a>
+                            <div class="blog-item-footer col-md-12">
+                                <div class="user">
+                                    <a href="{% url 'users_profile' object.author.username %}">
+                                        <img src="{{ object.author.avatar.url }}" alt="">
+                                        <span>{{ object.author.get_full_name }}</span>
+                                    </a>
+                                </div>
+
+                                <div class="tag">
+                                    <a href="{% url 'blogs-page' %}?filter={{ object.category.first.url_title }}">
+                                        <p>{{ object.category.first }}</p>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {% endfor %}
+
+
 
 
 
                 </div>
 
                 <div class="sidepage col-md-2">
-                    <div class="side-tags">
-                        <div class="head">
-                            <span>پر بازدیدترین تگ ها</span>
-                            <i class="fa-solid fa-hashtag"></i>
-                        </div>
-                        <hr>
-                        <div class="body mt-4">
-                            <a href="">
-                                <span>#demo</span>
-                            </a>
-                            <a href="">
-                                <span>#demo</span>
-                            </a>
-                            <a href="">
-                                <span>#تست</span>
-                            </a>
-                            <a href="">
-                                <span>#demo</span>
-                            </a>
-
-                        </div>
-                    </div>
 
                     <div class="category side-tags mt-5">
                         <div class="head">
@@ -120,54 +104,17 @@ blogs
                         <hr>
                         <div class="body">
                             <ul>
-                                <li>
-                                    <a href="">
-                                        <span>100</span>
-                                        <span>test</span>
-                                    </a>
-                                </li>
+                                {% for category in categories %}
 
-                                <li>
-                                    <a href="">
-                                        <span>100</span>
-                                        <span>test</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="">
-                                        <span>100</span>
-                                        <span>test</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="">
-                                        <span>100</span>
-                                        <span>test</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="">
-                                        <span>100</span>
-                                        <span>test</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="">
-                                        <span>100</span>
-                                        <span>test</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="">
-                                        <span>100</span>
-                                        <span>test</span>
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a class="{% if filter == category.url_title %}active{% endif %}"
+                                           href="{% url 'blogs-page' %}?filter={{ category.url_title }}">
+                                            <span>{{ category.title }}</span>
+                                        </a>
+                                    </li>
+                                
+                                {% endfor %}
+                                
 
                             </ul>
                         </div>
@@ -182,11 +129,19 @@ blogs
         <div class="paging">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li>
+
+                    {% if page_obj.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}"><i class="fa-solid fa-angles-right"></i></a></li>
+                    {% endif %}
+
+                    {% for page in paginator.page_range %}
+                        <li class="page-item {% if page_obj.number == page %}active{% endif %}"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"><i class="fa-solid fa-angles-left"></i></a></li>
+                    {% endif %}
+
                 </ul>
             </nav>
         </div>

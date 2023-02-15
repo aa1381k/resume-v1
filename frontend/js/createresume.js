@@ -121,7 +121,7 @@ function addintroduced() {
     element.appendChild(elem);
 }
 
-function addentertainment(){
+function addentertainment() {
     var index = document.getElementsByClassName('entertainment-item');
     index = index.length;
     var entertainment = `<div class="move-btns"> <span><button class="btn" onclick="moveupelement(this, 'entertainment-items','entertainment-item','entertainment')"><i class="fa-solid fa-angle-up"></i></button></span> <span><button class="btn" onclick="movedownelement(this, 'entertainment-items','entertainment-item','entertainment')"><i class="fa-solid fa-angle-down"></i></button></span> <span><button class="btn" onclick="removeitem(this,'entertainment')"><i class="fa-solid fa-xmark"></i></button></span> </div> <div class="col-md-11 item-inputs"> <div class="col-md-12"> <span>نام علاقه مندی</span> <input type="text"> </div> </div>`;
@@ -219,14 +219,14 @@ function pages(id) {
         document.getElementsByClassName(tb1)[0].className = tb1 + ' invisible';
 
         lower_id = id.toLowerCase();
-        upper_id  = id.toUpperCase();
+        upper_id = id.toUpperCase();
 
         document.getElementById(id2).className = 'btn tab-item';
         document.getElementById(id1).className = 'tab-btn';
-        
+
         var newtab = document.getElementsByClassName(lower_id + '-' + 'page')[0];
         newtab.className = (lower_id + '-' + 'page');
-        
+
         document.getElementById(lower_id).className = 'tab-btn active-tab';
         document.getElementById(upper_id).className = 'btn tab-item active-tab';
 
@@ -239,7 +239,47 @@ function pages(id) {
 }
 
 
+function switch_page(direction){
+    var Pages = ["personal-info","skills","education","job","project","other"];
+    var current_page = $('.active-tab')[1].id;
+    if (direction == 'nex'){
+        if (Pages.indexOf(current_page) < Pages.length - 1){
+            var next_page = Pages[Pages.indexOf(current_page) + 1];
+            $('.pre-btn')[0].style.display = 'block';
+            pages(next_page);
+            if(next_page == 'other'){
+                $('.nex-btn')[0].style.display = 'none';
+                $('.down-btn')[0].style.bottom = '120px';
+            }
+        }
+    }
+
+    if (direction == 'pre'){
+        if (Pages.indexOf(current_page) > 0){
+            var pre_page = Pages[Pages.indexOf(current_page) - 1];
+            pages(pre_page);
+            if(pre_page == 'project'){
+                $('.nex-btn')[0].style.display = 'block';
+                $('.down-btn')[0].style.bottom = '160px';
+            }
+            if (pre_page == 'personal-info'){
+                $('.pre-btn')[0].style.display = 'none';
+            }
+        }
+    }
+}
+
+var resume_template_id = 0;
+function resume_id(rid) {
+    rid = rid.replace('resume_','');
+    resume_template_id = rid;
+    $('.resume-template')[0].className = "resume-template invisible";
+    var nextab = $('.resume-info')[0];
+    nextab.className = "resume-info";
+    window.scrollTo(0,0);
+}
+
 
 function test() {
-    alert('salaaaaaaam');
+    alert(resume_template_id);
 }

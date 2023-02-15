@@ -275,6 +275,7 @@ main .cards .card-item {
     align-items: center;
     visibility: hidden;
     color: white;
+    cursor: pointer;
 }
 
 .resume-item:hover .overlay {
@@ -295,6 +296,8 @@ div[class*=box] {
     color: rgb(255, 250, 250);
     transition: all 0.1s;
     position: relative;
+    cursor: pointer;
+    z-index: 23;
 }
 
 .btn-three span {

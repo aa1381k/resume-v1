@@ -15,6 +15,7 @@ urlpatterns = [
     path('savedata/user_introduced/', views.user_introduced_ajax, name='introduced'),
     path('savedata/user_entertainment/', views.user_entertainment_ajax, name='entertainment'),
     path('savedata/resume_remove_item/', views.resume_remove_item, name='resume_remove_item'),
+    path('download-resume/', views.download_resume.as_view(), name='download_resume'),
 ]
 
 

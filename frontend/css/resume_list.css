@@ -1,0 +1,45 @@
+
+.resume-list{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.resume-item{
+    position: relative;
+    border-radius: 10px;
+}
+
+.resume-item img{
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.overlay {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    color: white;
+    z-index: 20;
+    border-radius: 10px;
+}
+
+.resume-item:hover .overlay {
+    visibility: visible;
+    animation: fade 0.5s;
+}
+
+
+.resume-template{
+    margin-top: -70px !important;
+}
